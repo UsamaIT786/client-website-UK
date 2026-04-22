@@ -73,7 +73,7 @@ const TestimonialSection: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="group bg-white p-10 rounded-[40px] border border-slate-100 hover:border-primary transition-all duration-500 relative shadow-[0_10px_40px_rgba(0,0,0,0.03)]"
+              className="group bg-white p-8 md:p-10 rounded-[32px] md:rounded-[40px] border border-slate-100 hover:border-primary transition-all duration-500 relative shadow-[0_10px_40px_rgba(0,0,0,0.03)]"
             >
               <div className="absolute top-8 right-10 text-slate-100 group-hover:text-primary/10 transition-colors duration-500">
                 <Quote size={80} />

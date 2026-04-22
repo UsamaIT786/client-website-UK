@@ -12,7 +12,7 @@ import Preloader from './components/Preloader';
 
 const AppContent: React.FC = () => {
   return (
-    <div className="relative min-h-screen">
+    <div className="relative min-h-screen overflow-x-hidden">
       <Preloader />
       <Navbar />
       <Routes>

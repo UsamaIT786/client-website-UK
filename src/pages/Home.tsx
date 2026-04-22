@@ -140,7 +140,7 @@ const Home: React.FC = () => {
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="bg-white rounded-[40px] md:rounded-[60px] p-10 md:p-24 relative z-10 overflow-hidden shadow-[0_30px_100px_rgba(0,0,0,0.06)] text-center border border-slate-100"
+            className="bg-white rounded-[32px] md:rounded-[60px] p-8 md:p-24 relative z-10 overflow-hidden shadow-[0_30px_100px_rgba(0,0,0,0.06)] text-center border border-slate-100"
           >
             {/* Elegant abstract accents */}
             <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 blur-[120px] pointer-events-none" />

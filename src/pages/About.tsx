@@ -20,11 +20,11 @@ const About: React.FC = () => {
             Founded with a vision to simplify the complex world of immigration, our firm has helped thousands of individuals and families find their new home. We combine legal expertise with a human-centric approach.
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-            <div className="bg-white p-8 rounded-3xl border border-slate-100 shadow-[0_10px_40px_rgba(0,0,0,0.03)]">
+            <div className="bg-white p-6 md:p-8 rounded-2xl md:rounded-3xl border border-slate-100 shadow-[0_10px_40px_rgba(0,0,0,0.03)]">
               <span className="block text-4xl sm:text-5xl font-syne font-bold text-slate-900 mb-2">10k+</span>
               <span className="text-[10px] uppercase tracking-widest text-primary font-bold">Successful Cases</span>
             </div>
-            <div className="bg-white p-8 rounded-3xl border border-slate-100 shadow-[0_10px_40px_rgba(0,0,0,0.03)]">
+            <div className="bg-white p-6 md:p-8 rounded-2xl md:rounded-3xl border border-slate-100 shadow-[0_10px_40px_rgba(0,0,0,0.03)]">
               <span className="block text-4xl sm:text-5xl font-syne font-bold text-slate-900 mb-2">50+</span>
               <span className="text-[10px] uppercase tracking-widest text-primary font-bold">Countries Served</span>
             </div>

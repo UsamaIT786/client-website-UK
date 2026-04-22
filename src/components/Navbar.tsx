@@ -95,7 +95,7 @@ const Navbar: React.FC = () => {
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-              className="fixed top-0 right-0 h-full w-[80%] max-w-sm bg-white z-[70] p-10 flex flex-col border-l border-slate-200"
+              className="fixed top-0 right-0 h-full w-[85%] md:w-[80%] max-w-sm bg-white z-[70] p-8 md:p-10 flex flex-col border-l border-slate-200"
             >
               <div className="flex justify-end mb-10">
                 <button onClick={() => setIsMobileMenuOpen(false)}>

@@ -8,10 +8,10 @@ const Hero: React.FC = () => {
   const { openModal } = useModal();
 
   return (
-    <section className="relative min-h-screen lg:min-h-screen flex items-center pt-32 pb-20 lg:pt-20 lg:pb-0 overflow-hidden bg-background">
+    <section className="relative min-h-screen lg:min-h-screen flex items-center pt-32 pb-20 lg:pt-20 lg:pb-0 overflow-x-hidden bg-background">
       {/* Background Subtle Gradient Blobs - Optimized */}
-      <div className="absolute top-[-10%] right-[-5%] w-[300px] md:w-[500px] h-[300px] md:h-[500px] bg-primary/5 rounded-full blur-[80px] md:blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-[-10%] left-[-5%] w-[200px] md:w-[300px] h-[200px] md:h-[300px] bg-blue-100/40 rounded-full blur-[80px] md:blur-[100px] pointer-events-none" />
+      <div className="absolute top-0 right-0 w-[250px] md:w-[500px] h-[250px] md:h-[500px] bg-primary/5 rounded-full blur-[80px] md:blur-[120px] pointer-events-none translate-x-1/4 -translate-y-1/4" />
+      <div className="absolute bottom-0 left-0 w-[180px] md:w-[300px] h-[180px] md:h-[300px] bg-blue-100/40 rounded-full blur-[80px] md:blur-[100px] pointer-events-none -translate-x-1/4 translate-y-1/4" />
 
       <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-[1.1fr_0.9fr] gap-12 lg:gap-20 items-center w-full relative z-10">
         {/* Left Content */}
@@ -81,7 +81,7 @@ const Hero: React.FC = () => {
           {/* Enhanced Outer Glow */}
           <div className="absolute -inset-1 bg-gradient-to-br from-primary/10 to-blue-500/10 rounded-[44px] blur-2xl opacity-50 group-hover:opacity-100 transition-opacity duration-500" />
           
-          <div className="bg-white p-8 md:p-10 rounded-[40px] border border-slate-100 shadow-[0_20px_50px_rgba(0,0,0,0.05)] relative overflow-hidden group">
+          <div className="bg-white p-6 md:p-10 rounded-[32px] md:rounded-[40px] border border-slate-100 shadow-[0_20px_50px_rgba(0,0,0,0.05)] relative overflow-hidden group">
             <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 blur-[80px] pointer-events-none" />
             
             <AssessmentForm />

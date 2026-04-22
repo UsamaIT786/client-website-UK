@@ -13,7 +13,8 @@ const TeamMember: React.FC<TeamMemberProps> = ({ name, role, image }) => {
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
+      whileTap={{ scale: 0.98 }}
+      viewport={{ once: true, amount: 0.1 }}
       className="group relative"
     >
       <div className="relative overflow-hidden rounded-[32px] aspect-[10/13] mb-8 bg-slate-100 border border-slate-100 shadow-xl group-hover:shadow-primary/10 transition-all duration-700">

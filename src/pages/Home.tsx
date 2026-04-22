@@ -82,7 +82,7 @@ const Home: React.FC = () => {
               <motion.div 
                 initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: true, amount: 0.1 }}
                 className="text-primary font-bold tracking-[0.3em] uppercase text-[10px] mb-6 block"
               >
                 Our Expertise
@@ -115,7 +115,7 @@ const Home: React.FC = () => {
             <motion.div 
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, amount: 0.1 }}
               className="text-primary font-bold tracking-[0.3em] uppercase text-[10px] mb-6 block"
             >
               Our Experts
@@ -139,7 +139,7 @@ const Home: React.FC = () => {
           <motion.div 
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.1 }}
             className="bg-white rounded-[32px] md:rounded-[60px] p-8 md:p-24 relative z-10 overflow-hidden shadow-[0_30px_100px_rgba(0,0,0,0.06)] text-center border border-slate-100"
           >
             {/* Elegant abstract accents */}

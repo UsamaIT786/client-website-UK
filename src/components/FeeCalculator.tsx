@@ -36,7 +36,7 @@ const FeeCalculator: React.FC = () => {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.1 }}
             className="flex items-center justify-center gap-3 mb-6"
           >
             <Calculator className="text-primary" size={20} />
@@ -45,7 +45,7 @@ const FeeCalculator: React.FC = () => {
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.1 }}
             transition={{ delay: 0.1 }}
             className="text-3xl md:text-6xl font-syne font-bold uppercase mb-8"
           >

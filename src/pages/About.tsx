@@ -12,7 +12,7 @@ const About: React.FC = () => {
         <motion.div
           initial={{ opacity: 0, x: -30 }}
           whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0.1 }}
         >
           <span className="text-primary font-bold tracking-[0.3em] uppercase text-[10px] mb-6 block">Our Story</span>
           <h1 className="text-3xl sm:text-5xl md:text-7xl font-syne font-bold uppercase mb-10 leading-tight text-textMain">Expertise <br /> You Can <span className="text-primary">Trust</span></h1>
@@ -34,7 +34,7 @@ const About: React.FC = () => {
         <motion.div 
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0.1 }}
           className="relative aspect-square rounded-[40px] overflow-hidden shadow-2xl border border-white/5 bg-surface"
         >
           <img 
@@ -65,7 +65,7 @@ const About: React.FC = () => {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.1 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, amount: 0.1 }}
               className="bg-white p-10 rounded-[32px] border border-slate-100 shadow-[0_10px_50px_rgba(0,0,0,0.03)] hover:shadow-primary/5 transition-all duration-500 text-center group"
             >
               <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-8 group-hover:bg-primary transition-colors duration-500">

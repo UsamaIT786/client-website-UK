@@ -44,25 +44,25 @@ const AssessmentModal: React.FC<AssessmentModalProps> = ({ isOpen, onClose }) =>
             initial={{ opacity: 0, scale: 0.9, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
-            className="relative w-full max-w-xl bg-white rounded-[40px] border border-slate-100 shadow-[0_30px_100px_rgba(0,0,0,0.15)] overflow-hidden"
+            className="relative w-full max-w-xl max-h-[90vh] overflow-y-auto bg-white rounded-[32px] md:rounded-[40px] border border-slate-100 shadow-[0_30px_100px_rgba(0,0,0,0.15)] custom-scrollbar"
           >
             <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 blur-[80px] pointer-events-none" />
             
-            <div className="relative z-10 p-8 md:p-12">
+            <div className="relative z-10 p-6 md:p-12">
               <div className="flex justify-between items-center mb-10">
-                <div>
-                  <h2 className="text-3xl font-syne font-bold text-slate-900 uppercase tracking-tighter">
+                <div className="pr-12">
+                  <h2 className="text-2xl md:text-3xl font-syne font-bold text-slate-900 uppercase tracking-tighter">
                     {isSubmitted ? 'Request Received' : 'Free Assessment'}
                   </h2>
-                  <p className="text-textMuted text-xs font-bold uppercase tracking-widest mt-2">
+                  <p className="text-textMuted text-[10px] md:text-xs font-bold uppercase tracking-widest mt-2">
                     {isSubmitted ? 'Your journey begins now' : 'Start your journey today'}
                   </p>
                 </div>
                 <button 
                   onClick={onClose}
-                  className="w-12 h-12 rounded-full bg-slate-50 border border-slate-100 flex items-center justify-center hover:bg-primary hover:border-primary transition-all group"
+                  className="absolute top-0 right-0 w-10 h-10 md:w-12 md:h-12 rounded-full bg-slate-50 border border-slate-100 flex items-center justify-center hover:bg-primary hover:border-primary transition-all group"
                 >
-                  <X className="text-slate-400 group-hover:text-white group-hover:scale-110 transition-all" />
+                  <X size={18} className="text-slate-400 group-hover:text-white group-hover:scale-110 transition-all" />
                 </button>
               </div>
 
@@ -76,7 +76,7 @@ const AssessmentModal: React.FC<AssessmentModalProps> = ({ isOpen, onClose }) =>
                     className="space-y-6" 
                     onSubmit={handleSubmit}
                   >
-                    <div className="grid md:grid-cols-2 gap-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                       <div className="space-y-2">
                         <label className="text-[10px] font-bold uppercase tracking-widest text-primary">Full Name *</label>
                         <input 

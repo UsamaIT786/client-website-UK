@@ -18,7 +18,7 @@
 
 @layer base {
   html, body {
-    @apply bg-background text-textMain font-jost antialiased selection:bg-primary/10 selection:text-primary;
+    @apply bg-background text-textMain font-jost antialiased selection:bg-primary/10 selection:text-primary scroll-smooth;
     overflow-x: hidden;
     width: 100%;
     position: relative;
@@ -59,15 +59,15 @@
 
 /* Custom Cursor or other aesthetics can be added here */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-background;
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-slate-200 rounded-full hover:bg-primary transition-colors;
+  @apply bg-slate-300/50 rounded-full hover:bg-primary/50 transition-colors;
 }
 
 @keyframes marquee {

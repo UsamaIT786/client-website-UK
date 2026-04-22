@@ -14,7 +14,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ title, description, icon: Ico
     <motion.div
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
+      viewport={{ once: true, amount: 0.1 }}
       transition={{ delay: index * 0.1, duration: 0.8 }}
       className="bg-white p-12 rounded-[40px] shadow-[0_10px_40px_rgba(0,0,0,0.04)] border border-slate-100 group hover:shadow-[0_20px_60px_rgba(37,99,235,0.08)] hover:-translate-y-3 transition-all duration-700 cursor-pointer relative overflow-hidden"
     >

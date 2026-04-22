@@ -38,7 +38,7 @@ const TestimonialSection: React.FC = () => {
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, amount: 0.1 }}
               className="flex items-center gap-3 mb-6"
             >
               <span className="w-10 h-[1px] bg-primary" />
@@ -47,7 +47,7 @@ const TestimonialSection: React.FC = () => {
             <motion.h2 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, amount: 0.1 }}
               transition={{ delay: 0.1 }}
               className="text-3xl md:text-7xl font-syne font-bold uppercase tracking-tighter text-slate-900"
             >
@@ -57,7 +57,7 @@ const TestimonialSection: React.FC = () => {
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.1 }}
             transition={{ delay: 0.2 }}
             className="text-textMuted text-lg max-w-sm leading-relaxed"
           >
@@ -71,7 +71,7 @@ const TestimonialSection: React.FC = () => {
               key={i}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, amount: 0.1 }}
               transition={{ delay: i * 0.1 }}
               className="group bg-white p-8 md:p-10 rounded-[32px] md:rounded-[40px] border border-slate-100 hover:border-primary transition-all duration-500 relative shadow-[0_10px_40px_rgba(0,0,0,0.03)]"
             >

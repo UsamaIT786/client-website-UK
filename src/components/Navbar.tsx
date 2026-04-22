@@ -27,42 +27,39 @@ const Navbar: React.FC = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        isScrolled ? 'py-2 bg-background border-b border-slate-200 shadow-xl' : 'py-4 bg-transparent'
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled ? 'py-2 bg-background border-b border-slate-200 shadow-xl' : 'py-4 bg-transparent'
+        }`}
     >
       <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
         {/* Logo */}
-        <Link to="/" className="flex items-center gap-3 group">
-          <div className="h-12 md:h-16 w-auto group-hover:scale-110 transition-transform duration-500 flex items-center">
-            <img 
-              src="https://immigrationlaw.org.uk/wp-content/uploads/elementor/thumbs/ce896829-4abe-4faa-a633-9d5103fe2f91-1-rm724a590fvz73ddsioileszubihhy1skyfx14pi64.png" 
-              alt="Immigration Law Mascot" 
+        <Link to="/" className="flex items-center gap-2 group">
+          <div className="h-8 md:h-16 w-auto group-hover:scale-110 transition-transform duration-500 flex items-center">
+            <img
+              src="https://immigrationlaw.org.uk/wp-content/uploads/elementor/thumbs/ce896829-4abe-4faa-a633-9d5103fe2f91-1-rm724a590fvz73ddsioileszubihhy1skyfx14pi64.png"
+              alt="Immigration Law Mascot"
               className="h-full w-auto object-contain"
             />
           </div>
-          <span className="font-syne font-bold text-lg md:text-xl tracking-tighter uppercase text-textMain leading-none">
+          <span className="font-syne font-bold text-xs md:text-xl tracking-tighter uppercase text-textMain leading-none">
             Immigration<span className="text-primary">Law</span>
           </span>
         </Link>
 
         {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-10">
+        <div className="hidden lg:flex items-center gap-10">
           {navLinks.map((link) => (
             <Link
               key={link.path}
               to={link.path}
-              className={`font-bold text-[10px] uppercase tracking-[0.2em] hover:text-primary transition-all duration-300 relative group py-2 ${
-                location.pathname === link.path ? 'text-primary' : 'text-textMain/70'
-              }`}
+              className={`font-bold text-[10px] uppercase tracking-[0.2em] hover:text-primary transition-all duration-300 relative group py-2 ${location.pathname === link.path ? 'text-primary' : 'text-textMain/70'
+                }`}
             >
               {link.name}
-              <span className={`absolute bottom-0 left-0 w-0 h-[2px] bg-primary transition-all duration-500 group-hover:w-full ${
-                location.pathname === link.path ? 'w-full' : ''
-              }`} />
+              <span className={`absolute bottom-0 left-0 w-0 h-[2px] bg-primary transition-all duration-500 group-hover:w-full ${location.pathname === link.path ? 'w-full' : ''
+                }`} />
             </Link>
           ))}
-          <button 
+          <button
             onClick={openModal}
             className="bg-primary text-white px-8 py-3 rounded-xl font-bold uppercase tracking-widest text-[9px] hover:bg-slate-900 transition-all duration-500 shadow-lg shadow-primary/20 ml-4"
           >
@@ -72,7 +69,7 @@ const Navbar: React.FC = () => {
 
         {/* Mobile Toggle */}
         <button
-          className="md:hidden text-textMain"
+          className="lg:hidden text-textMain"
           onClick={() => setIsMobileMenuOpen(true)}
         >
           <Menu size={24} />
@@ -95,7 +92,7 @@ const Navbar: React.FC = () => {
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-              className="fixed top-0 right-0 h-full w-[85%] md:w-[80%] max-w-sm bg-white z-[70] p-8 md:p-10 flex flex-col border-l border-slate-200"
+              className="fixed top-0 right-0 h-full w-[85%] sm:w-[70%] md:w-[60%] lg:w-[40%] max-w-sm bg-white z-[70] p-8 md:p-10 flex flex-col border-l border-slate-200"
             >
               <div className="flex justify-end mb-10">
                 <button onClick={() => setIsMobileMenuOpen(false)}>
@@ -113,9 +110,8 @@ const Navbar: React.FC = () => {
                     <Link
                       to={link.path}
                       onClick={() => setIsMobileMenuOpen(false)}
-                      className={`text-2xl font-syne font-bold uppercase tracking-tighter ${
-                        location.pathname === link.path ? 'text-primary' : 'text-textMain'
-                      }`}
+                      className={`text-2xl font-syne font-bold uppercase tracking-tighter ${location.pathname === link.path ? 'text-primary' : 'text-textMain'
+                        }`}
                     >
                       {link.name}
                     </Link>

@@ -34,7 +34,7 @@ const FaqSection: React.FC = () => {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.1 }}
             className="flex items-center justify-center gap-3 mb-6"
           >
             <HelpCircle className="text-primary" size={20} />
@@ -43,7 +43,7 @@ const FaqSection: React.FC = () => {
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.1 }}
             transition={{ delay: 0.1 }}
             className="text-3xl md:text-6xl font-syne font-bold uppercase mb-8"
           >
@@ -57,7 +57,7 @@ const FaqSection: React.FC = () => {
               key={index}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, amount: 0.1 }}
               transition={{ delay: index * 0.1 }}
               className={`rounded-[30px] border transition-all duration-500 overflow-hidden ${
                 activeIndex === index ? 'bg-white border-primary shadow-xl shadow-primary/5' : 'bg-slate-50 border-slate-100 hover:border-slate-200'

@@ -15,17 +15,17 @@ const About: React.FC = () => {
           viewport={{ once: true }}
         >
           <span className="text-primary font-bold tracking-[0.3em] uppercase text-[10px] mb-6 block">Our Story</span>
-          <h1 className="text-5xl md:text-7xl font-syne font-bold uppercase mb-10 leading-tight text-textMain">Expertise <br /> You Can <span className="text-primary">Trust</span></h1>
+          <h1 className="text-3xl sm:text-5xl md:text-7xl font-syne font-bold uppercase mb-10 leading-tight text-textMain">Expertise <br /> You Can <span className="text-primary">Trust</span></h1>
           <p className="text-textMuted text-lg leading-relaxed mb-10">
             Founded with a vision to simplify the complex world of immigration, our firm has helped thousands of individuals and families find their new home. We combine legal expertise with a human-centric approach.
           </p>
-          <div className="grid grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
             <div className="bg-white p-8 rounded-3xl border border-slate-100 shadow-[0_10px_40px_rgba(0,0,0,0.03)]">
-              <span className="block text-5xl font-syne font-bold text-slate-900 mb-2">10k+</span>
+              <span className="block text-4xl sm:text-5xl font-syne font-bold text-slate-900 mb-2">10k+</span>
               <span className="text-[10px] uppercase tracking-widest text-primary font-bold">Successful Cases</span>
             </div>
             <div className="bg-white p-8 rounded-3xl border border-slate-100 shadow-[0_10px_40px_rgba(0,0,0,0.03)]">
-              <span className="block text-5xl font-syne font-bold text-slate-900 mb-2">50+</span>
+              <span className="block text-4xl sm:text-5xl font-syne font-bold text-slate-900 mb-2">50+</span>
               <span className="text-[10px] uppercase tracking-widest text-primary font-bold">Countries Served</span>
             </div>
           </div>
@@ -50,7 +50,7 @@ const About: React.FC = () => {
       <div className="mb-32">
         <div className="text-center mb-24">
           <span className="text-primary font-bold tracking-[0.3em] uppercase text-[10px] mb-6 block">What Drives Us</span>
-          <h2 className="text-4xl md:text-6xl font-syne font-bold uppercase text-textMain"><span className="text-primary">Our Mission</span> & Values</h2>
+          <h2 className="text-3xl md:text-6xl font-syne font-bold uppercase text-textMain"><span className="text-primary">Our Mission</span> & Values</h2>
         </div>
         
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10">

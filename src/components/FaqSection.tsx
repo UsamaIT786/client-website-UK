@@ -45,7 +45,7 @@ const FaqSection: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-4xl md:text-6xl font-syne font-bold uppercase mb-8"
+            className="text-3xl md:text-6xl font-syne font-bold uppercase mb-8"
           >
             Common <span className="text-primary italic">Inquiries</span>
           </motion.h2>

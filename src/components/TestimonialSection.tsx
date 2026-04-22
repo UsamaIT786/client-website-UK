@@ -49,7 +49,7 @@ const TestimonialSection: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className="text-4xl md:text-7xl font-syne font-bold uppercase tracking-tighter text-slate-900"
+              className="text-3xl md:text-7xl font-syne font-bold uppercase tracking-tighter text-slate-900"
             >
               Global <span className="text-primary italic">Reputation</span>
             </motion.h2>

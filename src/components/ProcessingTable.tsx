@@ -28,8 +28,8 @@ const ProcessingTable: React.FC = () => {
         </div>
 
         {/* Responsive Table Wrapper */}
-        <div className="overflow-x-auto">
-          <table className="w-full text-left border-collapse min-w-[800px]">
+        <div className="overflow-x-auto custom-scrollbar">
+          <table className="w-full text-left border-collapse min-w-[700px] md:min-w-full">
             <thead>
               <tr className="border-b border-slate-100">
                 <th className="px-10 py-8 text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400 w-1/3">Visa Category</th>

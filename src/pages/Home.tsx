@@ -75,7 +75,7 @@ const Home: React.FC = () => {
       <CompanySlider />
 
       {/* Services Section */}
-      <section className="py-32 px-6">
+      <section className="py-20 md:py-32 px-6">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-24 gap-8">
             <div className="max-w-2xl">
@@ -87,7 +87,7 @@ const Home: React.FC = () => {
               >
                 Our Expertise
               </motion.div>
-              <h2 className="text-4xl md:text-6xl font-syne font-bold uppercase leading-tight text-textMain">
+              <h2 className="text-3xl md:text-6xl font-syne font-bold uppercase leading-tight text-textMain">
                 Comprehensive <br /> <span className="text-primary">Immigration Solutions</span>
               </h2>
             </div>
@@ -109,7 +109,7 @@ const Home: React.FC = () => {
       <FeeCalculator />
 
       {/* Team Section - Fully Replicated Weblite Style */}
-      <section className="py-32 px-6 bg-surface">
+      <section className="py-20 md:py-32 px-6 bg-surface">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-24">
             <motion.div 
@@ -120,7 +120,7 @@ const Home: React.FC = () => {
             >
               Our Experts
             </motion.div>
-            <h2 className="text-4xl md:text-6xl font-syne font-bold uppercase leading-tight text-textMain">
+            <h2 className="text-3xl md:text-6xl font-syne font-bold uppercase leading-tight text-textMain">
               Meet The <span className="text-primary">Professionals</span>
             </h2>
           </div>

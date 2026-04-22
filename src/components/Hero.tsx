@@ -29,7 +29,7 @@ const Hero: React.FC = () => {
           >
             Professional Legal Representation
           </motion.div>
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl 2xl:text-[85px] font-syne font-bold leading-[1.1] mb-8 md:mb-10 text-textMain tracking-tighter uppercase">
+          <h1 className="text-3xl sm:text-5xl lg:text-6xl xl:text-7xl 2xl:text-[85px] font-syne font-bold leading-[1.1] mb-6 md:mb-10 text-textMain tracking-tighter uppercase">
             Professional <br />
             Uk <span className="text-primary italic">Immigration</span> <br />
             Legal <span className="text-primary italic">Support</span>

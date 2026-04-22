@@ -47,7 +47,7 @@ const FeeCalculator: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-4xl md:text-6xl font-syne font-bold uppercase mb-8"
+            className="text-3xl md:text-6xl font-syne font-bold uppercase mb-8"
           >
             Fee <span className="text-primary italic">Calculator</span>
           </motion.h2>
@@ -100,7 +100,9 @@ const FeeCalculator: React.FC = () => {
               <div className={`w-14 h-14 rounded-2xl flex items-center justify-center transition-all duration-500 ${
                 isPriority ? 'bg-primary text-white scale-110' : 'bg-slate-200 text-slate-500 group-hover:text-slate-700'
               }`}>
-                <Zap size={24} className={isPriority ? 'fill-white' : ''} />
+                <div className="relative">
+                  <Zap size={24} className={isPriority ? 'fill-white' : ''} />
+                </div>
               </div>
               <div className="text-left">
                 <h4 className={`text-lg font-syne font-bold uppercase tracking-tight mb-1 ${isPriority ? 'text-slate-900' : 'text-slate-700'}`}>Priority Service</h4>
@@ -128,11 +130,11 @@ const FeeCalculator: React.FC = () => {
               <div>
                 <h3 className="text-[10px] font-bold uppercase tracking-[0.3em] text-slate-400 mb-8">Estimated Breakdown</h3>
                 <div className="space-y-6">
-                  <div className="flex justify-between items-center">
+                  <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
                     <span className="text-slate-600 text-lg">Application Fee ({applicants}x)</span>
                     <span className="text-slate-900 font-syne font-bold text-xl">£{(selectedVisa.fee * applicants).toLocaleString()}</span>
                   </div>
-                  <div className="flex justify-between items-center">
+                  <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
                     <span className="text-slate-600 text-lg">Health Surcharge (IHS)</span>
                     <span className="text-slate-900 font-syne font-bold text-xl">£{(selectedVisa.ihs * applicants).toLocaleString()}</span>
                   </div>
@@ -142,7 +144,7 @@ const FeeCalculator: React.FC = () => {
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: 'auto' }}
                         exit={{ opacity: 0, height: 0 }}
-                        className="flex justify-between items-center"
+                        className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2"
                       >
                         <span className="text-primary text-lg">Priority Service</span>
                         <span className="text-primary font-syne font-bold text-xl">£{(500 * applicants).toLocaleString()}</span>
@@ -154,7 +156,7 @@ const FeeCalculator: React.FC = () => {
 
               <div className="pt-10 border-t border-slate-200">
                 <h3 className="text-[10px] font-bold uppercase tracking-[0.3em] text-slate-400 mb-4">Total Cost</h3>
-                <div className="text-6xl md:text-8xl font-syne font-bold text-slate-900 tracking-tighter">
+                <div className="text-5xl md:text-8xl font-syne font-bold text-slate-900 tracking-tighter break-words">
                   £{total.toLocaleString()}
                 </div>
                 <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-slate-300 mt-6">Fees correct as of April 2026</p>

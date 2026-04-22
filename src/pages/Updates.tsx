@@ -36,9 +36,9 @@ const blogPosts = [
 
 const Updates: React.FC = () => {
   const [activeFilter, setActiveFilter] = React.useState('All');
-  
-  const filteredPosts = activeFilter === 'All' 
-    ? blogPosts 
+
+  const filteredPosts = activeFilter === 'All'
+    ? blogPosts
     : blogPosts.filter(post => post.category === activeFilter);
 
   const categories = ['All', 'Policy', 'Guide', 'Trends', 'Residency'];
@@ -53,14 +53,13 @@ const Updates: React.FC = () => {
         </div>
         <div className="flex flex-wrap gap-3">
           {categories.map((cat) => (
-            <button 
+            <button
               key={cat}
               onClick={() => setActiveFilter(cat)}
-              className={`px-6 py-2 rounded-xl text-[10px] font-bold uppercase tracking-widest transition-all duration-300 ${
-                activeFilter === cat 
-                  ? 'bg-primary text-white shadow-lg shadow-primary/20' 
+              className={`px-6 py-2 rounded-xl text-[10px] font-bold uppercase tracking-widest transition-all duration-300 ${activeFilter === cat
+                  ? 'bg-primary text-white shadow-lg shadow-primary/20'
                   : 'border border-slate-100 text-textMuted bg-white hover:border-primary hover:text-primary'
-              }`}
+                }`}
             >
               {cat}
             </button>
@@ -80,9 +79,9 @@ const Updates: React.FC = () => {
       </div>
 
       <UpdateTable />
-      
+
       <div className="mt-24 flex justify-center">
-        <button 
+        <button
           onClick={(e) => {
             const btn = e.currentTarget;
             btn.innerHTML = 'Loading...';

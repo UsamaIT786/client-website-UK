@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-background: #ffffff;
+  --color-surface: #f8fafc;
+  --color-primary: #2563eb;
+  --color-primary-hover: #1d4ed8;
+  --color-accent: #2563eb;
+  --color-textMain: #0f172a;
+  --color-textMuted: #64748b;
+  
+  --font-syne: "Syne", sans-serif;
+  --font-jost: "Jost", sans-serif;
+  
+  --background-image-glass-gradient: linear-gradient(135deg, rgba(37, 99, 235, 0.05) 0%, rgba(37, 99, 235, 0) 100%);
+}
+
+@layer base {
+  body {
+    @apply bg-background text-textMain font-jost antialiased selection:bg-primary/10 selection:text-primary;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-syne font-bold uppercase tracking-tight text-textMain;
+  }
+}
+
+@utility glass {
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+@utility glass-card {
+  @apply bg-white backdrop-blur-lg border border-slate-200 rounded-2xl overflow-hidden hover:border-primary/30 hover:shadow-xl hover:shadow-primary/5 transition-all duration-500;
+}
+
+@utility btn-premium {
+  @apply relative overflow-hidden px-8 py-3 rounded-full font-semibold uppercase tracking-wider transition-all duration-500 bg-primary text-white hover:text-white border border-transparent;
+
+  &::before {
+    content: '';
+    @apply absolute inset-0 bg-primary-hover translate-y-full transition-transform duration-500 ease-out;
+    z-index: -1;
+  }
+
+  &:hover::before {
+    @apply translate-y-0;
+  }
+}
+
+@utility text-gradient {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-slate-900 via-slate-800 to-primary;
+}
+
+/* Custom Cursor or other aesthetics can be added here */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-background;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-slate-200 rounded-full hover:bg-primary transition-colors;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@utility animate-marquee {
+  animation: marquee 40s linear infinite;
+  &:hover {
+    animation-play-state: paused;
+  }
+}

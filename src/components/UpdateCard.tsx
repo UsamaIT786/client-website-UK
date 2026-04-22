@@ -16,8 +16,9 @@ const UpdateCard: React.FC<UpdateCardProps> = ({ title, category, date, author, 
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
+      whileTap={{ scale: 0.98 }}
       transition={{ delay: index * 0.1 }}
-      viewport={{ once: true }}
+      viewport={{ once: true, amount: 0.1 }}
       className="group cursor-pointer bg-white rounded-[40px] p-6 border border-slate-100 shadow-[0_10px_50px_rgba(0,0,0,0.03)] hover:shadow-primary/5 transition-all duration-500"
     >
       <div className="relative overflow-hidden rounded-[32px] aspect-video mb-8">

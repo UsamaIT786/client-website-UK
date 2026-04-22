@@ -14,6 +14,7 @@ const VisaCard: React.FC<VisaCardProps> = ({ title, time, status, index }) => {
     <motion.div
       initial={{ opacity: 0, scale: 0.95 }}
       whileInView={{ opacity: 1, scale: 1 }}
+      whileTap={{ scale: 0.98 }}
       transition={{ delay: index * 0.1 }}
       viewport={{ once: true, amount: 0.1 }}
       className="bg-white p-8 rounded-[32px] border border-slate-100 shadow-[0_10px_40px_rgba(0,0,0,0.03)] flex flex-col justify-between group hover:shadow-primary/5 hover:-translate-y-1 transition-all duration-500"

@@ -20,7 +20,7 @@ const ProcessingTimes: React.FC = () => {
       <Breadcrumbs />
       <div className="mb-24 text-center">
         <span className="text-primary font-bold tracking-[0.3em] uppercase text-[10px] mb-6 block font-jost">Real-time Data</span>
-        <h1 className="text-5xl md:text-7xl font-syne font-bold uppercase mb-8">Visa <span className="text-primary">Processing</span> Time</h1>
+        <h1 className="text-6xl md:text-5xl sm:text-3xl font-syne font-bold uppercase mb-8">Visa <span className="text-primary">Processing</span> Time</h1>
         <p className="text-textMuted max-w-2xl mx-auto text-lg leading-relaxed font-jost">
           We monitor the latest home office data to provide you with the most accurate estimates for your application journey.
         </p>

@@ -44,7 +44,7 @@ const Updates: React.FC = () => {
   const categories = ['All', 'Policy', 'Guide', 'Trends', 'Residency'];
 
   return (
-    <div className="pt-40 pb-32 px-6 max-w-7xl mx-auto min-h-screen bg-background">
+    <div className="pt-28 md:pt-40 pb-32 px-6 max-w-7xl mx-auto min-h-screen bg-background">
       <Breadcrumbs />
       <div className="flex flex-col md:flex-row md:items-end justify-between mb-24 gap-8">
         <div className="max-w-2xl">

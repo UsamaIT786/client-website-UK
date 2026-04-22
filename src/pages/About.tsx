@@ -5,7 +5,7 @@ import Breadcrumbs from '../components/Breadcrumbs';
 
 const About: React.FC = () => {
   return (
-    <div className="pt-40 pb-32 px-6 max-w-7xl mx-auto min-h-screen bg-background">
+    <div className="pt-28 md:pt-40 pb-32 px-6 max-w-7xl mx-auto min-h-screen bg-background">
       <Breadcrumbs />
       {/* Hero Section */}
       <div className="grid lg:grid-cols-2 gap-20 items-center mb-32">

@@ -8,7 +8,7 @@ const Hero: React.FC = () => {
   const { openModal } = useModal();
 
   return (
-    <section className="relative min-h-screen lg:min-h-screen flex items-start lg:items-center pt-56 lg:pt-20 pb-20 lg:pb-0 overflow-x-hidden bg-background">
+    <section className="relative min-h-screen lg:min-h-screen flex items-start lg:items-center pt-40 lg:pt-20 pb-20 lg:pb-0 overflow-x-hidden bg-background">
       {/* Background Subtle Gradient Blobs - Optimized */}
       <div className="absolute top-0 right-0 w-[250px] md:w-[500px] h-[250px] md:h-[500px] bg-primary/5 rounded-full blur-[80px] md:blur-[120px] pointer-events-none translate-x-1/4 -translate-y-1/4" />
       <div className="absolute bottom-0 left-0 w-[180px] md:w-[300px] h-[180px] md:h-[300px] bg-blue-100/40 rounded-full blur-[80px] md:blur-[100px] pointer-events-none -translate-x-1/4 translate-y-1/4" />

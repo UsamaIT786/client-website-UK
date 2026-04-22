@@ -16,7 +16,7 @@ const visaData = [
 const ProcessingTimes: React.FC = () => {
   const { openModal } = useModal();
   return (
-    <div className="pt-40 pb-32 px-6 max-w-7xl mx-auto min-h-screen bg-background text-textMain">
+    <div className="pt-28 md:pt-40 pb-32 px-6 max-w-7xl mx-auto min-h-screen bg-background text-textMain">
       <Breadcrumbs />
       <div className="mb-24 text-center">
         <span className="text-primary font-bold tracking-[0.3em] uppercase text-[10px] mb-6 block font-jost">Real-time Data</span>

@@ -1,5 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap');
 @import "tailwindcss";
+
+/* Restore Tailwind v3 hover behavior to allow hover states to trigger on mobile tap */
+@custom-variant hover (&:hover);
 
 @theme {
   --color-background: #ffffff;
@@ -10,22 +12,28 @@
   --color-textMain: #0f172a;
   --color-textMuted: #64748b;
   
-  --font-syne: "Syne", sans-serif;
-  --font-jost: "Jost", sans-serif;
+  --font-syne: "Arial Black", Gadget, sans-serif;
+  --font-jost: Arial, "Helvetica Neue", Helvetica, sans-serif;
   
   --background-image-glass-gradient: linear-gradient(135deg, rgba(37, 99, 235, 0.05) 0%, rgba(37, 99, 235, 0) 100%);
 }
 
 @layer base {
+  * {
+    font-style: normal !important;
+  }
+
   html, body {
     @apply bg-background text-textMain font-jost antialiased selection:bg-primary/10 selection:text-primary scroll-smooth;
     overflow-x: hidden;
     width: 100%;
     position: relative;
+    font-weight: 600; /* Light bold style for Arial */
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-syne font-bold uppercase tracking-tight text-textMain;
+    @apply font-syne antialiased uppercase tracking-tight text-textMain;
+    font-weight: 900; /* Fully bold Arial Black */
   }
 }
 

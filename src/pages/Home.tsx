@@ -4,11 +4,10 @@ import { Shield, GraduationCap, Briefcase, Users, Scale, Clock } from 'lucide-re
 import { useModal } from '../context/ModalContext';
 import Hero from '../components/Hero';
 import ServiceCard from '../components/ServiceCard';
-import TeamMember from '../components/TeamMember';
+import AnnouncementSlider from '../components/AnnouncementSlider';
 import TestimonialSection from '../components/TestimonialSection';
 import FaqSection from '../components/FaqSection';
 import FeeCalculator from '../components/FeeCalculator';
-import CompanySlider from '../components/CompanySlider';
 
 const services = [
   {
@@ -36,11 +35,7 @@ const services = [
     description: "Comprehensive support for naturalization and indefinite leave to remain applications.",
     icon: Shield
   },
-  {
-    title: "Urgent Processing",
-    description: "Fast-track services for time-critical immigration matters and emergency travel documents.",
-    icon: Clock
-  }
+  
 ];
 
 const team = [
@@ -72,7 +67,7 @@ const Home: React.FC = () => {
   return (
     <main className="bg-background">
       <Hero />
-      <CompanySlider />
+      <AnnouncementSlider />
 
       {/* Services Section */}
       <section className="py-20 md:py-32 px-6">
@@ -83,7 +78,7 @@ const Home: React.FC = () => {
                 initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.1 }}
-                className="text-primary font-bold tracking-[0.3em] uppercase text-[10px] mb-6 block"
+                className="text-primary tracking-[0.3em] uppercase text-[10px] mb-6 block"
               >
                 Our Expertise
               </motion.div>
@@ -91,9 +86,7 @@ const Home: React.FC = () => {
                 Comprehensive <br /> <span className="text-primary">Immigration Solutions</span>
               </h2>
             </div>
-            <p className="text-textMuted max-w-sm leading-relaxed text-lg">
-              We provide a wide range of legal services tailored to your unique situation, ensuring the best possible outcome.
-            </p>
+           
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
@@ -108,32 +101,7 @@ const Home: React.FC = () => {
 
       <FeeCalculator />
 
-      {/* Team Section - Fully Replicated Weblite Style */}
-      <section className="py-20 md:py-32 px-6 bg-surface">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-24">
-            <motion.div 
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.1 }}
-              className="text-primary font-bold tracking-[0.3em] uppercase text-[10px] mb-6 block"
-            >
-              Our Experts
-            </motion.div>
-            <h2 className="text-3xl md:text-6xl font-syne font-bold uppercase leading-tight text-textMain">
-              Meet The <span className="text-primary">Professionals</span>
-            </h2>
-          </div>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-12">
-            {team.map((member, index) => (
-              <TeamMember key={index} {...member} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section - Ultra Premium Light Design */}
+ {/* CTA Section - Ultra Premium Light Design */}
       <section className="py-24 md:py-40 px-6 relative overflow-hidden bg-background">
         <div className="max-w-7xl mx-auto relative">
           <motion.div 
@@ -147,23 +115,23 @@ const Home: React.FC = () => {
             <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-blue-100/30 blur-[100px] pointer-events-none" />
             
             <div className="relative z-10 max-w-3xl mx-auto">
-              <span className="text-primary font-bold tracking-[0.4em] uppercase text-[10px] mb-8 block">Ready to Start?</span>
+              <span className="text-primary tracking-[0.4em] uppercase text-[10px] mb-8 block">Ready to Start?</span>
               <h2 className="text-3xl md:text-7xl font-syne font-bold mb-10 text-slate-900 leading-[1.1] uppercase tracking-tighter">
-                Transform Your <span className="text-primary italic">Global Journey</span> <br className="hidden md:block" /> With Expert Counsel.
+                Transform Your <span className="text-primary">Global Journey</span> <br className="hidden md:block" />
               </h2>
-              <p className="text-slate-500 text-base md:text-xl mb-14 leading-relaxed font-light">
+              <p className="text-slate-500 text-base md:text-xl mb-14 leading-relaxed">
                 Secure your future with the UK's leading immigration experts. Precision, speed, and absolute confidentiality guaranteed.
               </p>
               <div className="flex flex-col md:flex-row justify-center gap-6 md:gap-8">
                 <button 
                   onClick={openModal}
-                  className="bg-primary text-white px-10 md:px-14 py-5 rounded-2xl font-bold uppercase tracking-[0.2em] text-[10px] hover:bg-slate-900 transition-all duration-500 shadow-2xl shadow-primary/20"
+                  className="bg-primary text-white px-10 md:px-14 py-5 rounded-2xl uppercase tracking-[0.2em] text-[10px] hover:bg-slate-900 transition-all duration-500 shadow-2xl shadow-primary/20"
                 >
                   Book Free Consultation
                 </button>
                 <button 
                   onClick={openModal}
-                  className="px-10 md:px-14 py-5 rounded-2xl border border-slate-200 text-slate-600 font-bold uppercase tracking-[0.2em] text-[10px] hover:bg-slate-50 transition-all duration-500"
+                  className="px-10 md:px-14 py-5 rounded-2xl border border-slate-200 text-slate-600 uppercase tracking-[0.2em] text-[10px] hover:bg-slate-50 transition-all duration-500"
                 >
                   View Success Stories
                 </button>

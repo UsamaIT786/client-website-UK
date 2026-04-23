@@ -18,8 +18,8 @@ export default {
         textMuted: "#64748b",
       },
       fontFamily: {
-        syne: ["Syne", "sans-serif"],
-        jost: ["Jost", "sans-serif"],
+        syne: ["Arial Black", "Gadget", "sans-serif"],
+        jost: ["Arial", "Helvetica", "sans-serif"],
       },
       backgroundImage: {
         'glass-gradient': 'linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0) 100%)',

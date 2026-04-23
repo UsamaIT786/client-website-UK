@@ -32,10 +32,10 @@ const AppContent: React.FC = () => {
                    alt="Immigration Law Logo" 
                    className="h-full w-auto object-contain"
                 />
-                <h2 className="text-2xl md:text-3xl font-syne font-bold uppercase tracking-tighter text-slate-900">Immigration<span className="text-primary italic">Law</span></h2>
+                <h2 className="text-2xl md:text-3xl font-syne font-bold uppercase tracking-tighter text-slate-900">Immigration<span className="text-primary">Law</span></h2>
               </div>
-              <p className="text-slate-500 max-w-sm mb-10 leading-relaxed text-sm md:text-base font-light">
-                Setting the global standard for immigration legal counsel. We combine centuries-old legal tradition with modern, efficient solutions.
+              <p className="text-slate-500 max-w-sm mb-10 leading-relaxed text-sm md:text-base">
+                Setting the global standard for UK Immigration Solutions.We combine old legal tradition with modern efficient solutions. 
               </p>
               <div className="flex gap-4">
                  {[
@@ -55,8 +55,8 @@ const AppContent: React.FC = () => {
               </div>
             </div>
             <div className="col-span-1">
-              <h3 className="text-[10px] font-bold uppercase tracking-[0.3em] mb-8 md:mb-10 text-primary">Navigation</h3>
-              <ul className="space-y-4 md:space-y-5 text-slate-500 text-[10px] md:text-[11px] font-bold uppercase tracking-widest">
+              <h3 className="text-[10px] uppercase tracking-[0.3em] mb-8 md:mb-10 text-primary">Navigation</h3>
+              <ul className="space-y-4 md:space-y-5 text-slate-500 text-[10px] md:text-[11px] uppercase tracking-widest">
                 <li><a href="/" className="hover:text-primary transition-colors">Home</a></li>
                 <li><a href="/processing-times" className="hover:text-primary transition-colors">Processing Time</a></li>
                 <li><a href="/update" className="hover:text-primary transition-colors">Update</a></li>
@@ -64,16 +64,14 @@ const AppContent: React.FC = () => {
               </ul>
             </div>
             <div className="col-span-1">
-              <h3 className="text-[10px] font-bold uppercase tracking-[0.3em] mb-8 md:mb-10 text-primary">Global Offices</h3>
-              <ul className="space-y-4 md:space-y-5 text-slate-500 text-xs md:text-sm font-light">
-                <li className="flex flex-col"><span className="text-slate-900 font-bold text-[10px] uppercase tracking-widest mb-1">London</span> 123 Legal Plaza, EC1A 4HD</li>
-                <li className="flex flex-col"><span className="text-slate-900 font-bold text-[10px] uppercase tracking-widest mb-1">Inquiries</span> +44 20 7946 0958</li>
-                <li className="flex flex-col"><span className="text-slate-900 font-bold text-[10px] uppercase tracking-widest mb-1">Email</span> counsel@immigrationlaw.com</li>
+              <ul className="space-y-4 md:space-y-5 text-slate-500 text-xs md:text-sm">
+                <li className="flex flex-col"><span className="text-slate-900 text-[15px] uppercase tracking-widest mb-1">London</span> United Kingdom</li>
+                <li className="flex flex-col"><span className="text-slate-900 text-[15px] uppercase tracking-widest mb-1">Email</span>"info@immigrationlaw.org.uk"</li>
               </ul>
             </div>
           </div>
-          <div className="max-w-7xl mx-auto px-6 mt-24 pt-10 border-t border-slate-200 text-slate-400 text-[10px] font-bold uppercase tracking-[0.2em] flex flex-col md:flex-row justify-between items-center gap-6">
-            <p>© 2026 Immigration Law Firm. Registered with SRA. All Rights Reserved.</p>
+          <div className="max-w-7xl mx-auto px-6 mt-24 pt-10 border-t border-slate-200 text-slate-400 text-[12px] uppercase tracking-[0.2em] flex flex-col md:flex-row justify-between items-center gap-6">
+            <p>© 2026 Immigrationlaw.org.uk. All Rights Reserved.</p>
             <div className="flex gap-10">
               <a href="#" className="hover:text-primary transition-colors">Privacy Policy</a>
               <a href="#" className="hover:text-primary transition-colors">Terms of Service</a>

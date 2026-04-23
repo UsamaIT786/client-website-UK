@@ -21,33 +21,26 @@ const Hero: React.FC = () => {
           transition={{ duration: 0.8 }}
           className="text-left"
         >
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3 }}
-            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/5 text-primary font-bold tracking-[0.2em] uppercase text-[9px] mb-8 border border-primary/10"
-          >
-            Professional Legal Representation
-          </motion.div>
-          <h1 className="text-3xl sm:text-5xl lg:text-6xl xl:text-7xl 2xl:text-[85px] font-syne font-bold leading-[1.1] mb-6 md:mb-10 text-textMain tracking-tighter uppercase">
+         
+          <h1 className="text-3xl sm:text-5xl lg:text-6xl xl:text-7xl 2xl:text-[85px] font-syne font-bold leading-[1.1] mb-6 md:mb-10 mt-12 text-textMain tracking-tighter uppercase">
             Professional <br />
-            Uk <span className="text-primary italic">Immigration</span> <br />
-            Legal <span className="text-primary italic">Support</span>
+            Uk <span className="text-primary">Immigration</span> <br />
+            Legal <span className="text-primary">Support</span>
           </h1>
           <p className="text-textMuted text-base md:text-lg max-w-md mb-10 md:mb-12 leading-relaxed">
-            Leading the global standard in UK immigration legal counsel. We provide precise, result-oriented support for complex visa and citizenship cases.
+            Providing guidance and connecting you with the UK,s most trsusted legal professional.Secure your feauture with confidence.
           </p>
 
           <div className="flex flex-wrap gap-6 mb-12">
             <button
               onClick={openModal}
-              className="bg-primary text-white px-10 py-4 rounded-2xl font-bold uppercase tracking-widest text-[10px] hover:bg-slate-900 transition-all duration-500 shadow-xl shadow-primary/20 flex items-center gap-3 group"
+              className="bg-primary text-white px-10 py-4 rounded-2xl uppercase tracking-widest text-[10px] hover:bg-slate-900 transition-all duration-500 shadow-xl shadow-primary/20 flex items-center gap-3 group"
             >
               Book Assessment
               <ArrowUpRight size={16} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
             </button>
-            <button className="px-10 py-4 rounded-2xl border border-slate-200 hover:border-primary transition-all duration-300 font-bold uppercase tracking-widest text-[10px] text-slate-600 hover:text-primary">
-              About The Firm
+            <button className="px-10 py-4 rounded-2xl border border-slate-200 hover:border-primary transition-all duration-300 uppercase tracking-widest text-[10px] text-slate-600 hover:text-primary">
+              About Us
             </button>
           </div>
 
@@ -61,12 +54,12 @@ const Hero: React.FC = () => {
             </div>
             <div>
               <div className="flex items-center gap-1 mb-1">
-                <span className="text-sm font-bold text-slate-900 tracking-tighter">5.0</span>
+                <span className="text-sm text-slate-900 tracking-tighter">4.8</span>
                 <div className="flex gap-0.5">
                   {[1, 2, 3, 4, 5].map(i => <div key={i} className="w-2.5 h-2.5 bg-yellow-400 rounded-full" />)}
                 </div>
               </div>
-              <p className="text-[10px] uppercase font-bold text-textMuted tracking-widest">Trusted by 2k+ Clients</p>
+              <p className="text-[10px] uppercase text-textMuted tracking-widest">Trusted by Clients</p>
             </div>
           </div>
         </motion.div>
@@ -119,7 +112,7 @@ const AssessmentForm: React.FC = () => {
         </div>
         <h3 className="text-2xl font-syne font-bold text-slate-900 mb-4 uppercase tracking-tight">Assessment Requested</h3>
         <p className="text-slate-500 leading-relaxed text-lg">
-          Your request has been prioritized. Our legal team will reach out with your comprehensive case breakdown within <span className="text-slate-900 font-bold">24 hours</span>.
+          Your request has been prioritized. Our legal team will reach out with your comprehensive case breakdown within <span className="text-slate-900">24 hours</span>.
         </p>
       </motion.div>
     );
@@ -144,7 +137,7 @@ const AssessmentForm: React.FC = () => {
       </AnimatePresence>
 
       <div className="space-y-2">
-        <label className="text-[10px] font-bold uppercase tracking-widest text-primary">Full Name *</label>
+        <label className="text-[10px] uppercase tracking-widest text-primary">Full Name *</label>
         <input
           type="text"
           placeholder="Your Legal Name"
@@ -155,7 +148,7 @@ const AssessmentForm: React.FC = () => {
       </div>
 
       <div className="space-y-2">
-        <label className="text-[10px] font-bold uppercase tracking-widest text-primary">Email *</label>
+        <label className="text-[10px] uppercase tracking-widest text-primary">Email *</label>
         <input
           type="email"
           placeholder="example@gmail.com"
@@ -166,7 +159,7 @@ const AssessmentForm: React.FC = () => {
       </div>
 
       <div className="space-y-2">
-        <label className="text-[10px] font-bold uppercase tracking-widest text-primary">Phone</label>
+        <label className="text-[10px] uppercase tracking-widest text-primary">Phone</label>
         <input
           type="tel"
           placeholder="+44 7000-000000"
@@ -175,7 +168,7 @@ const AssessmentForm: React.FC = () => {
       </div>
 
       <div className="space-y-2">
-        <label className="text-[10px] font-bold uppercase tracking-widest text-primary">Visa Category</label>
+        <label className="text-[10px] uppercase tracking-widest text-primary">Visa Category</label>
         <select className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-6 py-4 text-slate-900 focus:border-primary focus:outline-none transition-all appearance-none cursor-pointer">
           <option>Select Category</option>
           <option>Skilled Worker Visa</option>
@@ -194,7 +187,7 @@ const AssessmentForm: React.FC = () => {
       </div>
 
       <div className="space-y-2">
-        <label className="text-[10px] font-bold uppercase tracking-widest text-primary">Can you pay for professional legal advice?</label>
+        <label className="text-[10px] uppercase tracking-widest text-primary">Can you pay for professional legal advice?</label>
         <select className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-6 py-4 text-slate-900 focus:border-primary focus:outline-none transition-all appearance-none cursor-pointer">
           <option>Please Select</option>
           <option>Yes - I can pay for legal advice</option>
@@ -204,7 +197,7 @@ const AssessmentForm: React.FC = () => {
 
       <button
         type="submit"
-        className="w-full bg-primary text-white py-5 rounded-2xl font-bold uppercase tracking-[0.2em] text-[11px] hover:bg-slate-900 transition-all duration-500 shadow-2xl shadow-primary/30 mt-4"
+        className="w-full bg-primary text-white py-5 rounded-2xl uppercase tracking-[0.2em] text-[11px] hover:bg-slate-900 transition-all duration-500 shadow-2xl shadow-primary/30 mt-4"
       >
         Request Assessment Now
       </button>

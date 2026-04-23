@@ -28,7 +28,7 @@ const UpdateTable: React.FC = () => {
               <FileText className="text-white" size={24} />
             </div>
             <h2 className="text-2xl md:text-3xl font-syne font-bold text-slate-900 tracking-tight">
-              Which UK visa categories <span className="text-primary italic">are affected?</span>
+              Which UK visa categories <span className="text-primary">are affected?</span>
             </h2>
           </div>
 

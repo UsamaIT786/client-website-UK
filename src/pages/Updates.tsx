@@ -73,7 +73,7 @@ const Updates: React.FC = () => {
         ))}
         {filteredPosts.length === 0 && (
           <div className="col-span-full flex flex-col items-center justify-center py-20 text-center">
-            <p className="text-slate-400 text-lg italic">No articles found in this category.</p>
+            <p className="text-slate-400 text-lg">No articles found in this category.</p>
           </div>
         )}
       </div>

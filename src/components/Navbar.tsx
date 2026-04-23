@@ -34,13 +34,13 @@ const Navbar: React.FC = () => {
         {/* Logo */}
         <Link to="/" className="flex items-center gap-2 group">
           <div className="h-8 md:h-16 w-auto group-hover:scale-110 transition-transform duration-500 flex items-center">
-            <img
+            {/* <img
               src="https://immigrationlaw.org.uk/wp-content/uploads/elementor/thumbs/ce896829-4abe-4faa-a633-9d5103fe2f91-1-rm724a590fvz73ddsioileszubihhy1skyfx14pi64.png"
               alt="Immigration Law Mascot"
               className="h-full w-auto object-contain"
-            />
+            /> */}
           </div>
-          <span className="font-syne font-bold text-xs md:text-xl tracking-tighter uppercase text-textMain leading-none">
+          <span className="font-syne font-bold text-1xl md:text-2xl tracking-tighter uppercase text-textMain leading-none">
             Immigration<span className="text-primary">Law</span>
           </span>
         </Link>
@@ -51,7 +51,7 @@ const Navbar: React.FC = () => {
             <Link
               key={link.path}
               to={link.path}
-              className={`font-bold text-[10px] uppercase tracking-[0.2em] hover:text-primary transition-all duration-300 relative group py-2 ${location.pathname === link.path ? 'text-primary' : 'text-textMain/70'
+              className={`text-[10px] uppercase tracking-[0.2em] hover:text-primary transition-all duration-300 relative group py-2 ${location.pathname === link.path ? 'text-primary' : 'text-textMain/70'
                 }`}
             >
               {link.name}
@@ -61,7 +61,7 @@ const Navbar: React.FC = () => {
           ))}
           <button
             onClick={openModal}
-            className="bg-primary text-white px-8 py-3 rounded-xl font-bold uppercase tracking-widest text-[9px] hover:bg-slate-900 transition-all duration-500 shadow-lg shadow-primary/20 ml-4"
+            className="bg-primary text-white px-8 py-3 rounded-xl uppercase tracking-widest text-[9px] hover:bg-slate-900 transition-all duration-500 shadow-lg shadow-primary/20 ml-4"
           >
             Consultation
           </button>

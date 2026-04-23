@@ -4,25 +4,25 @@ import { Star, Quote } from 'lucide-react';
 
 const testimonials = [
   {
-    name: "Sarah Jenkins",
-    role: "CEO, Tech Solutions Global",
-    content: "The most professional legal team I've ever worked with. They handled our complex sponsor license and high-volume Tier 2 visas with absolute precision and zero delays.",
+    name: "Ahmed R.",
+    role: "BUSINESS VISA",
+    content: "I was confused by the new salary thresholds. The solicitor I was matched with explained everything and handled my sponsor license perfectly.",
     rating: 5,
-    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=200&h=200"
+    initial: "A"
   },
   {
-    name: "Mark Thompson",
-    role: "International Business Director",
-    content: "Incredible attention to detail. Their knowledge of the latest Home Office changes saved us weeks of processing time. Truly the elite standard in immigration law.",
+    name: "Sarah L.",
+    role: "SPOUSE VISA",
+    content: "After a previous refusal, I was terrified. ImmigrationLaw.org.uk connected me with an expert who won our appeal in record time.",
     rating: 5,
-    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=200&h=200"
+    initial: "S"
   },
   {
-    name: "Elena Rodriguez",
-    role: "British Citizenship Applicant",
-    content: "Transparent pricing and world-class service. They made my citizenship journey feel effortless. I felt supported and informed at every single stage of the process.",
+    name: "Chen W.",
+    role: "ILR APPLICANT",
+    content: "Professional, fast, and transparent. I received my Indefinite Leave to Remain within 5 days using their super-priority service.",
     rating: 5,
-    image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=200&h=200"
+    initial: "C"
   }
 ];
 
@@ -42,7 +42,7 @@ const TestimonialSection: React.FC = () => {
               className="flex items-center gap-3 mb-6"
             >
               <span className="w-10 h-[1px] bg-primary" />
-              <span className="text-primary font-bold tracking-[0.3em] uppercase text-[10px]">Client Stories</span>
+              <span className="text-primary tracking-[0.3em] uppercase text-[10px]">Client Stories</span>
             </motion.div>
             <motion.h2 
               initial={{ opacity: 0, y: 20 }}
@@ -51,7 +51,7 @@ const TestimonialSection: React.FC = () => {
               transition={{ delay: 0.1 }}
               className="text-3xl md:text-7xl font-syne font-bold uppercase tracking-tighter text-slate-900"
             >
-              Global <span className="text-primary italic">Reputation</span>
+              Our <span className="text-primary">Reputation</span>
             </motion.h2>
           </div>
           <motion.p
@@ -61,7 +61,7 @@ const TestimonialSection: React.FC = () => {
             transition={{ delay: 0.2 }}
             className="text-textMuted text-lg max-w-sm leading-relaxed"
           >
-            Trusted by multinational corporations and individuals worldwide to navigate the complexities of global mobility.
+            Trusted by individuals worldwide to navigate the complexities of global mobility.
           </motion.p>
         </div>
 
@@ -73,31 +73,25 @@ const TestimonialSection: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.1 }}
               transition={{ delay: i * 0.1 }}
-              className="group bg-white p-8 md:p-10 rounded-[32px] md:rounded-[40px] border border-slate-100 hover:border-primary transition-all duration-500 relative shadow-[0_10px_40px_rgba(0,0,0,0.03)]"
+              className="group bg-white p-10 md:p-12 rounded-[40px] border border-slate-100 transition-all duration-500 relative shadow-[0_10px_50px_rgba(0,0,0,0.02)] flex flex-col h-full"
             >
-              <div className="absolute top-8 right-10 text-slate-100 group-hover:text-primary/10 transition-colors duration-500">
-                <Quote size={80} />
-              </div>
-              
-              <div className="flex gap-1 mb-8">
+              <div className="flex gap-1.5 mb-10">
                 {[...Array(t.rating)].map((_, i) => (
-                  <Star key={i} size={14} className="fill-primary text-primary" />
+                  <Star key={i} size={18} className="fill-[#00154d] text-[#00154d]" />
                 ))}
               </div>
 
-              <p className="text-slate-700 text-lg leading-relaxed mb-10 relative z-10 italic">
+              <p className="text-slate-600 text-lg md:text-xl leading-relaxed mb-12 flex-grow">
                 "{t.content}"
               </p>
 
-              <div className="flex items-center gap-4 mt-auto">
-                <img 
-                  src={t.image} 
-                  alt={t.name}
-                  className="w-14 h-14 rounded-2xl object-cover border border-slate-100 group-hover:border-primary transition-colors"
-                />
+              <div className="flex items-center gap-5 pt-8 border-t border-slate-50">
+                <div className="w-16 h-16 rounded-full bg-slate-50 flex items-center justify-center border border-slate-100 shrink-0">
+                  <span className="text-slate-900 font-syne font-bold text-xl uppercase">{t.initial}</span>
+                </div>
                 <div>
-                  <h4 className="text-slate-900 font-bold font-syne uppercase tracking-wider text-sm">{t.name}</h4>
-                  <p className="text-textMuted text-[10px] font-bold uppercase tracking-widest mt-1">{t.role}</p>
+                  <h4 className="text-slate-900 font-syne font-bold uppercase tracking-wider text-base mb-1">{t.name}</h4>
+                  <p className="text-slate-400 text-[10px] font-bold uppercase tracking-[0.2em]">{t.role}</p>
                 </div>
               </div>
             </motion.div>

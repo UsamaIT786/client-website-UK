@@ -72,11 +72,7 @@ const AppContent: React.FC = () => {
           </div>
           <div className="max-w-7xl mx-auto px-6 mt-24 pt-10 border-t border-slate-200 text-slate-400 text-[12px] uppercase tracking-[0.2em] flex flex-col md:flex-row justify-between items-center gap-6">
             <p>© 2026 Immigrationlaw.org.uk. All Rights Reserved.</p>
-            <div className="flex gap-10">
-              <a href="#" className="hover:text-primary transition-colors">Privacy Policy</a>
-              <a href="#" className="hover:text-primary transition-colors">Terms of Service</a>
-              <a href="#" className="hover:text-primary transition-colors">Compliance</a>
-            </div>
+            
           </div>
         </footer>
       </div>

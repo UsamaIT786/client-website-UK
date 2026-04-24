@@ -9,10 +9,6 @@ const Hero: React.FC = () => {
 
   return (
     <section className="relative min-h-screen lg:min-h-screen flex items-start lg:items-center pt-40 lg:pt-20 pb-20 lg:pb-0 overflow-x-hidden bg-background">
-      {/* Background Subtle Gradient Blobs - Optimized for Performance */}
-      <div className="absolute top-0 right-0 w-[250px] md:w-[500px] h-[250px] md:h-[500px] bg-primary/5 rounded-full blur-[30px] md:blur-[40px] pointer-events-none translate-x-1/4 -translate-y-1/4" />
-      <div className="absolute bottom-0 left-0 w-[180px] md:w-[300px] h-[180px] md:h-[300px] bg-blue-100/40 rounded-full blur-[30px] md:blur-[40px] pointer-events-none -translate-x-1/4 translate-y-1/4" />
-
       <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-[1.1fr_0.9fr] gap-12 lg:gap-20 items-center w-full relative z-10">
         {/* Left Content */}
         <motion.div
@@ -23,14 +19,13 @@ const Hero: React.FC = () => {
           style={{ willChange: "transform, opacity" }}
           className="text-left"
         >
-         
           <h1 className="text-3xl sm:text-5xl lg:text-6xl xl:text-7xl 2xl:text-[85px] font-syne font-bold leading-[1.1] mb-6 md:mb-10 mt-12 text-textMain tracking-tighter uppercase">
             Professional <br />
             Uk <span className="text-primary">Immigration</span> <br />
             Legal <span className="text-primary">Support</span>
           </h1>
           <p className="text-textMuted text-base md:text-lg max-w-md mb-10 md:mb-12 leading-relaxed">
-            Providing guidance and connecting you with the UK,s most trsusted legal professional.Secure your feauture with confidence.
+            Providing guidance and connecting you with the UK's most trusted legal professional. Secure your future with confidence.
           </p>
 
           <div className="flex flex-wrap gap-6 mb-12">
@@ -67,15 +62,8 @@ const Hero: React.FC = () => {
         </motion.div>
 
         {/* Right Content - Premium Assessment Form */}
-        <div
-          className="relative"
-        >
-          {/* Enhanced Outer Glow */}
-          <div className="absolute -inset-1 bg-gradient-to-br from-primary/10 to-blue-500/10 rounded-[44px] blur-2xl opacity-50 transition-opacity duration-500" />
-
-          <div className="bg-white p-6 md:p-10 rounded-[32px] md:rounded-[40px] border border-slate-100 shadow-[0_20px_50px_rgba(0,0,0,0.05)] relative overflow-hidden group">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 blur-[80px] pointer-events-none" />
-
+        <div className="relative">
+          <div className="bg-white p-6 md:p-10 rounded-[32px] md:rounded-[40px] border border-slate-100 relative overflow-hidden group">
             <AssessmentForm />
           </div>
         </div>

@@ -33,16 +33,9 @@ const Navbar: React.FC = () => {
       <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
         {/* Logo */}
         <Link to="/" className="flex items-center gap-2 group">
-          <div className="h-8 md:h-16 w-auto group-hover:scale-110 transition-transform duration-500 flex items-center">
-            {/* <img
-              src="https://immigrationlaw.org.uk/wp-content/uploads/elementor/thumbs/ce896829-4abe-4faa-a633-9d5103fe2f91-1-rm724a590fvz73ddsioileszubihhy1skyfx14pi64.png"
-              alt="Immigration Law Mascot"
-              className="h-full w-auto object-contain"
-            /> */}
-          </div>
-          <span className="font-syne font-bold text-1xl md:text-2xl tracking-tighter uppercase text-textMain leading-none">
+          <div className="font-syne font-bold text-1xl md:text-2xl tracking-tighter uppercase text-textMain leading-none">
             Immigration<span className="text-primary">Law</span>
-          </span>
+          </div>
         </Link>
 
         {/* Desktop Nav */}
@@ -51,17 +44,17 @@ const Navbar: React.FC = () => {
             <Link
               key={link.path}
               to={link.path}
-              className={`text-[10px] uppercase tracking-[0.2em] hover:text-primary transition-all duration-300 relative group py-2 ${location.pathname === link.path ? 'text-primary' : 'text-textMain/70'
+              className={`text-[10px] uppercase tracking-[0.2em] hover:text-primary relative group py-2 transition-colors ${location.pathname === link.path ? 'text-primary' : 'text-textMain/70'
                 }`}
             >
               {link.name}
-              <span className={`absolute bottom-0 left-0 w-0 h-[2px] bg-primary transition-all duration-500 group-hover:w-full ${location.pathname === link.path ? 'w-full' : ''
+              <span className={`absolute bottom-0 left-0 w-0 h-[2px] bg-primary group-hover:w-full transition-all duration-300 ${location.pathname === link.path ? 'w-full' : ''
                 }`} />
             </Link>
           ))}
           <button
             onClick={openModal}
-            className="bg-primary text-white px-8 py-3 rounded-xl uppercase tracking-widest text-[9px] hover:bg-slate-900 transition-all duration-500 shadow-lg shadow-primary/20 ml-4"
+            className="bg-primary text-white px-8 py-3 rounded-xl uppercase tracking-widest text-[9px] hover:bg-slate-900 transition-all duration-300 shadow-lg shadow-primary/20 ml-4"
           >
             Consultation
           </button>
@@ -101,7 +94,7 @@ const Navbar: React.FC = () => {
               </div>
               <div className="flex flex-col gap-8">
                 {navLinks.map((link, i) => (
-                  <motion.div
+                  <motion.div 
                     key={link.path}
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
@@ -110,7 +103,7 @@ const Navbar: React.FC = () => {
                     <Link
                       to={link.path}
                       onClick={() => setIsMobileMenuOpen(false)}
-                      className={`text-2xl font-syne font-bold uppercase tracking-tighter ${location.pathname === link.path ? 'text-primary' : 'text-textMain'
+                      className={`text-2xl font-syne font-bold uppercase tracking-tighter transition-colors ${location.pathname === link.path ? 'text-primary' : 'text-textMain'
                         }`}
                     >
                       {link.name}
@@ -122,7 +115,7 @@ const Navbar: React.FC = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.5 }}
                   onClick={() => { setIsMobileMenuOpen(false); openModal(); }}
-                  className="bg-primary text-white py-4 rounded-xl font-bold uppercase tracking-widest text-[10px] shadow-lg shadow-primary/20 mt-10"
+                  className="bg-primary text-white py-4 rounded-xl font-bold uppercase tracking-widest text-[10px] shadow-lg shadow-primary/20 mt-10 hover:bg-slate-900 transition-all duration-300"
                 >
                   Book Free Consultation
                 </motion.button>

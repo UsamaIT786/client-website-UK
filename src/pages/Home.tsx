@@ -13,29 +13,33 @@ const services = [
   {
     title: "Student Visas",
     description: "Guidance for international students looking to study at top universities. We handle the paperwork, you focus on your studies.",
-    icon: GraduationCap
+    icon: GraduationCap,
+    categories: ["Tier 4 Student", "Graduate Route", "Short-term Study"]
   },
   {
     title: "Work Permits",
     description: "Assisting skilled professionals and employers with work authorization and sponsorship applications.",
-    icon: Briefcase
+    icon: Briefcase,
+    categories: ["Skilled Worker", "Senior Specialist", "Scale-up Visa"]
   },
   {
     title: "Family Reunion",
     description: "Helping families stay together. We specialize in spouse, child, and parent visa categories with high success rates.",
-    icon: Users
+    icon: Users,
+    categories: ["Spouse Visa", "Partner Visa", "Family Reunion"]
   },
   {
     title: "Legal Appeals",
     description: "Expert representation for visa refusals and complex immigration litigation. We fight for your rights.",
-    icon: Scale
+    icon: Scale,
+    categories: ["Judicial Review", "Appeals", "Admin Review"]
   },
   {
     title: "Citizenship",
     description: "Comprehensive support for naturalization and indefinite leave to remain applications.",
-    icon: Shield
+    icon: Shield,
+    categories: ["Naturalisation", "British Passport", "Right of Abode"]
   },
-  
 ];
 
 const team = [
@@ -72,22 +76,24 @@ const Home: React.FC = () => {
       {/* Services Section */}
       <section className="py-20 md:py-32 px-6">
         <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-24 gap-8">
+          <motion.div 
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="flex flex-col md:flex-row md:items-end justify-between mb-24 gap-8"
+          >
             <div className="max-w-2xl">
-              <motion.div 
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.1 }}
+              <div 
                 className="text-primary tracking-[0.3em] uppercase text-[10px] mb-6 block"
               >
                 Our Expertise
-              </motion.div>
+              </div>
               <h2 className="text-3xl md:text-6xl font-syne font-bold uppercase leading-tight text-textMain">
                 Comprehensive <br /> <span className="text-primary">Immigration Solutions</span>
               </h2>
             </div>
-           
-          </div>
+          </motion.div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
             {services.map((service, index) => (
@@ -105,9 +111,10 @@ const Home: React.FC = () => {
       <section className="py-24 md:py-40 px-6 relative overflow-hidden bg-background">
         <div className="max-w-7xl mx-auto relative">
           <motion.div 
-            initial={{ opacity: 0, scale: 0.95 }}
+            initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true, amount: 0.1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
             className="bg-white rounded-[32px] md:rounded-[60px] p-8 md:p-24 relative z-10 overflow-hidden shadow-[0_30px_100px_rgba(0,0,0,0.06)] text-center border border-slate-100"
           >
             {/* Elegant abstract accents */}
@@ -123,18 +130,22 @@ const Home: React.FC = () => {
                 Secure your future with the UK's leading immigration experts. Precision, speed, and absolute confidentiality guaranteed.
               </p>
               <div className="flex flex-col md:flex-row justify-center gap-6 md:gap-8">
-                <button 
+                <motion.button 
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                   onClick={openModal}
-                  className="bg-primary text-white px-10 md:px-14 py-5 rounded-2xl uppercase tracking-[0.2em] text-[10px] hover:bg-slate-900 transition-all duration-500 shadow-2xl shadow-primary/20"
+                  className="bg-primary text-white px-10 md:px-14 py-5 rounded-2xl uppercase tracking-[0.2em] text-[10px] hover:bg-slate-900 shadow-2xl shadow-primary/20 transition-all duration-300"
                 >
                   Book Free Consultation
-                </button>
-                <button 
+                </motion.button>
+                <motion.button 
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                   onClick={openModal}
-                  className="px-10 md:px-14 py-5 rounded-2xl border border-slate-200 text-slate-600 uppercase tracking-[0.2em] text-[10px] hover:bg-slate-50 transition-all duration-500"
+                  className="px-10 md:px-14 py-5 rounded-2xl border border-slate-200 text-slate-600 uppercase tracking-[0.2em] text-[10px] hover:bg-slate-50 transition-all duration-300"
                 >
                   View Success Stories
-                </button>
+                </motion.button>
               </div>
             </div>
           </motion.div>

@@ -4,12 +4,12 @@ import { Calculator, Zap, Users, Info, ArrowRight } from 'lucide-react';
 import { useModal } from '../context/ModalContext';
 
 const visaTypes = [
-  { name: "Skilled Worker Visa (Up to 3 years)", fee: 719, ihs: 3105, hasPriority: true },
-  { name: "Skilled Worker Visa (More than 3 years)", fee: 1420, ihs: 5175, hasPriority: true },
-  { name: "Student Visa", fee: 490, ihs: 2328, hasPriority: true },
+  { name: "Skilled Worker Visa (Up to 3 years)", fee: 819, ihs: 3105, hasPriority: true },
+  { name: "Skilled Worker Visa (More than 3 years)", fee: 1618, ihs: 5175, hasPriority: true },
+  { name: "Student Visa", fee: 558, ihs: 2328, hasPriority: true },
   { name: "Spouse / Partner Visa", fee: 1846, ihs: 3105, hasPriority: true },
-  { name: "Standard Visitor Visa (6 months)", fee: 115, ihs: 0, hasPriority: true },
-  { name: "Indefinite Leave to Remain (ILR)", fee: 2885, ihs: 0, hasPriority: true },
+  { name: "Standard Visitor Visa (6 months)", fee: 135, ihs: 0, hasPriority: true },
+  { name: "Indefinite Leave to Remain (ILR)", fee: 3226, ihs: 0, hasPriority: true },
   { name: "British Citizenship (Naturalisation)", fee: 1580, ihs: 0, hasPriority: false }
 ];
 
@@ -33,24 +33,17 @@ const FeeCalculator: React.FC = () => {
       
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-20">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.1 }}
+          <div
             className="flex items-center justify-center gap-3 mb-6"
           >
             <Calculator className="text-primary" size={20} />
             <span className="text-primary tracking-[0.3em] uppercase text-[10px]">Financial Planning</span>
-          </motion.div>
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.1 }}
-            transition={{ delay: 0.1 }}
+          </div>
+          <h2 
             className="text-3xl md:text-6xl font-syne font-bold uppercase mb-8"
           >
             Fee <span className="text-primary">Calculator</span>
-          </motion.h2>
+          </h2>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12 bg-white rounded-[40px] border border-slate-100 overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.05)]">
@@ -61,13 +54,13 @@ const FeeCalculator: React.FC = () => {
               <div className="relative group">
                 <select 
                   onChange={(e) => setSelectedVisa(visaTypes.find(v => v.name === e.target.value) || visaTypes[0])}
-                  className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-6 py-5 text-slate-900 focus:border-primary focus:outline-none transition-all appearance-none cursor-pointer text-lg font-syne"
+                  className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-6 py-5 text-slate-900 focus:border-primary focus:outline-none appearance-none cursor-pointer text-lg font-syne"
                 >
                   {visaTypes.map((v, i) => (
                     <option key={i} value={v.name}>{v.name}</option>
                   ))}
                 </select>
-                <div className="absolute right-6 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400 group-hover:text-primary transition-colors">
+                <div className="absolute right-6 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400 group-hover:text-primary">
                   <ArrowRight size={20} className="rotate-90" />
                 </div>
               </div>
@@ -94,11 +87,11 @@ const FeeCalculator: React.FC = () => {
             {selectedVisa.hasPriority ? (
               <button 
                 onClick={() => setIsPriority(!isPriority)}
-                className={`w-full p-8 rounded-3xl border transition-all duration-500 flex items-center gap-6 group relative overflow-hidden ${
+                className={`w-full p-8 rounded-3xl border flex items-center gap-6 group relative overflow-hidden ${
                   isPriority ? 'bg-primary/5 border-primary shadow-[0_10px_30px_rgba(37,99,235,0.1)]' : 'bg-slate-50 border-slate-100 hover:border-slate-200'
                 }`}
               >
-                <div className={`w-14 h-14 rounded-2xl flex items-center justify-center transition-all duration-500 ${
+                <div className={`w-14 h-14 rounded-2xl flex items-center justify-center ${
                   isPriority ? 'bg-primary text-white scale-110' : 'bg-slate-200 text-slate-500 group-hover:text-slate-700'
                 }`}>
                   <div className="relative">
@@ -110,9 +103,8 @@ const FeeCalculator: React.FC = () => {
                   <p className="text-slate-400 text-xs font-medium">Faster decision (usually 5 working days)</p>
                 </div>
                 {isPriority && (
-                  <motion.div 
-                    layoutId="priority-active"
-                    className="absolute right-8 top-1/2 -translate-y-1/2 w-3 h-3 bg-primary rounded-full animate-pulse"
+                  <div 
+                    className="absolute right-8 top-1/2 -translate-y-1/2 w-3 h-3 bg-primary rounded-full"
                   />
                 )}
               </button>
@@ -150,19 +142,14 @@ const FeeCalculator: React.FC = () => {
                     <span className="text-slate-600 text-lg">Health Surcharge (IHS)</span>
                     <span className="text-slate-900 font-syne font-bold text-xl">£{(selectedVisa.ihs * applicants).toLocaleString()}</span>
                   </div>
-                  <AnimatePresence>
-                    {(isPriority && selectedVisa.hasPriority) && (
-                      <motion.div 
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: 'auto' }}
-                        exit={{ opacity: 0, height: 0 }}
-                        className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2"
-                      >
-                        <span className="text-primary text-lg">Priority Service</span>
-                        <span className="text-primary font-syne font-bold text-xl">£{(500 * applicants).toLocaleString()}</span>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
+                  {(isPriority && selectedVisa.hasPriority) && (
+                    <div 
+                      className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2"
+                    >
+                      <span className="text-primary text-lg">Priority Service</span>
+                      <span className="text-primary font-syne font-bold text-xl">£{(500 * applicants).toLocaleString()}</span>
+                    </div>
+                  )}
                 </div>
               </div>
 
@@ -177,10 +164,10 @@ const FeeCalculator: React.FC = () => {
 
             <button 
               onClick={openModal}
-              className="w-full bg-slate-900 text-white py-6 rounded-2xl uppercase tracking-[0.2em] text-[11px] hover:bg-primary transition-all duration-500 flex items-center justify-center gap-3 mt-12 shadow-2xl shadow-slate-200 group"
+              className="w-full bg-slate-900 text-white py-6 rounded-2xl uppercase tracking-[0.2em] text-[11px] hover:bg-primary flex items-center justify-center gap-3 mt-12 shadow-2xl shadow-slate-200 group"
             >
               Get Help With Your Application
-              <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+              <ArrowRight size={16} />
             </button>
           </div>
         </div>

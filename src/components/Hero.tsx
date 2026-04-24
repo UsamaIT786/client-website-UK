@@ -9,16 +9,18 @@ const Hero: React.FC = () => {
 
   return (
     <section className="relative min-h-screen lg:min-h-screen flex items-start lg:items-center pt-40 lg:pt-20 pb-20 lg:pb-0 overflow-x-hidden bg-background">
-      {/* Background Subtle Gradient Blobs - Optimized */}
-      <div className="absolute top-0 right-0 w-[250px] md:w-[500px] h-[250px] md:h-[500px] bg-primary/5 rounded-full blur-[80px] md:blur-[120px] pointer-events-none translate-x-1/4 -translate-y-1/4" />
-      <div className="absolute bottom-0 left-0 w-[180px] md:w-[300px] h-[180px] md:h-[300px] bg-blue-100/40 rounded-full blur-[80px] md:blur-[100px] pointer-events-none -translate-x-1/4 translate-y-1/4" />
+      {/* Background Subtle Gradient Blobs - Optimized for Performance */}
+      <div className="absolute top-0 right-0 w-[250px] md:w-[500px] h-[250px] md:h-[500px] bg-primary/5 rounded-full blur-[30px] md:blur-[40px] pointer-events-none translate-x-1/4 -translate-y-1/4" />
+      <div className="absolute bottom-0 left-0 w-[180px] md:w-[300px] h-[180px] md:h-[300px] bg-blue-100/40 rounded-full blur-[30px] md:blur-[40px] pointer-events-none -translate-x-1/4 translate-y-1/4" />
 
       <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-[1.1fr_0.9fr] gap-12 lg:gap-20 items-center w-full relative z-10">
         {/* Left Content */}
         <motion.div
-          initial={{ opacity: 0, x: -30 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8 }}
+          initial={{ opacity: 0, x: -50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          style={{ willChange: "transform, opacity" }}
           className="text-left"
         >
          
@@ -34,12 +36,12 @@ const Hero: React.FC = () => {
           <div className="flex flex-wrap gap-6 mb-12">
             <button
               onClick={openModal}
-              className="bg-primary text-white px-10 py-4 rounded-2xl uppercase tracking-widest text-[10px] hover:bg-slate-900 transition-all duration-500 shadow-xl shadow-primary/20 flex items-center gap-3 group"
+              className="bg-primary text-white px-10 py-4 rounded-2xl uppercase tracking-widest text-[10px] hover:bg-slate-900 shadow-xl shadow-primary/20 flex items-center gap-3 group"
             >
               Book Assessment
-              <ArrowUpRight size={16} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+              <ArrowUpRight size={16} className="group-hover:translate-x-1 group-hover:-translate-y-1" />
             </button>
-            <button className="px-10 py-4 rounded-2xl border border-slate-200 hover:border-primary transition-all duration-300 uppercase tracking-widest text-[10px] text-slate-600 hover:text-primary">
+            <button className="px-10 py-4 rounded-2xl border border-slate-200 hover:border-primary uppercase tracking-widest text-[10px] text-slate-600 hover:text-primary">
               About Us
             </button>
           </div>
@@ -65,21 +67,18 @@ const Hero: React.FC = () => {
         </motion.div>
 
         {/* Right Content - Premium Assessment Form */}
-        <motion.div
-          initial={{ opacity: 0, x: 30 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
+        <div
           className="relative"
         >
           {/* Enhanced Outer Glow */}
-          <div className="absolute -inset-1 bg-gradient-to-br from-primary/10 to-blue-500/10 rounded-[44px] blur-2xl opacity-50 group-hover:opacity-100 transition-opacity duration-500" />
+          <div className="absolute -inset-1 bg-gradient-to-br from-primary/10 to-blue-500/10 rounded-[44px] blur-2xl opacity-50 transition-opacity duration-500" />
 
           <div className="bg-white p-6 md:p-10 rounded-[32px] md:rounded-[40px] border border-slate-100 shadow-[0_20px_50px_rgba(0,0,0,0.05)] relative overflow-hidden group">
             <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 blur-[80px] pointer-events-none" />
 
             <AssessmentForm />
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
@@ -102,9 +101,7 @@ const AssessmentForm: React.FC = () => {
 
   if (isSubmitted) {
     return (
-      <motion.div
-        initial={{ opacity: 0, scale: 0.95 }}
-        animate={{ opacity: 1, scale: 1 }}
+      <div
         className="relative z-10 text-center py-20"
       >
         <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-8">
@@ -114,27 +111,22 @@ const AssessmentForm: React.FC = () => {
         <p className="text-slate-500 leading-relaxed text-lg">
           Your request has been prioritized. Our legal team will reach out with your comprehensive case breakdown within <span className="text-slate-900">24 hours</span>.
         </p>
-      </motion.div>
+      </div>
     );
   }
 
   return (
     <form className="relative z-10 space-y-6" onSubmit={handleSubmit}>
-      <AnimatePresence>
         {showWarning && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
+          <div
             className="absolute top-0 left-0 right-0 -mt-4 z-20"
           >
             <div className="bg-red-500 text-white px-6 py-3 rounded-2xl text-[10px] font-bold uppercase tracking-widest flex items-center justify-center gap-2 shadow-2xl">
-              <span className="w-2 h-2 bg-white rounded-full animate-pulse" />
+              <span className="w-2 h-2 bg-white rounded-full" />
               Please fill all required fields
             </div>
-          </motion.div>
+          </div>
         )}
-      </AnimatePresence>
 
       <div className="space-y-2">
         <label className="text-[10px] uppercase tracking-widest text-primary">Full Name *</label>
@@ -143,7 +135,7 @@ const AssessmentForm: React.FC = () => {
           placeholder="Your Legal Name"
           value={formData.name}
           onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-          className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-6 py-4 text-slate-900 placeholder:text-slate-400 focus:border-primary focus:outline-none transition-all"
+          className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-6 py-4 text-slate-900 placeholder:text-slate-400 focus:border-primary focus:outline-none"
         />
       </div>
 
@@ -154,7 +146,7 @@ const AssessmentForm: React.FC = () => {
           placeholder="example@gmail.com"
           value={formData.email}
           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-          className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-6 py-4 text-slate-900 placeholder:text-slate-400 focus:border-primary focus:outline-none transition-all"
+          className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-6 py-4 text-slate-900 placeholder:text-slate-400 focus:border-primary focus:outline-none"
         />
       </div>
 
@@ -163,13 +155,13 @@ const AssessmentForm: React.FC = () => {
         <input
           type="tel"
           placeholder="+44 7000-000000"
-          className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-6 py-4 text-slate-900 placeholder:text-slate-400 focus:border-primary focus:outline-none transition-all"
+          className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-6 py-4 text-slate-900 placeholder:text-slate-400 focus:border-primary focus:outline-none"
         />
       </div>
 
       <div className="space-y-2">
         <label className="text-[10px] uppercase tracking-widest text-primary">Visa Category</label>
-        <select className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-6 py-4 text-slate-900 focus:border-primary focus:outline-none transition-all appearance-none cursor-pointer">
+        <select className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-6 py-4 text-slate-900 focus:border-primary focus:outline-none appearance-none cursor-pointer">
           <option>Select Category</option>
           <option>Skilled Worker Visa</option>
           <option>Health and Care Worker Visa</option>
@@ -188,7 +180,7 @@ const AssessmentForm: React.FC = () => {
 
       <div className="space-y-2">
         <label className="text-[10px] uppercase tracking-widest text-primary">Can you pay for professional legal advice?</label>
-        <select className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-6 py-4 text-slate-900 focus:border-primary focus:outline-none transition-all appearance-none cursor-pointer">
+        <select className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-6 py-4 text-slate-900 focus:border-primary focus:outline-none appearance-none cursor-pointer">
           <option>Please Select</option>
           <option>Yes - I can pay for legal advice</option>
           <option>No - I cannot pay for legal advice</option>
@@ -197,7 +189,7 @@ const AssessmentForm: React.FC = () => {
 
       <button
         type="submit"
-        className="w-full bg-primary text-white py-5 rounded-2xl uppercase tracking-[0.2em] text-[11px] hover:bg-slate-900 transition-all duration-500 shadow-2xl shadow-primary/30 mt-4"
+        className="w-full bg-primary text-white py-5 rounded-2xl uppercase tracking-[0.2em] text-[11px] hover:bg-slate-900 shadow-2xl shadow-primary/30 mt-4"
       >
         Request Assessment Now
       </button>

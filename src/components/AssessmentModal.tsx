@@ -27,23 +27,17 @@ const AssessmentModal: React.FC<AssessmentModalProps> = ({ isOpen, onClose }) =>
   }, [isOpen]);
 
   return (
-    <AnimatePresence>
+    <>
       {isOpen && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-6">
           {/* Backdrop */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+          <div
             onClick={onClose}
             className="absolute inset-0 bg-slate-900/40 backdrop-blur-sm"
           />
 
           {/* Modal Content */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.9, y: 20 }}
+          <div
             className="relative w-full max-w-xl max-h-[90vh] overflow-y-auto bg-white rounded-[32px] md:rounded-[40px] border border-slate-100 shadow-[0_30px_100px_rgba(0,0,0,0.15)] custom-scrollbar"
           >
             <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 blur-[80px] pointer-events-none" />
@@ -60,19 +54,14 @@ const AssessmentModal: React.FC<AssessmentModalProps> = ({ isOpen, onClose }) =>
                 </div>
                 <button 
                   onClick={onClose}
-                  className="absolute top-0 right-0 w-10 h-10 md:w-12 md:h-12 rounded-full bg-slate-50 border border-slate-100 flex items-center justify-center hover:bg-primary hover:border-primary transition-all group"
+                  className="absolute top-0 right-0 w-10 h-10 md:w-12 md:h-12 rounded-full bg-slate-50 border border-slate-100 flex items-center justify-center hover:bg-primary hover:border-primary group"
                 >
-                  <X size={18} className="text-slate-400 group-hover:text-white group-hover:scale-110 transition-all" />
+                  <X size={18} className="text-slate-400 group-hover:text-white" />
                 </button>
               </div>
 
-              <AnimatePresence mode="wait">
                 {!isSubmitted ? (
-                  <motion.form 
-                    key="form"
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: 20 }}
+                  <form 
                     className="space-y-6" 
                     onSubmit={handleSubmit}
                   >
@@ -82,7 +71,7 @@ const AssessmentModal: React.FC<AssessmentModalProps> = ({ isOpen, onClose }) =>
                         <input 
                           type="text" 
                           placeholder="Legal Name" 
-                          className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-6 py-4 text-slate-900 placeholder:text-slate-400 focus:border-primary focus:outline-none transition-all"
+                          className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-6 py-4 text-slate-900 placeholder:text-slate-400 focus:border-primary focus:outline-none"
                           required
                         />
                       </div>
@@ -91,7 +80,7 @@ const AssessmentModal: React.FC<AssessmentModalProps> = ({ isOpen, onClose }) =>
                         <input 
                           type="email" 
                           placeholder="email@example.com" 
-                          className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-6 py-4 text-slate-900 placeholder:text-slate-400 focus:border-primary focus:outline-none transition-all"
+                          className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-6 py-4 text-slate-900 placeholder:text-slate-400 focus:border-primary focus:outline-none"
                           required
                         />
                       </div>
@@ -102,13 +91,13 @@ const AssessmentModal: React.FC<AssessmentModalProps> = ({ isOpen, onClose }) =>
                       <input 
                         type="tel" 
                         placeholder="+44 7000-000000" 
-                        className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-6 py-4 text-slate-900 placeholder:text-slate-400 focus:border-primary focus:outline-none transition-all"
+                        className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-6 py-4 text-slate-900 placeholder:text-slate-400 focus:border-primary focus:outline-none"
                       />
                     </div>
 
                     <div className="space-y-2">
                       <label className="text-[10px] font-bold uppercase tracking-widest text-primary">Visa Category</label>
-                      <select className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-6 py-4 text-slate-900 focus:border-primary focus:outline-none transition-all appearance-none cursor-pointer">
+                      <select className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-6 py-4 text-slate-900 focus:border-primary focus:outline-none appearance-none cursor-pointer">
                         <option>Select Category</option>
                         <option>Skilled Worker Visa</option>
                         <option>Health and Care Worker Visa</option>
@@ -127,22 +116,19 @@ const AssessmentModal: React.FC<AssessmentModalProps> = ({ isOpen, onClose }) =>
 
                     <div className="space-y-2">
                       <label className="text-[10px] font-bold uppercase tracking-widest text-primary">Can you pay for legal advice?</label>
-                      <select className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-6 py-4 text-slate-900 focus:border-primary focus:outline-none transition-all appearance-none cursor-pointer">
+                      <select className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-6 py-4 text-slate-900 focus:border-primary focus:outline-none appearance-none cursor-pointer">
                         <option>Please Select</option>
                         <option>Yes - I can pay for legal advice</option>
                         <option>No - I cannot pay for legal advice</option>
                       </select>
                     </div>
 
-                    <button className="w-full bg-primary text-white py-5 rounded-2xl font-bold uppercase tracking-[0.2em] text-[11px] hover:bg-slate-900 transition-all duration-500 shadow-2xl shadow-primary/20 mt-4">
+                    <button className="w-full bg-primary text-white py-5 rounded-2xl font-bold uppercase tracking-[0.2em] text-[11px] hover:bg-slate-900 shadow-2xl shadow-primary/20 mt-4">
                       Request Assessment Now
                     </button>
-                  </motion.form>
+                  </form>
                 ) : (
-                  <motion.div 
-                    key="success"
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
+                  <div 
                     className="text-center py-10"
                   >
                     <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-8">
@@ -154,18 +140,17 @@ const AssessmentModal: React.FC<AssessmentModalProps> = ({ isOpen, onClose }) =>
                     </p>
                     <button 
                       onClick={onClose}
-                      className="px-10 py-4 rounded-xl border border-slate-200 text-slate-600 font-bold uppercase tracking-widest text-[10px] hover:bg-slate-900 hover:text-white transition-all duration-500"
+                      className="px-10 py-4 rounded-xl border border-slate-200 text-slate-600 font-bold uppercase tracking-widest text-[10px] hover:bg-slate-900 hover:text-white"
                     >
                       Close Window
                     </button>
-                  </motion.div>
+                  </div>
                 )}
-              </AnimatePresence>
             </div>
-          </motion.div>
+          </div>
         </div>
       )}
-    </AnimatePresence>
+    </>
   );
 };
 

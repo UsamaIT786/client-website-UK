@@ -15,10 +15,7 @@ const feeData = [
 
 const UpdateTable: React.FC = () => {
   return (
-    <motion.div 
-      initial={{ opacity: 0, scale: 0.98 }}
-      whileInView={{ opacity: 1, scale: 1 }}
-      viewport={{ once: true }}
+    <div 
       className="mt-20 mb-32"
     >
       <div className="bg-white rounded-[40px] border border-slate-100 shadow-[0_20px_80px_rgba(0,0,0,0.04)] overflow-hidden p-2">
@@ -45,7 +42,7 @@ const UpdateTable: React.FC = () => {
               </thead>
               <tbody>
                 {feeData.map((row, index) => (
-                  <tr key={index} className="hover:bg-slate-50 transition-colors duration-300">
+                  <tr key={index} className="hover:bg-slate-50">
                     <td className="px-8 py-6 border border-slate-100">
                       <span className="text-xs font-bold text-slate-900 tracking-wider">{row.category}</span>
                     </td>
@@ -71,7 +68,7 @@ const UpdateTable: React.FC = () => {
           </div>
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 };
 

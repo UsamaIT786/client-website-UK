@@ -35,45 +35,30 @@ const TestimonialSection: React.FC = () => {
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-8">
           <div className="max-w-2xl">
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, amount: 0.1 }}
+            <div
               className="flex items-center gap-3 mb-6"
             >
               <span className="w-10 h-[1px] bg-primary" />
               <span className="text-primary tracking-[0.3em] uppercase text-[10px]">Client Stories</span>
-            </motion.div>
-            <motion.h2 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.1 }}
-              transition={{ delay: 0.1 }}
+            </div>
+            <h2 
               className="text-3xl md:text-7xl font-syne font-bold uppercase tracking-tighter text-slate-900"
             >
               Our <span className="text-primary">Reputation</span>
-            </motion.h2>
+            </h2>
           </div>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.1 }}
-            transition={{ delay: 0.2 }}
+          <p
             className="text-textMuted text-lg max-w-sm leading-relaxed"
           >
             Trusted by individuals worldwide to navigate the complexities of global mobility.
-          </motion.p>
+          </p>
         </div>
 
         <div className="grid md:grid-cols-3 gap-8">
           {testimonials.map((t, i) => (
-            <motion.div
+            <div
               key={i}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.1 }}
-              transition={{ delay: i * 0.1 }}
-              className="group bg-white p-10 md:p-12 rounded-[40px] border border-slate-100 transition-all duration-500 relative shadow-[0_10px_50px_rgba(0,0,0,0.02)] flex flex-col h-full"
+              className="group bg-white p-10 md:p-12 rounded-[40px] border border-slate-100 relative shadow-[0_10px_50px_rgba(0,0,0,0.02)] flex flex-col h-full"
             >
               <div className="flex gap-1.5 mb-10">
                 {[...Array(t.rating)].map((_, i) => (
@@ -94,7 +79,7 @@ const TestimonialSection: React.FC = () => {
                   <p className="text-slate-400 text-[10px] font-bold uppercase tracking-[0.2em]">{t.role}</p>
                 </div>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

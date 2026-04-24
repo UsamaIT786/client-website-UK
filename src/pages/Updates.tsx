@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import UpdateCard from '../components/UpdateCard';
 import UpdateTable from '../components/UpdateTable';
 import Breadcrumbs from '../components/Breadcrumbs';
@@ -46,7 +47,14 @@ const Updates: React.FC = () => {
   return (
     <div className="pt-28 md:pt-40 pb-32 px-6 max-w-7xl mx-auto min-h-screen bg-background">
       <Breadcrumbs />
-      <div className="flex flex-col md:flex-row md:items-end justify-between mb-24 gap-8">
+      <motion.div 
+        initial={{ opacity: 0, x: -50 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        style={{ willChange: "transform, opacity" }}
+        className="flex flex-col md:flex-row md:items-end justify-between mb-24 gap-8"
+      >
         <div className="max-w-2xl">
           <span className="text-primary font-bold tracking-[0.3em] uppercase text-[10px] mb-6 block">News & Insights</span>
           <h1 className="text-5xl md:text-7xl font-syne font-bold uppercase mb-0 leading-none text-textMain">Latest <span className="text-primary">Update</span></h1>
@@ -65,11 +73,11 @@ const Updates: React.FC = () => {
             </button>
           ))}
         </div>
-      </div>
+      </motion.div>
 
       <div className="grid md:grid-cols-2 gap-12 min-h-[400px]">
         {filteredPosts.map((post, index) => (
-          <UpdateCard key={index} {...post} index={index} />
+          <UpdateCard key={post.title} {...post} index={index} />
         ))}
         {filteredPosts.length === 0 && (
           <div className="col-span-full flex flex-col items-center justify-center py-20 text-center">
@@ -90,7 +98,7 @@ const Updates: React.FC = () => {
               btn.innerHTML = 'No more articles';
             }, 1500);
           }}
-          className="px-12 py-4 border border-slate-100 rounded-2xl hover:border-primary hover:text-primary transition-all uppercase tracking-widest font-bold text-xs text-textMain bg-white shadow-[0_10px_40px_rgba(0,0,0,0.03)] disabled:opacity-50 disabled:cursor-not-allowed"
+          className="px-12 py-4 border border-slate-100 rounded-2xl hover:border-primary hover:text-primary uppercase tracking-widest font-bold text-xs text-textMain bg-white shadow-[0_10px_40px_rgba(0,0,0,0.03)] disabled:opacity-50 disabled:cursor-not-allowed"
         >
           Load More Articles
         </button>

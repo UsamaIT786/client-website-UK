@@ -14,10 +14,7 @@ const tableData = [
 
 const ProcessingTable: React.FC = () => {
   return (
-    <motion.div 
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
+    <div 
       className="mt-20"
     >
       <div className="bg-white rounded-[40px] border border-slate-100 shadow-[0_20px_80px_rgba(0,0,0,0.04)] overflow-hidden">
@@ -42,9 +39,9 @@ const ProcessingTable: React.FC = () => {
             </thead>
             <tbody className="divide-y divide-slate-50">
               {tableData.map((row, index) => (
-                <tr key={index} className="group hover:bg-slate-50/50 transition-colors duration-300">
+                <tr key={index} className="group hover:bg-slate-50/50">
                   <td className="px-10 py-8">
-                    <span className="text-lg font-syne font-bold text-slate-900 group-hover:text-primary transition-colors">{row.category}</span>
+                    <span className="text-lg font-syne font-bold text-slate-900 group-hover:text-primary">{row.category}</span>
                   </td>
                   <td className="px-10 py-8">
                     <span className="text-slate-600 font-medium">{row.standard}</span>
@@ -75,7 +72,7 @@ const ProcessingTable: React.FC = () => {
           </p>
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 };
 

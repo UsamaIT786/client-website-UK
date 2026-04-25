@@ -37,13 +37,13 @@ const FaqSection: React.FC = () => {
           >
             <span className="text-slate-600 tracking-[0.3em] uppercase text-[10px]">Service FAQ</span>
           </div>
-          <h2 
+          <h2
             className="text-4xl md:text-6xl font-syne font-bold text-slate-900 mb-8"
           >
             How We Help You
           </h2>
           <p
-             className="text-slate-600 max-w-2xl mx-auto text-sm md:text-base"
+            className="text-slate-600 max-w-2xl mx-auto text-sm md:text-base"
           >
             Find answers to how our intermediary service connects you with the best UK immigration experts.
           </p>
@@ -53,9 +53,8 @@ const FaqSection: React.FC = () => {
           {faqs.map((faq, index) => (
             <div
               key={index}
-              className={`rounded-2xl bg-white border border-slate-100 ${
-                activeIndex === index ? 'shadow-lg shadow-slate-200/50' : 'hover:border-slate-200'
-              }`}
+              className={`rounded-2xl bg-white border border-slate-100 ${activeIndex === index ? 'shadow-lg shadow-slate-200/50' : 'hover:border-slate-200'
+                }`}
             >
               <button
                 onClick={() => setActiveIndex(activeIndex === index ? null : index)}
@@ -64,11 +63,10 @@ const FaqSection: React.FC = () => {
                 <span className="text-base md:text-lg font-syne font-bold text-slate-900">
                   {faq.question}
                 </span>
-                <ChevronDown 
-                  size={20} 
-                  className={`text-slate-400 ${
-                    activeIndex === index ? 'rotate-180 text-primary' : ''
-                  }`} 
+                <ChevronDown
+                  size={20}
+                  className={`text-slate-400 ${activeIndex === index ? 'rotate-180 text-primary' : ''
+                    }`}
                 />
               </button>
 

@@ -17,7 +17,7 @@ const visaData = [
 const ProcessingTimes: React.FC = () => {
   const { openModal } = useModal();
   return (
-    <div className="pt-28 md:pt-40 pb-32 px-6 max-w-7xl mx-auto min-h-screen bg-background text-textMain">
+    <div className="pt-28 md:pt-40 pb-32 px-6 max-w-7xl mx-auto min-h-screen text-textMain">
       <Breadcrumbs />
       <motion.div 
         initial={{ opacity: 0, x: -50 }}

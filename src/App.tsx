@@ -26,11 +26,7 @@ const AppContent: React.FC = () => {
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-12 md:gap-16">
           <div className="col-span-full md:col-span-2">
             <div className="h-12 md:h-16 w-auto mb-8 md:mb-10 flex items-center gap-3">
-              <img 
-                 src="https://immigrationlaw.org.uk/wp-content/uploads/elementor/thumbs/ce896829-4abe-4faa-a633-9d5103fe2f91-1-rm724a590fvz73ddsioileszubihhy1skyfx14pi64.png" 
-                 alt="Immigration Law Logo" 
-                 className="h-full w-auto object-contain"
-              />
+              
               <h2 className="text-2xl md:text-3xl font-syne font-bold uppercase tracking-tighter text-slate-900">Immigration<span className="text-primary">Law</span></h2>
             </div>
             <p className="text-slate-500 max-w-sm mb-10 leading-relaxed text-sm md:text-base">

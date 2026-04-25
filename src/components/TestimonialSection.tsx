@@ -31,7 +31,7 @@ const TestimonialSection: React.FC = () => {
     <section className="py-32 bg-slate-50 relative overflow-hidden">
       {/* Subtle Glows */}
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary/5 blur-[120px] -z-10" />
-      
+
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-8">
           <div className="max-w-2xl">
@@ -41,7 +41,7 @@ const TestimonialSection: React.FC = () => {
               <span className="w-10 h-[1px] bg-primary" />
               <span className="text-primary tracking-[0.3em] uppercase text-[10px]">Client Stories</span>
             </div>
-            <h2 
+            <h2
               className="text-3xl md:text-7xl font-syne font-bold uppercase tracking-tighter text-slate-900"
             >
               Our <span className="text-primary">Reputation</span>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Shield, GraduationCap, Briefcase, Users, Scale, Clock } from 'lucide-react';
+import { Shield, GraduationCap, Briefcase, Users, Scale, Clock, Plane } from 'lucide-react';
 import { useModal } from '../context/ModalContext';
 import Hero from '../components/Hero';
 import ServiceCard from '../components/ServiceCard';
@@ -40,6 +40,12 @@ const services = [
     icon: Shield,
     categories: ["Naturalisation", "British Passport", "Right of Abode"]
   },
+  {
+    title: "Visit Visas",
+    description: "Expert assistance for short-term visits to the UK for tourism, business, or family visits. Simple and fast processing.",
+    icon: Plane,
+    categories: ["Standard Visitor", "Business Visitor", "Marriage Visitor"]
+  },
 ];
 
 const team = [
@@ -76,7 +82,7 @@ const Home: React.FC = () => {
       {/* Services Section */}
       <section className="py-20 md:py-32 px-6">
         <div className="max-w-7xl mx-auto">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -84,7 +90,7 @@ const Home: React.FC = () => {
             className="flex flex-col md:flex-row md:items-end justify-between mb-24 gap-8"
           >
             <div className="max-w-2xl">
-              <div 
+              <div
                 className="text-primary tracking-[0.3em] uppercase text-[10px] mb-6 block"
               >
                 Our Expertise
@@ -107,10 +113,10 @@ const Home: React.FC = () => {
 
       <FeeCalculator />
 
- {/* CTA Section - Ultra Premium Light Design */}
+      {/* CTA Section - Ultra Premium Light Design */}
       <section className="py-24 md:py-40 px-6 relative overflow-hidden bg-background">
         <div className="max-w-7xl mx-auto relative">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
@@ -120,7 +126,7 @@ const Home: React.FC = () => {
             {/* Elegant abstract accents */}
             <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 blur-[120px] pointer-events-none" />
             <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-blue-100/30 blur-[100px] pointer-events-none" />
-            
+
             <div className="relative z-10 max-w-3xl mx-auto">
               <span className="text-primary tracking-[0.4em] uppercase text-[10px] mb-8 block">Ready to Start?</span>
               <h2 className="text-3xl md:text-7xl font-syne font-bold mb-10 text-slate-900 leading-[1.1] uppercase tracking-tighter">
@@ -130,7 +136,7 @@ const Home: React.FC = () => {
                 Secure your future with the UK's leading immigration experts. Precision, speed, and absolute confidentiality guaranteed.
               </p>
               <div className="flex flex-col md:flex-row justify-center gap-6 md:gap-8">
-                <motion.button 
+                <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={openModal}
@@ -138,7 +144,7 @@ const Home: React.FC = () => {
                 >
                   Book Free Consultation
                 </motion.button>
-                <motion.button 
+                <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={openModal}

@@ -11,10 +11,10 @@
   --color-accent: #2563eb;
   --color-textMain: #0f172a;
   --color-textMuted: #64748b;
-  
+
   --font-syne: "Arial Black", Gadget, sans-serif;
   --font-jost: Arial, "Helvetica Neue", Helvetica, sans-serif;
-  
+
   --background-image-glass-gradient: linear-gradient(135deg, rgba(37, 99, 235, 0.05) 0%, rgba(37, 99, 235, 0) 100%);
 }
 
@@ -23,17 +23,25 @@
     font-style: normal !important;
   }
 
-  html, body {
+  html,
+  body {
     @apply bg-background text-textMain font-jost antialiased selection:bg-primary/10 selection:text-primary;
     overflow-x: hidden;
     width: 100%;
     position: relative;
-    font-weight: 600; /* Light bold style for Arial */
+    font-weight: 600;
+    /* Light bold style for Arial */
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     @apply font-syne antialiased uppercase tracking-tight text-textMain;
-    font-weight: 900; /* Fully bold Arial Black */
+    font-weight: 900;
+    /* Fully bold Arial Black */
   }
 }
 
@@ -83,17 +91,24 @@
 }
 
 @keyframes marquee {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
 @utility custom-scrollbar {
   &::-webkit-scrollbar {
     height: 4px;
   }
+
   &::-webkit-scrollbar-track {
     @apply bg-slate-100 rounded-full;
   }
+
   &::-webkit-scrollbar-thumb {
     @apply bg-slate-300 rounded-full hover:bg-primary;
   }

@@ -22,32 +22,38 @@ const About: React.FC = () => {
             Founded with a vision to simplify the complex world of immigration, our firm has helped thousands of individuals and families find their new home. We combine legal expertise with a human-centric approach.
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-            <div 
+            <div
               className="bg-white p-6 md:p-8 rounded-2xl md:rounded-3xl border border-slate-100 shadow-[0_10px_40px_rgba(0,0,0,0.03)] hover:shadow-lg transition-shadow duration-300"
             >
-              <span className="block text-4xl sm:text-5xl font-syne font-bold text-slate-900 mb-2">10k+</span>
+              <span className="block text-4xl sm:text-5xl font-syne font-bold text-slate-900 mb-2">100+</span>
               <span className="text-[10px] uppercase tracking-widest text-primary font-bold">Successful Cases</span>
             </div>
-            <div 
+            <div
               className="bg-white p-6 md:p-8 rounded-2xl md:rounded-3xl border border-slate-100 shadow-[0_10px_40px_rgba(0,0,0,0.03)] hover:shadow-lg transition-shadow duration-300"
             >
-              <span className="block text-4xl sm:text-5xl font-syne font-bold text-slate-900 mb-2">50+</span>
+              <div className="mb-4">
+                <img 
+                  src="https://flagcdn.com/w160/gb.png" 
+                  alt="UK Flag"
+                  className="w-16 md:w-20 h-auto rounded-md shadow-sm"
+                />
+              </div>
               <span className="text-[10px] uppercase tracking-widest text-primary font-bold">Countries Served</span>
             </div>
           </div>
         </motion.div>
-        
-        <motion.div 
+
+        <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
           className="relative aspect-square rounded-[40px] overflow-hidden shadow-2xl border border-white/5 bg-surface"
         >
-          <img 
-            src="https://4kwallpapers.com/images/wallpapers/london-bridge-united-kingdom-river-thames-night-time-3840x2160-3316.jpg" 
-            className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" 
-            alt="Office" 
+          <img
+            src="https://4kwallpapers.com/images/wallpapers/london-bridge-united-kingdom-river-thames-night-time-3840x2160-3316.jpg"
+            className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
+            alt="Office"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-60" />
         </motion.div>
@@ -55,7 +61,7 @@ const About: React.FC = () => {
 
       {/* Values Grid */}
       <div className="mb-32">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -64,7 +70,7 @@ const About: React.FC = () => {
           <span className="text-primary font-bold tracking-[0.3em] uppercase text-[10px] mb-6 block">What Drives Us</span>
           <h2 className="text-3xl md:text-6xl font-syne font-bold uppercase text-textMain"><span className="text-primary">Our Mission</span> & Values</h2>
         </motion.div>
-        
+
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10">
           {[
             { icon: Target, title: "Precision", desc: "Every detail matters in immigration law. We ensure your application is perfect." },

@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowUpRight, CheckCircle2, Scale } from 'lucide-react';
+import PhoneInput from './PhoneInput';
 
 import { useModal } from '../context/ModalContext';
 
@@ -105,16 +106,16 @@ const AssessmentForm: React.FC = () => {
 
   return (
     <form className="relative z-10 space-y-6" onSubmit={handleSubmit}>
-        {showWarning && (
-          <div
-            className="absolute top-0 left-0 right-0 -mt-4 z-20"
-          >
-            <div className="bg-red-500 text-white px-6 py-3 rounded-2xl text-[10px] font-bold uppercase tracking-widest flex items-center justify-center gap-2 shadow-2xl">
-              <span className="w-2 h-2 bg-white rounded-full" />
-              Please fill all required fields
-            </div>
+      {showWarning && (
+        <div
+          className="absolute top-0 left-0 right-0 -mt-4 z-20"
+        >
+          <div className="bg-red-500 text-white px-6 py-3 rounded-2xl text-[10px] font-bold uppercase tracking-widest flex items-center justify-center gap-2 shadow-2xl">
+            <span className="w-2 h-2 bg-white rounded-full" />
+            Please fill all required fields
           </div>
-        )}
+        </div>
+      )}
 
       <div className="space-y-2">
         <label className="text-[10px] uppercase tracking-widest text-primary">Full Name *</label>
@@ -138,14 +139,7 @@ const AssessmentForm: React.FC = () => {
         />
       </div>
 
-      <div className="space-y-2">
-        <label className="text-[10px] uppercase tracking-widest text-primary">Phone</label>
-        <input
-          type="tel"
-          placeholder="+44 7000-000000"
-          className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-6 py-4 text-slate-900 placeholder:text-slate-400 focus:border-primary focus:outline-none"
-        />
-      </div>
+      <PhoneInput label="Phone" />
 
       <div className="space-y-2">
         <label className="text-[10px] uppercase tracking-widest text-primary">Visa Category</label>
@@ -163,6 +157,7 @@ const AssessmentForm: React.FC = () => {
           <option>High Potential Individual (HPI)</option>
           <option>Graduate Visa</option>
           <option>Student Visa</option>
+          <option>Standard Visitor Visa</option>
         </select>
       </div>
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Scale } from 'lucide-react';
+import PhoneInput from './PhoneInput';
 
 interface AssessmentModalProps {
   isOpen: boolean;
@@ -86,14 +87,7 @@ const AssessmentModal: React.FC<AssessmentModalProps> = ({ isOpen, onClose }) =>
                       </div>
                     </div>
 
-                    <div className="space-y-2">
-                      <label className="text-[10px] font-bold uppercase tracking-widest text-primary">Phone Number</label>
-                      <input 
-                        type="tel" 
-                        placeholder="+44 7000-000000" 
-                        className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-6 py-4 text-slate-900 placeholder:text-slate-400 focus:border-primary focus:outline-none"
-                      />
-                    </div>
+                    <PhoneInput />
 
                     <div className="space-y-2">
                       <label className="text-[10px] font-bold uppercase tracking-widest text-primary">Visa Category</label>
@@ -111,6 +105,7 @@ const AssessmentModal: React.FC<AssessmentModalProps> = ({ isOpen, onClose }) =>
                         <option>High Potential Individual (HPI)</option>
                         <option>Graduate Visa</option>
                         <option>Student Visa</option>
+                        <option>Standard Visitor Visa</option>
                       </select>
                     </div>
 

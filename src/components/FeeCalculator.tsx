@@ -7,12 +7,11 @@ const visaTypes = [
   { name: "Skilled Worker Visa (Up to 3 years)", fee: 819, ihs: 3105, hasPriority: true },
   { name: "Skilled Worker Visa (More than 3 years)", fee: 1618, ihs: 5175, hasPriority: true },
   { name: "Student Visa", fee: 558, ihs: 2328, hasPriority: true },
-  { name: "Spouse / Partner Visa", fee: 1846, ihs: 3105, hasPriority: true },
+  { name: "Spouse / Partner Visa", fee: 1846, ihs: 3105, hasPriority: true }, 
   { name: "Standard Visitor Visa (6 months)", fee: 135, ihs: 0, hasPriority: true },
   { name: "Indefinite Leave to Remain (ILR)", fee: 3226, ihs: 0, hasPriority: true },
-  { name: "British Citizenship (Naturalisation)", fee: 1580, ihs: 0, hasPriority: false }
+  { name: "British Citizenship (Naturalisation)", fee: 1709, ihs: 0, hasPriority: false }
 ];
-
 const FeeCalculator: React.FC = () => {
   const { openModal } = useModal();
   const [selectedVisa, setSelectedVisa] = useState(visaTypes[0]);

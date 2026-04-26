@@ -7,18 +7,13 @@ import {
     LogOut, 
     Menu, 
     X,
-    TrendingUp,
-    Users,
-    MessageSquare,
     Settings,
-    ShieldCheck as ShieldCheckIcon
+    ShieldCheck
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ContentEditor from '../../components/admin/ContentEditor';
 import BlogManager from '../../components/admin/BlogManager';
 import StatsOverview from '../../components/admin/StatsOverview';
-
-const ShieldCheck = ({ size }: { size: number }) => <ShieldCheckIcon size={size} />;
 
 const Dashboard: React.FC = () => {
     const { logout, username } = useAuth();
@@ -33,7 +28,7 @@ const Dashboard: React.FC = () => {
     ];
 
     return (
-        <div className="min-h-screen bg-[#0f172a] text-white flex overflow-hidden">
+        <div className="min-h-screen bg-[#f8fafc] flex overflow-hidden">
             {/* Sidebar */}
             <AnimatePresence mode="wait">
                 {isSidebarOpen && (
@@ -41,50 +36,57 @@ const Dashboard: React.FC = () => {
                         initial={{ x: -300 }}
                         animate={{ x: 0 }}
                         exit={{ x: -300 }}
-                        className="fixed lg:relative z-50 w-72 h-full backdrop-blur-2xl bg-white/5 border-r border-white/10 p-6 flex flex-col"
+                        transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+                        className="fixed lg:relative z-50 w-72 h-full bg-white border-r border-slate-200 p-6 flex flex-col shadow-xl lg:shadow-none"
                     >
+                        {/* Logo */}
                         <div className="flex items-center gap-3 mb-10 px-2">
                             <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center shadow-lg shadow-primary/20">
-                                <ShieldCheck size={24} />
+                                <ShieldCheck size={22} className="text-white" />
                             </div>
-                            <h2 className="text-xl font-bold tracking-tight">Admin<span className="text-primary">Panel</span></h2>
-                            <button onClick={() => setIsSidebarOpen(false)} className="lg:hidden ml-auto">
+                            <h2 className="text-lg font-syne font-bold uppercase tracking-tighter text-textMain">Immigration<span className="text-primary">Law</span></h2>
+                            <button onClick={() => setIsSidebarOpen(false)} className="lg:hidden ml-auto text-textMuted hover:text-textMain">
                                 <X size={20} />
                             </button>
                         </div>
 
-                        <nav className="flex-1 space-y-2">
+                        {/* Navigation */}
+                        <div className="px-2 mb-4">
+                            <p className="text-[9px] uppercase tracking-[0.3em] text-textMuted font-bold mb-3">Navigation</p>
+                        </div>
+                        <nav className="flex-1 space-y-1.5">
                             {menuItems.map((item) => (
                                 <button
                                     key={item.id}
                                     onClick={() => setActiveTab(item.id)}
-                                    className={`w-full flex items-center gap-4 px-4 py-3.5 rounded-xl transition-all ${
+                                    className={`w-full flex items-center gap-3.5 px-4 py-3 rounded-xl transition-all text-sm ${
                                         activeTab === item.id 
-                                        ? 'bg-primary text-white shadow-lg shadow-primary/20' 
-                                        : 'text-slate-400 hover:bg-white/5 hover:text-white'
+                                        ? 'bg-primary text-white shadow-lg shadow-primary/20 font-bold' 
+                                        : 'text-textMuted hover:bg-slate-50 hover:text-textMain font-medium'
                                     }`}
                                 >
-                                    <item.icon size={20} />
-                                    <span className="font-medium">{item.label}</span>
+                                    <item.icon size={18} />
+                                    <span>{item.label}</span>
                                 </button>
                             ))}
                         </nav>
 
-                        <div className="mt-auto pt-6 border-t border-white/10">
-                            <div className="flex items-center gap-3 px-2 mb-6">
-                                <div className="w-10 h-10 rounded-full bg-slate-800 border border-white/10 flex items-center justify-center text-primary font-bold">
+                        {/* User Profile */}
+                        <div className="mt-auto pt-6 border-t border-slate-100">
+                            <div className="flex items-center gap-3 px-2 mb-5">
+                                <div className="w-10 h-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary font-bold text-sm">
                                     {username?.charAt(0).toUpperCase()}
                                 </div>
                                 <div>
-                                    <p className="text-sm font-bold truncate max-w-[120px]">{username}</p>
-                                    <p className="text-[10px] text-slate-500 uppercase tracking-widest">Administrator</p>
+                                    <p className="text-sm font-bold text-textMain truncate max-w-[120px]">{username}</p>
+                                    <p className="text-[9px] text-textMuted uppercase tracking-[0.2em]">Administrator</p>
                                 </div>
                             </div>
                             <button 
                                 onClick={logout}
-                                className="w-full flex items-center gap-4 px-4 py-3.5 rounded-xl text-red-400 hover:bg-red-500/10 transition-all font-medium"
+                                className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-red-500 hover:bg-red-50 transition-all font-medium text-sm"
                             >
-                                <LogOut size={20} />
+                                <LogOut size={18} />
                                 Logout
                             </button>
                         </div>
@@ -92,24 +94,40 @@ const Dashboard: React.FC = () => {
                 )}
             </AnimatePresence>
 
+            {/* Click-away overlay for mobile */}
+            <AnimatePresence>
+                {isSidebarOpen && (
+                    <motion.div 
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        onClick={() => setIsSidebarOpen(false)}
+                        className="fixed inset-0 bg-slate-900/20 backdrop-blur-sm z-40 lg:hidden"
+                    />
+                )}
+            </AnimatePresence>
+
             {/* Main Content */}
             <main className="flex-1 h-screen overflow-y-auto relative">
                 {/* Header */}
-                <header className="sticky top-0 z-40 backdrop-blur-md bg-[#0f172a]/80 border-b border-white/5 px-8 py-4 flex items-center justify-between">
+                <header className="sticky top-0 z-30 bg-white/80 backdrop-blur-md border-b border-slate-200 px-8 py-4 flex items-center justify-between">
                     <div className="flex items-center gap-4">
                         {!isSidebarOpen && (
-                            <button onClick={() => setIsSidebarOpen(true)} className="p-2 hover:bg-white/5 rounded-lg">
-                                <Menu size={24} />
+                            <button onClick={() => setIsSidebarOpen(true)} className="p-2 hover:bg-slate-50 rounded-xl border border-slate-200 transition-colors">
+                                <Menu size={20} className="text-textMain" />
                             </button>
                         )}
-                        <h1 className="text-xl font-bold capitalize">{activeTab.replace('-', ' ')}</h1>
+                        <div>
+                            <h1 className="text-lg font-syne font-bold uppercase tracking-tight text-textMain">{activeTab === 'overview' ? 'Dashboard' : activeTab.replace('-', ' ')}</h1>
+                            <p className="text-[10px] text-textMuted uppercase tracking-widest">Immigration Law Admin</p>
+                        </div>
                     </div>
                     
-                    <div className="flex items-center gap-6">
+                    <div className="flex items-center gap-5">
                         <div className="hidden md:flex flex-col items-end">
-                            <span className="text-xs text-slate-500 uppercase tracking-widest">Server Status</span>
-                            <span className="text-[10px] text-emerald-400 flex items-center gap-1.5 font-bold">
-                                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                            <span className="text-[9px] text-textMuted uppercase tracking-[0.2em] font-bold">Server Status</span>
+                            <span className="text-[10px] text-emerald-600 flex items-center gap-1.5 font-bold">
+                                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
                                 Operational
                             </span>
                         </div>
@@ -121,10 +139,12 @@ const Dashboard: React.FC = () => {
                     {activeTab === 'content' && <ContentEditor />}
                     {activeTab === 'blogs' && <BlogManager />}
                     {activeTab === 'settings' && (
-                        <div className="backdrop-blur-xl bg-white/5 border border-white/10 rounded-3xl p-12 text-center">
-                            <Settings className="mx-auto mb-6 text-slate-500" size={48} />
-                            <h2 className="text-2xl font-bold mb-2">System Settings</h2>
-                            <p className="text-slate-400">Settings module is currently under development.</p>
+                        <div className="bg-white border border-slate-100 rounded-3xl p-12 text-center">
+                            <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                                <Settings size={28} className="text-primary" />
+                            </div>
+                            <h2 className="text-xl font-syne font-bold text-textMain uppercase tracking-tight mb-2">System Settings</h2>
+                            <p className="text-textMuted text-sm">Settings module is currently under development.</p>
                         </div>
                     )}
                 </div>

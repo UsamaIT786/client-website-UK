@@ -6,7 +6,7 @@ export const getBlogs = async (req, res) => {
         res.json(rows);
     } catch (error) {
         console.error(error);
-        res.status(500).json({ error: 'Failed to fetch blogs' });
+        res.status(500).json({ error: 'Failed to fetch blogs: ' + error.message });
     }
 };
 
@@ -20,7 +20,7 @@ export const createBlog = async (req, res) => {
         res.status(201).json({ id: result.insertId, message: 'Blog created successfully' });
     } catch (error) {
         console.error(error);
-        res.status(500).json({ error: 'Failed to create blog' });
+        res.status(500).json({ error: 'Failed to create blog: ' + error.message });
     }
 };
 
@@ -35,7 +35,7 @@ export const updateBlog = async (req, res) => {
         res.json({ message: 'Blog updated successfully' });
     } catch (error) {
         console.error(error);
-        res.status(500).json({ error: 'Failed to update blog' });
+        res.status(500).json({ error: 'Failed to update blog: ' + error.message });
     }
 };
 
@@ -46,6 +46,6 @@ export const deleteBlog = async (req, res) => {
         res.json({ message: 'Blog deleted successfully' });
     } catch (error) {
         console.error(error);
-        res.status(500).json({ error: 'Failed to delete blog' });
+        res.status(500).json({ error: 'Failed to delete blog: ' + error.message });
     }
 };

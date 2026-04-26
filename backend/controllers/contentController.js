@@ -6,7 +6,7 @@ export const getContent = async (req, res) => {
         res.json(rows);
     } catch (error) {
         console.error(error);
-        res.status(500).json({ error: 'Failed to fetch content' });
+        res.status(500).json({ error: 'Failed to fetch content: ' + error.message });
     }
 };
 
@@ -21,6 +21,6 @@ export const updateContent = async (req, res) => {
         res.json({ message: 'Content updated successfully' });
     } catch (error) {
         console.error(error);
-        res.status(500).json({ error: 'Failed to update content' });
+        res.status(500).json({ error: 'Failed to update content: ' + error.message });
     }
 };

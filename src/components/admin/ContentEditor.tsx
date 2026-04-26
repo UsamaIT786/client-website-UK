@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import toast from 'react-hot-toast';
-import { Save, RefreshCw } from 'lucide-react';
+import { Save, RefreshCw, PlusCircle, FileText } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 
 const ContentEditor: React.FC = () => {
@@ -33,6 +33,7 @@ const ContentEditor: React.FC = () => {
                 { headers: { Authorization: `Bearer ${token}` } }
             );
             toast.success('Updated successfully');
+            fetchContent();
         } catch (error) {
             toast.error('Update failed');
         } finally {
@@ -40,47 +41,55 @@ const ContentEditor: React.FC = () => {
         }
     };
 
-    if (loading) return <div className="text-center py-20 text-slate-400">Initializing editor...</div>;
+    if (loading) return (
+        <div className="flex items-center justify-center py-20">
+            <div className="w-8 h-8 border-2 border-primary/20 border-t-primary rounded-full animate-spin" />
+        </div>
+    );
 
     return (
         <div className="space-y-6">
-            <div className="flex justify-between items-center mb-8">
+            <div className="flex justify-between items-center mb-2">
                 <div>
-                    <h2 className="text-2xl font-bold">Site Content</h2>
-                    <p className="text-slate-400">Update text and strings across the website dynamically.</p>
+                    <h2 className="text-xl font-syne font-bold text-textMain uppercase tracking-tight">Site Content</h2>
+                    <p className="text-textMuted text-sm mt-1">Update text and strings across the website dynamically.</p>
                 </div>
-                <button onClick={fetchContent} className="p-2 hover:bg-white/5 rounded-lg text-slate-400">
-                    <RefreshCw size={20} />
+                <button onClick={fetchContent} className="p-2.5 hover:bg-slate-50 rounded-xl text-textMuted border border-slate-200 transition-colors">
+                    <RefreshCw size={18} />
                 </button>
             </div>
 
-            <div className="grid gap-6">
+            <div className="grid gap-5">
                 {sections.length === 0 ? (
-                    <div className="backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl p-12 text-center">
-                        <p className="text-slate-500">No editable sections found in database.</p>
+                    <div className="bg-white border border-slate-100 rounded-2xl p-12 text-center">
+                        <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                            <FileText size={28} className="text-primary" />
+                        </div>
+                        <p className="text-textMuted text-sm mb-4">No editable sections found in database.</p>
                         <button 
                             onClick={() => handleUpdate('hero_title', 'Expert Immigration Legal Services')}
-                            className="mt-4 text-primary hover:underline"
+                            className="inline-flex items-center gap-2 text-primary hover:bg-primary/5 px-4 py-2 rounded-lg transition-colors text-sm font-semibold"
                         >
+                            <PlusCircle size={16} />
                             Create first section (Hero Title)
                         </button>
                     </div>
                 ) : (
                     sections.map((section) => (
-                        <div key={section.section_key} className="backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl p-6">
+                        <div key={section.section_key} className="bg-white border border-slate-100 rounded-2xl p-6 hover:border-primary/20 transition-colors">
                             <div className="flex justify-between items-center mb-4">
-                                <label className="text-sm font-bold text-primary uppercase tracking-widest">{section.section_key.replace('_', ' ')}</label>
+                                <label className="text-[10px] font-bold text-primary uppercase tracking-[0.2em]">{section.section_key.replace(/_/g, ' ')}</label>
                                 <button 
                                     onClick={() => handleUpdate(section.section_key, section.content)}
                                     disabled={saving === section.section_key}
-                                    className="flex items-center gap-2 bg-primary/20 hover:bg-primary text-primary hover:text-white px-4 py-1.5 rounded-lg transition-all text-xs font-bold disabled:opacity-50"
+                                    className="flex items-center gap-2 bg-primary hover:bg-primary-hover text-white px-4 py-2 rounded-lg transition-all text-[10px] font-bold uppercase tracking-widest disabled:opacity-50 shadow-sm shadow-primary/10"
                                 >
                                     <Save size={14} />
-                                    {saving === section.section_key ? 'Saving...' : 'Save Changes'}
+                                    {saving === section.section_key ? 'Saving...' : 'Save'}
                                 </button>
                             </div>
                             <textarea 
-                                className="w-full bg-black/20 border border-white/5 rounded-xl p-4 text-slate-300 focus:outline-none focus:border-primary/50 min-h-[100px] resize-none"
+                                className="w-full bg-[#f8fafc] border border-slate-200 rounded-xl p-4 text-textMain text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary min-h-[100px] resize-none transition-all"
                                 value={section.content}
                                 onChange={(e) => {
                                     const newSections = sections.map(s => 

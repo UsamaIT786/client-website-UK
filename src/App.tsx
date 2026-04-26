@@ -8,41 +8,21 @@ import ProcessingTimes from './pages/ProcessingTimes';
 import Updates from './pages/Updates';
 import About from './pages/About';
 import Preloader from './components/Preloader';
-import { AuthProvider } from './context/AuthContext';
-import { Toaster } from 'react-hot-toast';
-import AdminLogin from './pages/admin/Login';
-import AdminDashboard from './pages/admin/Dashboard';
-import PrivateRoute from './components/admin/PrivateRoute';
-import { useLocation } from 'react-router-dom';
-
 const AppContent: React.FC = () => {
-  const location = useLocation();
-  const isAdminRoute = location.pathname.startsWith('/admin');
-
   return (
     <div className="relative min-h-screen overflow-x-hidden">
-      {!isAdminRoute && <Preloader />}
-      {!isAdminRoute && <Navbar />}
-      <Toaster position="top-right" />
+      <Preloader />
+      <Navbar />
       
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/processing-times" element={<ProcessingTimes />} />
         <Route path="/update" element={<Updates />} />
         <Route path="/about" element={<About />} />
-        
-        {/* Admin Routes */}
-        <Route path="/admin/login" element={<AdminLogin />} />
-        <Route path="/admin/dashboard" element={
-          <PrivateRoute>
-            <AdminDashboard />
-          </PrivateRoute>
-        } />
       </Routes>
       
-      {/* Global Footer - Hidden on Admin Routes */}
-      {!isAdminRoute && (
-        <footer className="py-24 bg-[#f8fafc] text-slate-900 border-t border-slate-200">
+      {/* Global Footer */}
+      <footer className="py-24 bg-[#f8fafc] text-slate-900 border-t border-slate-200">
           <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-12 md:gap-16">
             <div className="col-span-full md:col-span-2">
               <div className="h-12 md:h-16 w-auto mb-8 md:mb-10 flex items-center gap-3">
@@ -89,7 +69,6 @@ const AppContent: React.FC = () => {
             <p>© 2026 Immigrationlaw.org.uk. All Rights Reserved.</p>
           </div>
         </footer>
-      )}
     </div>
   );
 };
@@ -97,11 +76,9 @@ const AppContent: React.FC = () => {
 const App: React.FC = () => {
   return (
     <Router>
-      <AuthProvider>
-        <ModalProvider>
-          <AppContent />
-        </ModalProvider>
-      </AuthProvider>
+      <ModalProvider>
+        <AppContent />
+      </ModalProvider>
     </Router>
   );
 };

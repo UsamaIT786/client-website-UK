@@ -3,42 +3,13 @@ import nodemailer from 'nodemailer';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import helmet from 'helmet';
-import adminRoutes from './routes/adminRoutes.js';
-import contentRoutes from './routes/contentRoutes.js';
-import blogRoutes from './routes/blogRoutes.js';
-import statsRoutes from './routes/statsRoutes.js';
-
-import db from './config/db.js';
 
 dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Test DB & Run Migration
-(async () => {
-    try {
-        const connection = await db.getConnection();
-        console.log('✅ DB Connected');
-        connection.release();
 
-        // Run migrations
-        await db.execute(`CREATE TABLE IF NOT EXISTS admins (id INT AUTO_INCREMENT PRIMARY KEY, username VARCHAR(255) NOT NULL UNIQUE, password VARCHAR(255) NOT NULL, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP)`);
-        await db.execute(`CREATE TABLE IF NOT EXISTS site_content (id INT AUTO_INCREMENT PRIMARY KEY, section_key VARCHAR(255) NOT NULL UNIQUE, content TEXT NOT NULL, updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP)`);
-        await db.execute(`CREATE TABLE IF NOT EXISTS blogs (id INT AUTO_INCREMENT PRIMARY KEY, title VARCHAR(255) NOT NULL, image_url TEXT, content TEXT NOT NULL, author VARCHAR(255) DEFAULT 'Admin', created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP)`);
-        
-        const [admins] = await db.execute('SELECT * FROM admins WHERE username = "admin"');
-        if (admins.length === 0) {
-            const bcrypt = await import('bcryptjs');
-            const hashedPassword = await bcrypt.default.hash('admin123', 10);
-            await db.execute('INSERT INTO admins (username, password) VALUES (?, ?)', ['admin', hashedPassword]);
-            console.log('👤 Default admin user created');
-        }
-        console.log('🚀 Database is fully migrated and ready');
-    } catch (e) {
-        console.log('❌ DB Error: ' + e.message);
-    }
-})();
 
 // Middleware
 app.use(helmet());
@@ -49,11 +20,7 @@ app.use(cors({
 }));
 app.use(express.json());
 
-// Routes
-app.use('/api/admin', adminRoutes);
-app.use('/api/content', contentRoutes);
-app.use('/api/blogs', blogRoutes);
-app.use('/api/stats', statsRoutes);
+
 
 // Transporter setup
 const transporter = nodemailer.createTransport({

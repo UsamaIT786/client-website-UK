@@ -3,6 +3,9 @@ import nodemailer from 'nodemailer';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import helmet from 'helmet';
+import adminRoutes from './routes/adminRoutes.js';
+import contentRoutes from './routes/contentRoutes.js';
+import blogRoutes from './routes/blogRoutes.js';
 
 dotenv.config();
 
@@ -17,6 +20,11 @@ app.use(cors({
   allowedHeaders: ['Content-Type']
 }));
 app.use(express.json());
+
+// Routes
+app.use('/api/admin', adminRoutes);
+app.use('/api/content', contentRoutes);
+app.use('/api/blogs', blogRoutes);
 
 // Transporter setup
 const transporter = nodemailer.createTransport({

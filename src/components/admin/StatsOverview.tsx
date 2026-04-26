@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Newspaper, FileText, Users, Clock } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
-import axios from 'axios';
+import API from '../../lib/api';
 
 interface StatsData {
     blogs: number;
@@ -23,9 +23,7 @@ const StatsOverview: React.FC = () => {
 
     const fetchStats = async () => {
         try {
-            const response = await axios.get('http://localhost:5000/api/stats', {
-                headers: { Authorization: `Bearer ${token}` }
-            });
+            const response = await API.get('/api/stats');
             setStats(response.data);
         } catch (error) {
             console.error('Failed to load stats');
@@ -61,7 +59,6 @@ const StatsOverview: React.FC = () => {
 
     return (
         <div className="space-y-8">
-            {/* Stat Cards */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {statCards.map((stat, i) => (
                     <motion.div
@@ -84,9 +81,7 @@ const StatsOverview: React.FC = () => {
                 ))}
             </div>
 
-            {/* Recent Activity - Real Data */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                {/* Recent Blogs */}
                 <div className="bg-white border border-slate-100 rounded-3xl p-8">
                     <h3 className="text-xs font-bold uppercase tracking-widest text-textMain mb-6 flex items-center gap-2">
                         <Newspaper size={16} className="text-primary" />
@@ -109,7 +104,6 @@ const StatsOverview: React.FC = () => {
                     </div>
                 </div>
 
-                {/* Recent Content Updates */}
                 <div className="bg-white border border-slate-100 rounded-3xl p-8">
                     <h3 className="text-xs font-bold uppercase tracking-widest text-textMain mb-6 flex items-center gap-2">
                         <Clock size={16} className="text-primary" />

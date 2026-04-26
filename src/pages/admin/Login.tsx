@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
-import axios from 'axios';
+import API from '../../lib/api';
 import toast from 'react-hot-toast';
 import { Lock, User, ShieldCheck } from 'lucide-react';
 import { motion } from 'framer-motion';
@@ -17,7 +17,7 @@ const Login: React.FC = () => {
         e.preventDefault();
         setLoading(true);
         try {
-            const response = await axios.post('http://localhost:5000/api/admin/login', { username, password });
+            const response = await API.post('/api/admin/login', { username, password });
             login(response.data.token, response.data.username);
             toast.success('Welcome back, Admin!');
             navigate('/admin/dashboard');

@@ -130,7 +130,7 @@ const AssessmentForm: React.FC = () => {
         </div>
         <h3 className="text-2xl font-syne font-bold text-slate-900 mb-4 uppercase tracking-tight">Assessment Requested</h3>
         <p className="text-slate-500 leading-relaxed text-lg">
-          Your request has been prioritized. Our legal team will reach out with your comprehensive case breakdown within <span className="text-slate-900">24 hours</span>.
+          Thank you. Expect to hear from a legal professional within <span className="text-slate-900 font-bold">24hrs</span>.
         </p>
       </div>
     );

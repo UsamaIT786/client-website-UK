@@ -193,8 +193,8 @@ const AssessmentModal: React.FC<AssessmentModalProps> = ({ isOpen, onClose }) =>
                       <Scale className="text-primary w-10 h-10" />
                     </div>
                     <h3 className="text-2xl font-syne font-bold text-slate-900 mb-4 uppercase tracking-tight">Expert Counsel Awaits</h3>
-                    <p className="text-textMuted leading-relaxed mb-10 text-lg">
-                      Thank you for choosing excellence. Our specialist legal team is already reviewing your details. Expect a comprehensive case assessment in your inbox within <span className="text-slate-900 font-bold">24 hours</span>.
+                    <p className="text-slate-500 leading-relaxed text-lg mb-10">
+                      Thank you. Expect to hear from a legal professional within <span className="text-slate-900 font-bold">24hrs</span>.
                     </p>
                     <button 
                       onClick={onClose}

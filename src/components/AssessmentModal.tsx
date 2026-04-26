@@ -10,20 +10,60 @@ interface AssessmentModalProps {
 
 const AssessmentModal: React.FC<AssessmentModalProps> = ({ isOpen, onClose }) => {
   const [isSubmitted, setIsSubmitted] = React.useState(false);
+  const [isLoading, setIsLoading] = React.useState(false);
+  const [formData, setFormData] = React.useState({
+    fullName: '',
+    email: '',
+    phone: '',
+    visaCategory: 'Select Category',
+    canPay: 'Please Select'
+  });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitted(true);
-    // In a real app, you'd send data here
-    setTimeout(() => {
-      // Auto close after 5 seconds or keep it for user to read
-    }, 5000);
+    setIsLoading(true);
+
+    try {
+      const response = await fetch('http://localhost:5000/api/assessment', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        setIsSubmitted(true);
+      } else {
+        const errorData = await response.json();
+        alert(`Error: ${errorData.error || 'Failed to send assessment'}`);
+      }
+    } catch (error) {
+      console.error('Submission error:', error);
+      alert('Network error. Please make sure the backend server is running.');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
   };
 
   // Reset success state when modal closes
   React.useEffect(() => {
     if (!isOpen) {
-      setTimeout(() => setIsSubmitted(false), 300);
+      setTimeout(() => {
+        setIsSubmitted(false);
+        setFormData({
+          fullName: '',
+          email: '',
+          phone: '',
+          visaCategory: 'Select Category',
+          canPay: 'Please Select'
+        });
+      }, 300);
     }
   }, [isOpen]);
 
@@ -71,6 +111,9 @@ const AssessmentModal: React.FC<AssessmentModalProps> = ({ isOpen, onClose }) =>
                         <label className="text-[10px] font-bold uppercase tracking-widest text-primary">Full Name *</label>
                         <input 
                           type="text" 
+                          name="fullName"
+                          value={formData.fullName}
+                          onChange={handleChange}
                           placeholder="Legal Name" 
                           className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-6 py-4 text-slate-900 placeholder:text-slate-400 focus:border-primary focus:outline-none"
                           required
@@ -80,6 +123,9 @@ const AssessmentModal: React.FC<AssessmentModalProps> = ({ isOpen, onClose }) =>
                         <label className="text-[10px] font-bold uppercase tracking-widest text-primary">Email *</label>
                         <input 
                           type="email" 
+                          name="email"
+                          value={formData.email}
+                          onChange={handleChange}
                           placeholder="email@example.com" 
                           className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-6 py-4 text-slate-900 placeholder:text-slate-400 focus:border-primary focus:outline-none"
                           required
@@ -87,12 +133,20 @@ const AssessmentModal: React.FC<AssessmentModalProps> = ({ isOpen, onClose }) =>
                       </div>
                     </div>
 
-                    <PhoneInput />
+                    <PhoneInput 
+                      value={formData.phone}
+                      onChange={(value) => setFormData(prev => ({ ...prev, phone: value }))}
+                    />
 
                     <div className="space-y-2">
                       <label className="text-[10px] font-bold uppercase tracking-widest text-primary">Visa Category</label>
-                      <select className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-6 py-4 text-slate-900 focus:border-primary focus:outline-none appearance-none cursor-pointer">
-                        <option>Select Category</option>
+                      <select 
+                        name="visaCategory"
+                        value={formData.visaCategory}
+                        onChange={handleChange}
+                        className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-6 py-4 text-slate-900 focus:border-primary focus:outline-none appearance-none cursor-pointer"
+                      >
+                        <option disabled value="Select Category">Select Category</option>
                         <option>Skilled Worker Visa</option>
                         <option>Health and Care Worker Visa</option>
                         <option>Sponsor License Applications</option>
@@ -110,16 +164,25 @@ const AssessmentModal: React.FC<AssessmentModalProps> = ({ isOpen, onClose }) =>
                     </div>
 
                     <div className="space-y-2">
-                      <label className="text-[10px] font-bold uppercase tracking-widest text-primary">Can you pay for legal advice?</label>
-                      <select className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-6 py-4 text-slate-900 focus:border-primary focus:outline-none appearance-none cursor-pointer">
-                        <option>Please Select</option>
+                      <label className="text-[10px] font-bold uppercase tracking-widest text-primary">Can you pay for professional legal advice?</label>
+                      <select 
+                        name="canPay"
+                        value={formData.canPay}
+                        onChange={handleChange}
+                        className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-6 py-4 text-slate-900 focus:border-primary focus:outline-none appearance-none cursor-pointer"
+                      >
+                        <option disabled value="Please Select">Please Select</option>
                         <option>Yes - I can pay for legal advice</option>
                         <option>No - I cannot pay for legal advice</option>
                       </select>
                     </div>
 
-                    <button className="w-full bg-primary text-white py-5 rounded-2xl font-bold uppercase tracking-[0.2em] text-[11px] hover:bg-slate-900 shadow-2xl shadow-primary/20 mt-4">
-                      Request Assessment Now
+
+                    <button 
+                      disabled={isLoading}
+                      className="w-full bg-primary text-white py-5 rounded-2xl font-bold uppercase tracking-[0.2em] text-[11px] hover:bg-slate-900 shadow-2xl shadow-primary/20 mt-4 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+                    >
+                      {isLoading ? 'Sending Inquiry...' : 'Request Assessment Now'}
                     </button>
                   </form>
                 ) : (

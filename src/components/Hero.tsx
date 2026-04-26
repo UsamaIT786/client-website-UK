@@ -74,25 +74,57 @@ const Hero: React.FC = () => {
 };
 
 const AssessmentForm: React.FC = () => {
-  const [formData, setFormData] = React.useState({ name: '', email: '' });
+  const [formData, setFormData] = React.useState({
+    fullName: '',
+    email: '',
+    phone: '',
+    visaCategory: 'Select Category',
+    canPay: 'Please Select'
+  });
   const [isSubmitted, setIsSubmitted] = React.useState(false);
+  const [isLoading, setIsLoading] = React.useState(false);
   const [showWarning, setShowWarning] = React.useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.name || !formData.email) {
+    if (!formData.fullName || !formData.email || formData.visaCategory === 'Select Category' || formData.canPay === 'Please Select') {
       setShowWarning(true);
       setTimeout(() => setShowWarning(false), 3000);
       return;
     }
-    setIsSubmitted(true);
+
+    setIsLoading(true);
+    try {
+      const response = await fetch('http://localhost:5000/api/assessment', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        setIsSubmitted(true);
+      } else {
+        const errorData = await response.json();
+        alert(`Error: ${errorData.error || 'Failed to send assessment'}`);
+      }
+    } catch (error) {
+      console.error('Submission error:', error);
+      alert('Network error. Please make sure the backend server is running.');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
   };
 
   if (isSubmitted) {
     return (
-      <div
-        className="relative z-10 text-center py-20"
-      >
+      <div className="relative z-10 text-center py-20">
         <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-8">
           <Scale className="text-primary w-10 h-10" />
         </div>
@@ -107,9 +139,7 @@ const AssessmentForm: React.FC = () => {
   return (
     <form className="relative z-10 space-y-6" onSubmit={handleSubmit}>
       {showWarning && (
-        <div
-          className="absolute top-0 left-0 right-0 -mt-4 z-20"
-        >
+        <div className="absolute top-0 left-0 right-0 -mt-4 z-20">
           <div className="bg-red-500 text-white px-6 py-3 rounded-2xl text-[10px] font-bold uppercase tracking-widest flex items-center justify-center gap-2 shadow-2xl">
             <span className="w-2 h-2 bg-white rounded-full" />
             Please fill all required fields
@@ -121,9 +151,10 @@ const AssessmentForm: React.FC = () => {
         <label className="text-[10px] uppercase tracking-widest text-primary">Full Name *</label>
         <input
           type="text"
+          name="fullName"
           placeholder="Your Legal Name"
-          value={formData.name}
-          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+          value={formData.fullName}
+          onChange={handleChange}
           className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-6 py-4 text-slate-900 placeholder:text-slate-400 focus:border-primary focus:outline-none"
         />
       </div>
@@ -132,19 +163,29 @@ const AssessmentForm: React.FC = () => {
         <label className="text-[10px] uppercase tracking-widest text-primary">Email *</label>
         <input
           type="email"
+          name="email"
           placeholder="example@gmail.com"
           value={formData.email}
-          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+          onChange={handleChange}
           className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-6 py-4 text-slate-900 placeholder:text-slate-400 focus:border-primary focus:outline-none"
         />
       </div>
 
-      <PhoneInput label="Phone" />
+      <PhoneInput 
+        label="Phone" 
+        value={formData.phone}
+        onChange={(val) => setFormData(prev => ({ ...prev, phone: val }))}
+      />
 
       <div className="space-y-2">
         <label className="text-[10px] uppercase tracking-widest text-primary">Visa Category</label>
-        <select className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-6 py-4 text-slate-900 focus:border-primary focus:outline-none appearance-none cursor-pointer">
-          <option>Select Category</option>
+        <select 
+          name="visaCategory"
+          value={formData.visaCategory}
+          onChange={handleChange}
+          className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-6 py-4 text-slate-900 focus:border-primary focus:outline-none appearance-none cursor-pointer"
+        >
+          <option disabled value="Select Category">Select Category</option>
           <option>Skilled Worker Visa</option>
           <option>Health and Care Worker Visa</option>
           <option>Sponsor License Applications</option>
@@ -163,8 +204,13 @@ const AssessmentForm: React.FC = () => {
 
       <div className="space-y-2">
         <label className="text-[10px] uppercase tracking-widest text-primary">Can you pay for professional legal advice?</label>
-        <select className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-6 py-4 text-slate-900 focus:border-primary focus:outline-none appearance-none cursor-pointer">
-          <option>Please Select</option>
+        <select 
+          name="canPay"
+          value={formData.canPay}
+          onChange={handleChange}
+          className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-6 py-4 text-slate-900 focus:border-primary focus:outline-none appearance-none cursor-pointer"
+        >
+          <option disabled value="Please Select">Please Select</option>
           <option>Yes - I can pay for legal advice</option>
           <option>No - I cannot pay for legal advice</option>
         </select>
@@ -172,9 +218,10 @@ const AssessmentForm: React.FC = () => {
 
       <button
         type="submit"
-        className="w-full bg-primary text-white py-5 rounded-2xl uppercase tracking-[0.2em] text-[11px] hover:bg-slate-900 shadow-2xl shadow-primary/30 mt-4"
+        disabled={isLoading}
+        className="w-full bg-primary text-white py-5 rounded-2xl uppercase tracking-[0.2em] text-[11px] hover:bg-slate-900 shadow-2xl shadow-primary/30 mt-4 disabled:opacity-50 transition-all"
       >
-        Request Assessment Now
+        {isLoading ? 'Sending...' : 'Request Assessment Now'}
       </button>
     </form>
   );

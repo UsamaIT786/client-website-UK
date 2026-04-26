@@ -45,9 +45,11 @@ const countries = [
 
 interface PhoneInputProps {
   label?: string;
+  value?: string;
+  onChange?: (value: string) => void;
 }
 
-const PhoneInput: React.FC<PhoneInputProps> = ({ label = "Phone Number" }) => {
+const PhoneInput: React.FC<PhoneInputProps> = ({ label = "Phone Number", value = "", onChange }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedCountry, setSelectedCountry] = useState(countries[0]);
 
@@ -108,6 +110,8 @@ const PhoneInput: React.FC<PhoneInputProps> = ({ label = "Phone Number" }) => {
           </div>
           <input
             type="tel"
+            value={value}
+            onChange={(e) => onChange && onChange(e.target.value)}
             placeholder="0000-000000"
             className="w-full h-[56px] bg-slate-50 border border-slate-100 rounded-2xl pl-16 pr-6 text-slate-900 placeholder:text-slate-400 focus:border-primary focus:outline-none transition-all duration-300"
           />

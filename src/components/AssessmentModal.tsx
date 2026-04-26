@@ -24,7 +24,7 @@ const AssessmentModal: React.FC<AssessmentModalProps> = ({ isOpen, onClose }) =>
     setIsLoading(true);
 
     try {
-      const response = await fetch('http://localhost:5000/api/assessment', {
+      const response = await fetch('https://client-backend-alpha.vercel.app/api/assessment', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

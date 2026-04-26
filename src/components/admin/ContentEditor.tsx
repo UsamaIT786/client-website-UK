@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import API from '../../lib/api';
+import api from '../../lib/api';
 import toast from 'react-hot-toast';
 import { Save, RefreshCw, PlusCircle, FileText } from 'lucide-react';
+import { useAuth } from '../../context/AuthContext';
 
 const ContentEditor: React.FC = () => {
+    const { token } = useAuth();
     const [sections, setSections] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
     const [saving, setSaving] = useState<string | null>(null);
@@ -14,7 +16,7 @@ const ContentEditor: React.FC = () => {
 
     const fetchContent = async () => {
         try {
-            const response = await API.get('/api/content');
+            const response = await api.get('/api/content');
             setSections(response.data);
         } catch (error) {
             toast.error('Failed to load content');
@@ -26,7 +28,9 @@ const ContentEditor: React.FC = () => {
     const handleUpdate = async (key: string, content: string) => {
         setSaving(key);
         try {
-            await API.post('/api/content/update', { section_key: key, content });
+            await api.post('/api/content/update', 
+                { section_key: key, content }
+            );
             toast.success('Updated successfully');
             fetchContent();
         } catch (error) {

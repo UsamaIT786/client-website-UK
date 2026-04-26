@@ -2,8 +2,8 @@ import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowUpRight, CheckCircle2, Scale } from 'lucide-react';
 import PhoneInput from './PhoneInput';
-
 import { useModal } from '../context/ModalContext';
+import api from '../lib/api';
 
 const Hero: React.FC = () => {
   const { openModal } = useModal();
@@ -95,23 +95,11 @@ const AssessmentForm: React.FC = () => {
 
     setIsLoading(true);
     try {
-      const response = await fetch('http://localhost:5000/api/assessment', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
-
-      if (response.ok) {
-        setIsSubmitted(true);
-      } else {
-        const errorData = await response.json();
-        alert(`Error: ${errorData.error || 'Failed to send assessment'}`);
-      }
-    } catch (error) {
+      await api.post('/api/assessment', formData);
+      setIsSubmitted(true);
+    } catch (error: any) {
       console.error('Submission error:', error);
-      alert('Network error. Please make sure the backend server is running.');
+      alert(error.response?.data?.error || 'Network error. Please make sure the backend server is running.');
     } finally {
       setIsLoading(false);
     }

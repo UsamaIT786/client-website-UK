@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import API from '../../lib/api';
+import api from '../../lib/api';
 import toast from 'react-hot-toast';
 import { Plus, Edit2, Trash2, Save, X, Image as ImageIcon, Newspaper } from 'lucide-react';
+import { useAuth } from '../../context/AuthContext';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const BlogManager: React.FC = () => {
+    const { token } = useAuth();
     const [blogs, setBlogs] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
     const [isEditing, setIsEditing] = useState<any>(null);
@@ -22,7 +24,7 @@ const BlogManager: React.FC = () => {
 
     const fetchBlogs = async () => {
         try {
-            const response = await API.get('/api/blogs');
+            const response = await api.get('/api/blogs');
             setBlogs(response.data);
         } catch (error) {
             toast.error('Failed to load blogs');
@@ -35,10 +37,10 @@ const BlogManager: React.FC = () => {
         e.preventDefault();
         try {
             if (isEditing) {
-                await API.put(`/api/blogs/${isEditing.id}`, formData);
+                await api.put(`/api/blogs/${isEditing.id}`, formData);
                 toast.success('Blog updated');
             } else {
-                await API.post('/api/blogs', formData);
+                await api.post('/api/blogs', formData);
                 toast.success('Blog created');
             }
             fetchBlogs();
@@ -51,7 +53,7 @@ const BlogManager: React.FC = () => {
     const handleDelete = async (id: number) => {
         if (!confirm('Are you sure you want to delete this blog?')) return;
         try {
-            await API.delete(`/api/blogs/${id}`);
+            await api.delete(`/api/blogs/${id}`);
             toast.success('Blog deleted');
             fetchBlogs();
         } catch (error) {

@@ -1,11 +1,13 @@
 import axios from 'axios';
 
-const API = axios.create({
-    baseURL: import.meta.env.VITE_API_URL || '/https://client-backend-alpha.vercel.app/',
+const API_BASE_URL = import.meta.env.VITE_API_URL || (import.meta.env.PROD ? '' : 'http://localhost:5000');
+
+const api = axios.create({
+    baseURL: API_BASE_URL,
 });
 
-// Automatically attach token to every request
-API.interceptors.request.use((config) => {
+// Automatically attach token to every request if available
+api.interceptors.request.use((config) => {
     const token = localStorage.getItem('adminToken');
     if (token) {
         config.headers.Authorization = `Bearer ${token}`;
@@ -13,4 +15,5 @@ API.interceptors.request.use((config) => {
     return config;
 });
 
-export default API;
+export { API_BASE_URL };
+export default api;

@@ -175,6 +175,10 @@ app.post('/api/assessment', async (req, res) => {
 // Health check route
 app.get('/health', (req, res) => res.status(200).send('OK'));
 
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+  });
+}
+
+export default app;

@@ -6,6 +6,7 @@ import helmet from 'helmet';
 import adminRoutes from './routes/adminRoutes.js';
 import contentRoutes from './routes/contentRoutes.js';
 import blogRoutes from './routes/blogRoutes.js';
+import statsRoutes from './routes/statsRoutes.js';
 
 import db from './config/db.js';
 
@@ -52,6 +53,7 @@ app.use(express.json());
 app.use('/api/admin', adminRoutes);
 app.use('/api/content', contentRoutes);
 app.use('/api/blogs', blogRoutes);
+app.use('/api/stats', statsRoutes);
 
 // Transporter setup
 const transporter = nodemailer.createTransport({

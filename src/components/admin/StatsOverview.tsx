@@ -1,19 +1,69 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { TrendingUp, Users, MessageSquare, Eye } from 'lucide-react';
+import { Newspaper, FileText, Users, Clock } from 'lucide-react';
+import { useAuth } from '../../context/AuthContext';
+import axios from 'axios';
+
+interface StatsData {
+    blogs: number;
+    contentSections: number;
+    admins: number;
+    recentBlogs: { id: number; title: string; created_at: string }[];
+    recentContent: { id: number; section_key: string; updated_at: string }[];
+}
 
 const StatsOverview: React.FC = () => {
-    const stats = [
-        { label: 'Total Visits', value: '12,482', change: '+12%', icon: Eye, color: 'text-primary', bg: 'bg-primary/10' },
-        { label: 'New Leads', value: '148', change: '+25%', icon: Users, color: 'text-emerald-600', bg: 'bg-emerald-50' },
-        { label: 'Blog Views', value: '3,290', change: '+8%', icon: TrendingUp, color: 'text-blue-600', bg: 'bg-blue-50' },
-        { label: 'Inquiries', value: '42', change: '-2%', icon: MessageSquare, color: 'text-amber-600', bg: 'bg-amber-50' },
+    const { token } = useAuth();
+    const [stats, setStats] = useState<StatsData | null>(null);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        fetchStats();
+    }, []);
+
+    const fetchStats = async () => {
+        try {
+            const response = await axios.get('http://localhost:5000/api/stats', {
+                headers: { Authorization: `Bearer ${token}` }
+            });
+            setStats(response.data);
+        } catch (error) {
+            console.error('Failed to load stats');
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const formatTimeAgo = (dateStr: string) => {
+        const now = new Date();
+        const date = new Date(dateStr);
+        const diffMs = now.getTime() - date.getTime();
+        const diffMins = Math.floor(diffMs / 60000);
+        if (diffMins < 1) return 'Just now';
+        if (diffMins < 60) return `${diffMins} min ago`;
+        const diffHours = Math.floor(diffMins / 60);
+        if (diffHours < 24) return `${diffHours} hour${diffHours > 1 ? 's' : ''} ago`;
+        const diffDays = Math.floor(diffHours / 24);
+        return `${diffDays} day${diffDays > 1 ? 's' : ''} ago`;
+    };
+
+    if (loading) return (
+        <div className="flex items-center justify-center py-20">
+            <div className="w-8 h-8 border-2 border-primary/20 border-t-primary rounded-full animate-spin" />
+        </div>
+    );
+
+    const statCards = [
+        { label: 'Published Blogs', value: stats?.blogs ?? 0, icon: Newspaper, color: 'text-primary', bg: 'bg-primary/10' },
+        { label: 'Content Sections', value: stats?.contentSections ?? 0, icon: FileText, color: 'text-blue-600', bg: 'bg-blue-50' },
+        { label: 'Admin Users', value: stats?.admins ?? 0, icon: Users, color: 'text-emerald-600', bg: 'bg-emerald-50' },
     ];
 
     return (
         <div className="space-y-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                {stats.map((stat, i) => (
+            {/* Stat Cards */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {statCards.map((stat, i) => (
                     <motion.div
                         key={i}
                         initial={{ opacity: 0, y: 20 }}
@@ -25,43 +75,60 @@ const StatsOverview: React.FC = () => {
                             <div className={`p-3 rounded-xl ${stat.bg} ${stat.color} group-hover:scale-110 transition-transform`}>
                                 <stat.icon size={22} />
                             </div>
-                            <span className={`text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider ${stat.change.startsWith('+') ? 'bg-emerald-50 text-emerald-600' : 'bg-red-50 text-red-500'}`}>
-                                {stat.change}
-                            </span>
                         </div>
                         <div>
                             <p className="text-textMuted text-xs uppercase tracking-widest mb-1">{stat.label}</p>
-                            <h3 className="text-2xl font-syne font-bold text-textMain">{stat.value}</h3>
+                            <h3 className="text-3xl font-syne font-bold text-textMain">{stat.value}</h3>
                         </div>
                     </motion.div>
                 ))}
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                <div className="lg:col-span-2 bg-white border border-slate-100 rounded-3xl p-8 h-80 flex flex-col items-center justify-center">
-                    <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mb-4">
-                        <TrendingUp size={28} className="text-primary" />
-                    </div>
-                    <p className="text-textMuted text-sm font-medium">Analytics Dashboard</p>
-                    <p className="text-slate-400 text-xs mt-1">Chart visualization coming soon</p>
-                </div>
+            {/* Recent Activity - Real Data */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                {/* Recent Blogs */}
                 <div className="bg-white border border-slate-100 rounded-3xl p-8">
-                    <h3 className="text-xs font-bold uppercase tracking-widest text-textMain mb-6">Recent Activity</h3>
+                    <h3 className="text-xs font-bold uppercase tracking-widest text-textMain mb-6 flex items-center gap-2">
+                        <Newspaper size={16} className="text-primary" />
+                        Recent Blog Posts
+                    </h3>
                     <div className="space-y-5">
-                        {[
-                            { name: 'Sarah Johnson', time: '2 hours ago' },
-                            { name: 'Michael Chen', time: '5 hours ago' },
-                            { name: 'Aisha Patel', time: '1 day ago' },
-                            { name: 'David Williams', time: '2 days ago' },
-                        ].map((item, i) => (
-                            <div key={i} className="flex items-start gap-3">
-                                <div className="w-2 h-2 rounded-full bg-primary mt-1.5 shrink-0" />
-                                <div>
-                                    <p className="text-sm text-textMain font-semibold">New lead: {item.name}</p>
-                                    <p className="text-xs text-textMuted">{item.time}</p>
+                        {stats?.recentBlogs && stats.recentBlogs.length > 0 ? (
+                            stats.recentBlogs.map((blog) => (
+                                <div key={blog.id} className="flex items-start gap-3">
+                                    <div className="w-2 h-2 rounded-full bg-primary mt-1.5 shrink-0" />
+                                    <div className="min-w-0">
+                                        <p className="text-sm text-textMain font-semibold truncate">{blog.title}</p>
+                                        <p className="text-xs text-textMuted">{formatTimeAgo(blog.created_at)}</p>
+                                    </div>
                                 </div>
-                            </div>
-                        ))}
+                            ))
+                        ) : (
+                            <p className="text-sm text-textMuted">No blog posts yet.</p>
+                        )}
+                    </div>
+                </div>
+
+                {/* Recent Content Updates */}
+                <div className="bg-white border border-slate-100 rounded-3xl p-8">
+                    <h3 className="text-xs font-bold uppercase tracking-widest text-textMain mb-6 flex items-center gap-2">
+                        <Clock size={16} className="text-primary" />
+                        Recent Content Updates
+                    </h3>
+                    <div className="space-y-5">
+                        {stats?.recentContent && stats.recentContent.length > 0 ? (
+                            stats.recentContent.map((item) => (
+                                <div key={item.id} className="flex items-start gap-3">
+                                    <div className="w-2 h-2 rounded-full bg-emerald-500 mt-1.5 shrink-0" />
+                                    <div className="min-w-0">
+                                        <p className="text-sm text-textMain font-semibold">{item.section_key.replace(/_/g, ' ')}</p>
+                                        <p className="text-xs text-textMuted">{formatTimeAgo(item.updated_at)}</p>
+                                    </div>
+                                </div>
+                            ))
+                        ) : (
+                            <p className="text-sm text-textMuted">No content updates yet.</p>
+                        )}
                     </div>
                 </div>
             </div>

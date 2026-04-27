@@ -13,7 +13,7 @@ const faqs = [
   },
   {
     question: "Are the legal professionals regulated?",
-    answer: "Immigration Advice Authority (iAA) insted of office of the immigration services commissioner (OISC)"
+    answer: "Yes, absolutely. We partner with legal professionals and firms that are fully regulated by the Solicitors Regulation Authority (SRA) or the Office of the Immigration Services Commissioner (IAA))"
   },
   {
     question: "How quickly will I receive a response?",

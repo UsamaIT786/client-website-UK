@@ -13,7 +13,7 @@ const faqs = [
   },
   {
     question: "Are the legal professionals regulated?",
-    answer: "Absolutely. We only partner with legal professionals and firms that are fully regulated by the Solicitors Regulation Authority (SRA) or the Office of the Immigration Services Commissioner (OISC)."
+    answer: "Immigration Advice Authority (iAA) insted of office of the immigration services commissioner (OISC)"
   },
   {
     question: "How quickly will I receive a response?",
@@ -29,7 +29,7 @@ const FaqSection: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
   return (
-    <section className="py-32 bg-[#f8fafc] relative overflow-hidden">
+    <section id="faq" className="py-32 bg-[#f8fafc] relative overflow-hidden">
       <div className="max-w-4xl mx-auto px-6">
         <div className="text-center mb-16">
           <div

@@ -1,9 +1,7 @@
 import React from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowUpRight, CheckCircle2, Scale } from 'lucide-react';
-import PhoneInput from './PhoneInput';
+import { motion } from 'framer-motion';
+import { ArrowUpRight } from 'lucide-react';
 import { useModal } from '../context/ModalContext';
-import api from '../lib/api';
 
 const Hero: React.FC = () => {
   const { openModal } = useModal();
@@ -37,7 +35,10 @@ const Hero: React.FC = () => {
               Book Assessment
               <ArrowUpRight size={16} className="group-hover:translate-x-1 group-hover:-translate-y-1" />
             </button>
-            <button className="px-10 py-4 rounded-2xl border border-slate-200 hover:border-primary uppercase tracking-widest text-[10px] text-slate-600 hover:text-primary">
+            <button
+              onClick={() => document.getElementById('faq')?.scrollIntoView({ behavior: 'smooth' })}
+              className="px-10 py-4 rounded-2xl border border-slate-200 hover:border-primary uppercase tracking-widest text-[10px] text-slate-600 hover:text-primary"
+            >
               About Us
             </button>
           </div>
@@ -62,156 +63,25 @@ const Hero: React.FC = () => {
           </div>
         </motion.div>
 
-        {/* Right Content - Premium Assessment Form */}
-        <div className="relative">
-          <div className="bg-white p-6 md:p-10 rounded-[32px] md:rounded-[40px] border border-slate-100 relative overflow-hidden group">
-            <AssessmentForm />
+        {/* Right Content - Hero Image */}
+        <motion.div
+          initial={{ opacity: 0, x: 50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+          style={{ willChange: "transform, opacity" }}
+          className="relative"
+        >
+          <div className="rounded-[32px] md:rounded-[40px] overflow-hidden shadow-2xl shadow-slate-900/10">
+            <img
+              src="https://images.unsplash.com/photo-1529655683826-aba9b3e77383?auto=format&fit=crop&q=80&w=800"
+              alt="UK Immigration - Professional Legal Support"
+              className="w-full h-[400px] md:h-[550px] lg:h-[600px] object-cover"
+            />
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
-  );
-};
-
-const AssessmentForm: React.FC = () => {
-  const [formData, setFormData] = React.useState({
-    fullName: '',
-    email: '',
-    phone: '',
-    visaCategory: 'Select Category',
-    canPay: 'Please Select'
-  });
-  const [isSubmitted, setIsSubmitted] = React.useState(false);
-  const [isLoading, setIsLoading] = React.useState(false);
-  const [showWarning, setShowWarning] = React.useState(false);
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!formData.fullName || !formData.email || formData.visaCategory === 'Select Category' || formData.canPay === 'Please Select') {
-      setShowWarning(true);
-      setTimeout(() => setShowWarning(false), 3000);
-      return;
-    }
-
-    setIsLoading(true);
-    try {
-      await api.post('/api/assessment', formData);
-      setIsSubmitted(true);
-    } catch (error: any) {
-      console.error('Submission error:', error);
-      alert(error.response?.data?.error || 'Network error. Please make sure the backend server is running.');
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-  };
-
-  if (isSubmitted) {
-    return (
-      <div className="relative z-10 text-center py-20">
-        <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-8">
-          <Scale className="text-primary w-10 h-10" />
-        </div>
-        <h3 className="text-2xl font-syne font-bold text-slate-900 mb-4 uppercase tracking-tight">Assessment Requested</h3>
-        <p className="text-slate-500 leading-relaxed text-lg">
-          Thank you. Expect to hear from a legal professional within <span className="text-slate-900 font-bold">24hrs</span>.
-        </p>
-      </div>
-    );
-  }
-
-  return (
-    <form className="relative z-10 space-y-6" onSubmit={handleSubmit}>
-      {showWarning && (
-        <div className="absolute top-0 left-0 right-0 -mt-4 z-20">
-          <div className="bg-red-500 text-white px-6 py-3 rounded-2xl text-[10px] font-bold uppercase tracking-widest flex items-center justify-center gap-2 shadow-2xl">
-            <span className="w-2 h-2 bg-white rounded-full" />
-            Please fill all required fields
-          </div>
-        </div>
-      )}
-
-      <div className="space-y-2">
-        <label className="text-[10px] uppercase tracking-widest text-primary">Full Name *</label>
-        <input
-          type="text"
-          name="fullName"
-          placeholder="Your Legal Name"
-          value={formData.fullName}
-          onChange={handleChange}
-          className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-6 py-4 text-slate-900 placeholder:text-slate-400 focus:border-primary focus:outline-none"
-        />
-      </div>
-
-      <div className="space-y-2">
-        <label className="text-[10px] uppercase tracking-widest text-primary">Email *</label>
-        <input
-          type="email"
-          name="email"
-          placeholder="example@gmail.com"
-          value={formData.email}
-          onChange={handleChange}
-          className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-6 py-4 text-slate-900 placeholder:text-slate-400 focus:border-primary focus:outline-none"
-        />
-      </div>
-
-      <PhoneInput 
-        label="Phone" 
-        value={formData.phone}
-        onChange={(val) => setFormData(prev => ({ ...prev, phone: val }))}
-      />
-
-      <div className="space-y-2">
-        <label className="text-[10px] uppercase tracking-widest text-primary">Visa Category</label>
-        <select 
-          name="visaCategory"
-          value={formData.visaCategory}
-          onChange={handleChange}
-          className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-6 py-4 text-slate-900 focus:border-primary focus:outline-none appearance-none cursor-pointer"
-        >
-          <option disabled value="Select Category">Select Category</option>
-          <option>Skilled Worker Visa</option>
-          <option>Health and Care Worker Visa</option>
-          <option>Sponsor License Applications</option>
-          <option>Spouse / Partner Visa</option>
-          <option>Fiancé / Proposed Civil Partner</option>
-          <option>Family Reunion</option>
-          <option>Indefinite Leave to Remain (ILR)</option>
-          <option>British Citizenship (Naturalisation)</option>
-          <option>Global Talent Visa</option>
-          <option>High Potential Individual (HPI)</option>
-          <option>Graduate Visa</option>
-          <option>Student Visa</option>
-          <option>Standard Visitor Visa</option>
-        </select>
-      </div>
-
-      <div className="space-y-2">
-        <label className="text-[10px] uppercase tracking-widest text-primary">Can you pay for professional legal advice?</label>
-        <select 
-          name="canPay"
-          value={formData.canPay}
-          onChange={handleChange}
-          className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-6 py-4 text-slate-900 focus:border-primary focus:outline-none appearance-none cursor-pointer"
-        >
-          <option disabled value="Please Select">Please Select</option>
-          <option>Yes - I can pay for legal advice</option>
-          <option>No - I cannot pay for legal advice</option>
-        </select>
-      </div>
-
-      <button
-        type="submit"
-        disabled={isLoading}
-        className="w-full bg-primary text-white py-5 rounded-2xl uppercase tracking-[0.2em] text-[11px] hover:bg-slate-900 shadow-2xl shadow-primary/30 mt-4 disabled:opacity-50 transition-all"
-      >
-        {isLoading ? 'Sending...' : 'Request Assessment Now'}
-      </button>
-    </form>
   );
 };
 

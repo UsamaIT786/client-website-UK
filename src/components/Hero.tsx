@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
 import { useModal } from '../context/ModalContext';
+import heroImage from '../assets/hero.png';
 
 const Hero: React.FC = () => {
   const { openModal } = useModal();
@@ -74,7 +75,7 @@ const Hero: React.FC = () => {
         >
           <div className="rounded-[32px] md:rounded-[40px] overflow-hidden shadow-2xl shadow-slate-900/10">
             <img
-              src="public/Images/hero.jfif"
+              src="Images/hero.jfif"
               alt="UK Immigration - Professional Legal Support"
               className="w-full h-[400px] md:h-[550px] lg:h-[600px] object-cover"
             />

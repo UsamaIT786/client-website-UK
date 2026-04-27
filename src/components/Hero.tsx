@@ -74,7 +74,7 @@ const Hero: React.FC = () => {
         >
           <div className="rounded-[32px] md:rounded-[40px] overflow-hidden shadow-2xl shadow-slate-900/10">
             <img
-              src="https://images.unsplash.com/photo-1529655683826-aba9b3e77383?auto=format&fit=crop&q=80&w=800"
+              src="public/Images/hero.jfif"
               alt="UK Immigration - Professional Legal Support"
               className="w-full h-[400px] md:h-[550px] lg:h-[600px] object-cover"
             />

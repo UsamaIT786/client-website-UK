@@ -144,14 +144,7 @@ const Home: React.FC = () => {
                 >
                   Book Free Consultation
                 </motion.button>
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={openModal}
-                  className="px-10 md:px-14 py-5 rounded-2xl border border-slate-200 text-slate-600 uppercase tracking-[0.2em] text-[10px] hover:bg-slate-50 transition-all duration-300"
-                >
-                  View Success Stories
-                </motion.button>
+                
               </div>
             </div>
           </motion.div>

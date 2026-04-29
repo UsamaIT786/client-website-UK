@@ -23,6 +23,7 @@ const Navbar: React.FC = () => {
     { name: 'Processing Time', path: '/processing-times' },
     { name: 'Update', path: '/update' },
     { name: 'About', path: '/about' },
+    { name: 'Blog', path: '/blog' },
   ];
 
   return (

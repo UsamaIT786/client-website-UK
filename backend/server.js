@@ -44,7 +44,7 @@ transporter.verify(function (error, success) {
 
 // Route: POST /api/assessment
 app.post('/api/assessment', async (req, res) => {
-  const { fullName, email, phone, visaCategory, message } = req.body;
+  const { fullName, email, phone, visaCategory, message, canPay } = req.body;
 
   // Basic validation
   if (!fullName || !email || !visaCategory) {
@@ -52,13 +52,15 @@ app.post('/api/assessment', async (req, res) => {
   }
 
   try {
-    // 1. Send Internal Lead Email
+    // 1. Send Internal Lead Email to Admin
     const internalMailOptions = {
-      from: `"Lead Manager" <${process.env.SMTP_USER}>`,
-      to: process.env.RECEIVER_EMAIL,
-      subject: `[NEW LEAD] Assessment Request: ${fullName}`,
+      from: process.env.SMTP_USER,
+      to: process.env.RECEIVER_EMAIL.trim(),
+      replyTo: email,
+      subject: `New Lead Assessment: ${fullName}`,
+      text: `New Lead Details:\n\nFull Name: ${fullName}\nEmail: ${email}\nPhone: ${phone || 'N/A'}\nVisa Category: ${visaCategory}\nCan Pay: ${canPay || 'Not specified'}\nMessage: ${message || 'No additional message.'}`,
       html: `
-        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; border: 1px solid #ddd; padding: 20px;">
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; border: 1px solid #ddd; padding: 20px; color: #333;">
           <h2 style="color: #1a365d; border-bottom: 2px solid #1a365d; padding-bottom: 10px;">New Assessment Inquiry</h2>
           <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
             <tr>
@@ -79,7 +81,11 @@ app.post('/api/assessment', async (req, res) => {
             </tr>
             <tr>
               <td style="padding: 10px; border: 1px solid #eee; font-weight: bold; background: #f9f9f9;">Can Pay for Advice</td>
-              <td style="padding: 10px; border: 1px solid #eee;">${req.body.canPay || 'Not specified'}</td>
+              <td style="padding: 10px; border: 1px solid #eee;">${canPay || 'Not specified'}</td>
+            </tr>
+            <tr>
+              <td style="padding: 10px; border: 1px solid #eee; font-weight: bold; background: #f9f9f9;">Message</td>
+              <td style="padding: 10px; border: 1px solid #eee;">${message || 'No additional message.'}</td>
             </tr>
           </table>
           <p style="margin-top: 20px; font-size: 12px; color: #666;">This lead was generated from the website assessment form.</p>
@@ -92,6 +98,7 @@ app.post('/api/assessment', async (req, res) => {
       from: `"Immigration Law Experts" <${process.env.SMTP_USER}>`,
       to: email,
       subject: `Confirmation: Your Immigration Assessment Inquiry`,
+      text: `Dear ${fullName},\n\nThank you for choosing Immigration Law Experts. We have successfully received your inquiry regarding a ${visaCategory}. Our team will contact you within 24 business hours.\n\nBest Regards,\nThe Assessment Team`,
       html: `
         <div style="font-family: 'Segoe UI', Arial, sans-serif; max-width: 600px; margin: auto; color: #0f172a; line-height: 1.6;">
           <div style="background: #2563eb; padding: 40px 30px; text-align: center; color: white; border-radius: 16px 16px 0 0;">
@@ -109,9 +116,9 @@ app.post('/api/assessment', async (req, res) => {
               <p style="margin: 0; font-style: italic; color: #475569;">"Our mission is to navigate the complexities of UK immigration law with precision, ensuring a seamless and successful transition for our clients."</p>
             </div>
 
-            <p><strong>Next Steps:</strong> One of our experts will contact you via email or phone within <strong>24 business hours</strong> to discuss your eligibility and the path forward.</p>
+            <p><strong>Next Steps:</strong> One Of The Legally Qualified Person Will Contact Via Email Or Phone Within 24 business hours To Discuss Your Query And The Path Forward.</p>
             
-            <p style="margin-top: 40px; border-top: 1px solid #f1f5f9; pt-30px">
+            <p style="margin-top: 40px; border-top: 1px solid #f1f5f9; padding-top: 20px;">
               Best Regards,<br>
               <span style="color: #2563eb; font-weight: 800; font-size: 16px;">The Assessment Team</span><br>
               <span style="color: #64748b; font-size: 13px;">Immigration Law Experts | London, UK</span>
@@ -126,16 +133,20 @@ app.post('/api/assessment', async (req, res) => {
       `,
     };
 
-    // Send both emails in parallel
-    await Promise.all([
-      transporter.sendMail(internalMailOptions),
-      transporter.sendMail(autoResponseOptions)
-    ]);
+    // Send emails sequentially to ensure both are attempted and we can catch specific errors
+    console.log(`Sending lead to receiver: ${process.env.RECEIVER_EMAIL.trim()}`);
+    await transporter.sendMail(internalMailOptions);
+    
+    console.log(`Sending confirmation to user: ${email}`);
+    await transporter.sendMail(autoResponseOptions);
 
     res.status(200).json({ message: 'Assessment inquiry sent successfully' });
   } catch (error) {
     console.error('Email error:', error);
-    res.status(500).json({ error: 'Failed to process assessment inquiry' });
+    res.status(500).json({ 
+      error: 'Failed to process assessment inquiry', 
+      details: error.message 
+    });
   }
 });
 

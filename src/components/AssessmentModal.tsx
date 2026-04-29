@@ -16,7 +16,8 @@ const AssessmentModal: React.FC<AssessmentModalProps> = ({ isOpen, onClose }) =>
     email: '',
     phone: '',
     visaCategory: 'Select Category',
-    canPay: 'Please Select'
+    canPay: 'Please Select',
+    message: ''
   });
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -61,7 +62,8 @@ const AssessmentModal: React.FC<AssessmentModalProps> = ({ isOpen, onClose }) =>
           email: '',
           phone: '',
           visaCategory: 'Select Category',
-          canPay: 'Please Select'
+          canPay: 'Please Select',
+          message: ''
         });
       }, 300);
     }
@@ -173,8 +175,18 @@ const AssessmentModal: React.FC<AssessmentModalProps> = ({ isOpen, onClose }) =>
                       >
                         <option disabled value="Please Select">Please Select</option>
                         <option>Yes - I can pay for legal advice</option>
-                        <option>No - I cannot pay for legal advice</option>
                       </select>
+                    </div>
+
+                    <div className="space-y-2">
+                      <label className="text-[10px] font-bold uppercase tracking-widest text-primary">Additional Details</label>
+                      <textarea 
+                        name="message"
+                        value={formData.message}
+                        onChange={handleChange}
+                        placeholder="Tell us more about your case..." 
+                        className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-6 py-4 text-slate-900 placeholder:text-slate-400 focus:border-primary focus:outline-none min-h-[100px] resize-none"
+                      />
                     </div>
 
 

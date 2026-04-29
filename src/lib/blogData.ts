@@ -5,7 +5,6 @@ export interface BlogPost {
   category: string;
   excerpt: string;
   date: string;
-  author: string;
   content: string;
   image?: string;
 }
@@ -24,7 +23,6 @@ export const blogPosts: BlogPost[] = [
     title: "UK Spouse Visa Requirements 2026: The Ultimate Guide",
     category: "Visa Guides",
     date: "April 29, 2026",
-    author: "Legal Expert Team",
     excerpt: "The UK spouse visa allows the partner of a British citizen to live in the UK. In 2026, the process has become more rigorous with higher income thresholds...",
     content: `
       <p>The UK spouse visa allows the partner of a British citizen or settled person to live in the United Kingdom. In 2026, the process has become more rigorous with higher income thresholds and a transition to a digital-only visa system. This guide breaks down the essential requirements to help you prepare a successful application.</p>
@@ -114,6 +112,6 @@ export const blogPosts: BlogPost[] = [
       </ol>
       <p><strong>Crucial Rule:</strong> Must not spend more than 180 days outside the UK in any 12-month period.</p>
     `,
-    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSVc_vWj-Qzf0LbSMay_d3CsYqdYY4e75kIeA&s"
+    image: "https://pix4free.org/assets/library/2021-01-21/originals/immigration_law.jpg"
   }
 ];

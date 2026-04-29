@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { blogPosts } from '../lib/blogData';
-import { Calendar, User, ArrowLeft, Share2, Clock, ChevronRight } from 'lucide-react';
+import { Calendar, ArrowLeft, Share2, ChevronRight } from 'lucide-react';
 
 const BlogPost: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -53,12 +53,8 @@ const BlogPost: React.FC = () => {
 
             <div className="flex items-center justify-between py-8 border-y border-slate-100 mb-12">
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full bg-slate-100 flex items-center justify-center text-primary">
-                  <User size={20} />
-                </div>
-                <div>
-                  <div className="text-[10px] uppercase tracking-widest text-slate-400 font-bold mb-1">Author</div>
-                  <div className="text-sm font-bold text-slate-900">{post.author}</div>
+                <div className="flex items-center gap-2 text-slate-400 text-[10px] uppercase tracking-widest font-bold">
+                  <Share2 size={18} className="mr-1" /> Share Article
                 </div>
               </div>
               <div className="flex gap-3">
@@ -75,7 +71,7 @@ const BlogPost: React.FC = () => {
       <section className="px-6 mb-16">
         <div className="max-w-5xl mx-auto rounded-[40px] overflow-hidden shadow-2xl">
           <img 
-            src={post.image || "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSVc_vWj-Qzf0LbSMay_d3CsYqdYY4e75kIeA&s"} 
+            src={post.image || "https://pix4free.org/assets/library/2021-01-21/originals/immigration_law.jpg"} 
             alt={post.title}
             className="w-full h-auto object-cover max-h-[600px]"
           />

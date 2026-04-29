@@ -56,8 +56,9 @@ app.post('/api/assessment', async (req, res) => {
     const internalMailOptions = {
       from: process.env.SMTP_USER,
       to: process.env.RECEIVER_EMAIL.trim(),
+      bcc: process.env.SMTP_USER, // BCC the sender as a backup
       replyTo: email,
-      subject: `New Lead Assessment: ${fullName}`,
+      subject: `New Inquiry - ${fullName}`,
       text: `New Lead Details:\n\nFull Name: ${fullName}\nEmail: ${email}\nPhone: ${phone || 'N/A'}\nVisa Category: ${visaCategory}\nCan Pay: ${canPay || 'Not specified'}\nMessage: ${message || 'No additional message.'}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; border: 1px solid #ddd; padding: 20px; color: #333;">
@@ -133,10 +134,13 @@ app.post('/api/assessment', async (req, res) => {
       `,
     };
 
-    // Send emails sequentially to ensure both are attempted and we can catch specific errors
-    console.log(`Sending lead to receiver: ${process.env.RECEIVER_EMAIL.trim()}`);
+    // Send emails sequentially with a small delay to avoid SMTP throttling/suspicion
+    console.log(`Sending lead to receiver: ${process.env.RECEIVER_EMAIL.trim()} and BCC: ${process.env.SMTP_USER}`);
     await transporter.sendMail(internalMailOptions);
     
+    // 1-second delay
+    await new Promise(resolve => setTimeout(resolve, 1000));
+
     console.log(`Sending confirmation to user: ${email}`);
     await transporter.sendMail(autoResponseOptions);
 

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { blogPosts, categories } from '../lib/blogData';
-import { Calendar, User, ArrowRight, Search } from 'lucide-react';
+import { Calendar, ArrowRight, Search } from 'lucide-react';
 
 const Blog: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState("All");
@@ -95,7 +95,7 @@ const Blog: React.FC = () => {
                 >
                   <Link to={`/blog/${post.slug}`} className="block aspect-[16/10] overflow-hidden">
                     <img 
-                      src={post.image || "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSVc_vWj-Qzf0LbSMay_d3CsYqdYY4e75kIeA&s"} 
+                      src={post.image || "https://pix4free.org/assets/library/2021-01-21/originals/immigration_law.jpg"} 
                       alt={post.title}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />

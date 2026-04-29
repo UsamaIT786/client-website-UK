@@ -11,9 +11,8 @@ const AnnouncementSlider: React.FC = () => {
             <div className="flex items-center gap-12 whitespace-nowrap py-1 animate-marquee">
               {[1, 2, 3, 4].map((i) => (
                 <div key={i} className="flex items-center gap-5">
-                  <Info size={20} className="text-slate-900 group-hover:text-primary shrink-0" />
-                  <span className="text-[11px] md:text-xs uppercase tracking-[0.4em] text-slate-900 font-medium">
-                    Latest Home Office Update <span className="mx-4 text-slate-400">•</span> UK Visa Fees Increased (8 April 2026) <span className="mx-4 text-slate-400">—</span> See what changed
+                  <span className="text-sm md:text-base font-bold text-[#002147]">
+                    UK SPOUSE VISA 2026 UPDATE <span className="mx-4 text-slate-300">—</span> MINIMUM INCOME REQUIREMENT NOW £29,000 PER YEAR <span className="mx-4 text-slate-300">•</span> APPLICATION FEES FROM £2,064 <span className="mx-4 text-slate-300">•</span> ENGLISH LEVEL A1 REQUIRED FOR INITIAL APPLICATION <span className="mx-4 text-slate-300">•</span> DIGITAL VISA SYSTEM INTRODUCED (NO PHYSICAL CARD) <span className="mx-4 text-slate-300">•</span> STRICT RELATIONSHIP EVIDENCE CHECKS NOW REQUIRED <span className="mx-4 text-slate-300">•</span> PROCESSING TIME: 8–12 WEEKS STANDARD <span className="mx-4 text-slate-300">•</span> PRIORITY SERVICE AVAILABLE FOR FASTER DECISIONS <span className="mx-4 text-slate-300">•</span> SAVINGS ROUTE: £88,500 HELD FOR 6 MONTHS <span className="mx-4 text-slate-300">•</span> BOTH PARTNERS MUST BE 18+ <span className="mx-4 text-slate-300">•</span> SETTLEMENT POSSIBLE AFTER 5 YEARS <span className="mx-4 text-slate-300">•</span> CITIZENSHIP AFTER 6 YEARS <span className="mx-4 text-slate-300">•</span> MAX ABSENCE LIMIT: 180 DAYS PER YEAR <span className="mx-4 text-slate-300">•</span> COMMON REFUSALS: INSUFFICIENT EVIDENCE, LOW INCOME, WRONG DOCUMENTS <span className="mx-4 text-slate-300">•</span> ENSURE ALL DOCUMENTS ARE COMPLETE & TRANSLATED
                   </span>
                 </div>
               ))}

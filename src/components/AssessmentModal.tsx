@@ -175,6 +175,7 @@ const AssessmentModal: React.FC<AssessmentModalProps> = ({ isOpen, onClose }) =>
                     >
                       <option disabled value="Please Select">Please Select</option>
                       <option>Yes - I can pay for legal advice</option>
+                      <option>No - I cannot pay for legal advice</option>
                     </select>
                   </div>
 

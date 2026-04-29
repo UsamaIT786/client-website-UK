@@ -25,7 +25,7 @@ const AssessmentModal: React.FC<AssessmentModalProps> = ({ isOpen, onClose }) =>
     setIsLoading(true);
 
     try {
-      const response = await fetch('https://client-backend-alpha.vercel.app/api/assessment', {
+      const response = await fetch('/api/assessment', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -84,7 +84,7 @@ const AssessmentModal: React.FC<AssessmentModalProps> = ({ isOpen, onClose }) =>
             className="relative w-full max-w-xl max-h-[90vh] overflow-y-auto bg-white rounded-[32px] md:rounded-[40px] border border-slate-100 shadow-[0_30px_100px_rgba(0,0,0,0.15)] custom-scrollbar"
           >
             <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 blur-[80px] pointer-events-none" />
-            
+
             <div className="relative z-10 p-6 md:p-12">
               <div className="flex justify-between items-center mb-10">
                 <div className="pr-12">
@@ -95,7 +95,7 @@ const AssessmentModal: React.FC<AssessmentModalProps> = ({ isOpen, onClose }) =>
                     {isSubmitted ? 'Your journey begins now' : 'Start your journey today'}
                   </p>
                 </div>
-                <button 
+                <button
                   onClick={onClose}
                   className="absolute top-0 right-0 w-10 h-10 md:w-12 md:h-12 rounded-full bg-slate-50 border border-slate-100 flex items-center justify-center hover:bg-primary hover:border-primary group"
                 >
@@ -103,119 +103,119 @@ const AssessmentModal: React.FC<AssessmentModalProps> = ({ isOpen, onClose }) =>
                 </button>
               </div>
 
-                {!isSubmitted ? (
-                  <form 
-                    className="space-y-6" 
-                    onSubmit={handleSubmit}
-                  >
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-                      <div className="space-y-2">
-                        <label className="text-[10px] font-bold uppercase tracking-widest text-primary">Full Name *</label>
-                        <input 
-                          type="text" 
-                          name="fullName"
-                          value={formData.fullName}
-                          onChange={handleChange}
-                          placeholder="Legal Name" 
-                          className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-6 py-4 text-slate-900 placeholder:text-slate-400 focus:border-primary focus:outline-none"
-                          required
-                        />
-                      </div>
-                      <div className="space-y-2">
-                        <label className="text-[10px] font-bold uppercase tracking-widest text-primary">Email *</label>
-                        <input 
-                          type="email" 
-                          name="email"
-                          value={formData.email}
-                          onChange={handleChange}
-                          placeholder="email@example.com" 
-                          className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-6 py-4 text-slate-900 placeholder:text-slate-400 focus:border-primary focus:outline-none"
-                          required
-                        />
-                      </div>
-                    </div>
-
-                    <PhoneInput 
-                      value={formData.phone}
-                      onChange={(value) => setFormData(prev => ({ ...prev, phone: value }))}
-                    />
-
+              {!isSubmitted ? (
+                <form
+                  className="space-y-6"
+                  onSubmit={handleSubmit}
+                >
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                     <div className="space-y-2">
-                      <label className="text-[10px] font-bold uppercase tracking-widest text-primary">Visa Category</label>
-                      <select 
-                        name="visaCategory"
-                        value={formData.visaCategory}
+                      <label className="text-[10px] font-bold uppercase tracking-widest text-primary">Full Name *</label>
+                      <input
+                        type="text"
+                        name="fullName"
+                        value={formData.fullName}
                         onChange={handleChange}
-                        className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-6 py-4 text-slate-900 focus:border-primary focus:outline-none appearance-none cursor-pointer"
-                      >
-                        <option disabled value="Select Category">Select Category</option>
-                        <option>Skilled Worker Visa</option>
-                        <option>Health and Care Worker Visa</option>
-                        <option>Sponsor License Applications</option>
-                        <option>Spouse / Partner Visa</option>
-                        <option>Fiancé / Proposed Civil Partner</option>
-                        <option>Family Reunion</option>
-                        <option>Indefinite Leave to Remain (ILR)</option>
-                        <option>British Citizenship (Naturalisation)</option>
-                        <option>Global Talent Visa</option>
-                        <option>High Potential Individual (HPI)</option>
-                        <option>Graduate Visa</option>
-                        <option>Student Visa</option>
-                        <option>Standard Visitor Visa</option>
-                      </select>
-                    </div>
-
-                    <div className="space-y-2">
-                      <label className="text-[10px] font-bold uppercase tracking-widest text-primary">Can you pay for professional legal advice?</label>
-                      <select 
-                        name="canPay"
-                        value={formData.canPay}
-                        onChange={handleChange}
-                        className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-6 py-4 text-slate-900 focus:border-primary focus:outline-none appearance-none cursor-pointer"
-                      >
-                        <option disabled value="Please Select">Please Select</option>
-                        <option>Yes - I can pay for legal advice</option>
-                      </select>
-                    </div>
-
-                    <div className="space-y-2">
-                      <label className="text-[10px] font-bold uppercase tracking-widest text-primary">Additional Details</label>
-                      <textarea 
-                        name="message"
-                        value={formData.message}
-                        onChange={handleChange}
-                        placeholder="Tell us more about your case..." 
-                        className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-6 py-4 text-slate-900 placeholder:text-slate-400 focus:border-primary focus:outline-none min-h-[100px] resize-none"
+                        placeholder="Legal Name"
+                        className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-6 py-4 text-slate-900 placeholder:text-slate-400 focus:border-primary focus:outline-none"
+                        required
                       />
                     </div>
-
-
-                    <button 
-                      disabled={isLoading}
-                      className="w-full bg-primary text-white py-5 rounded-2xl font-bold uppercase tracking-[0.2em] text-[11px] hover:bg-slate-900 shadow-2xl shadow-primary/20 mt-4 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
-                    >
-                      {isLoading ? 'Sending Inquiry...' : 'Request Assessment Now'}
-                    </button>
-                  </form>
-                ) : (
-                  <div 
-                    className="text-center py-10"
-                  >
-                    <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-8">
-                      <Scale className="text-primary w-10 h-10" />
+                    <div className="space-y-2">
+                      <label className="text-[10px] font-bold uppercase tracking-widest text-primary">Email *</label>
+                      <input
+                        type="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        placeholder="email@example.com"
+                        className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-6 py-4 text-slate-900 placeholder:text-slate-400 focus:border-primary focus:outline-none"
+                        required
+                      />
                     </div>
-                    <h3 className="text-2xl font-syne font-bold text-slate-900 mb-4 uppercase tracking-tight">Expert Counsel Awaits</h3>
-                    <p className="text-slate-500 leading-relaxed text-lg mb-10">
-                      Thank you. Expect to hear from a legal professional within <span className="text-slate-900 font-bold">24hrs</span>.
-                    </p>
-                    <button 
-                      onClick={onClose}
-                      className="px-10 py-4 rounded-xl border border-slate-200 text-slate-600 font-bold uppercase tracking-widest text-[10px] hover:bg-slate-900 hover:text-white"
-                    >
-                      Close Window
-                    </button>
                   </div>
-                )}
+
+                  <PhoneInput
+                    value={formData.phone}
+                    onChange={(value) => setFormData(prev => ({ ...prev, phone: value }))}
+                  />
+
+                  <div className="space-y-2">
+                    <label className="text-[10px] font-bold uppercase tracking-widest text-primary">Visa Category</label>
+                    <select
+                      name="visaCategory"
+                      value={formData.visaCategory}
+                      onChange={handleChange}
+                      className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-6 py-4 text-slate-900 focus:border-primary focus:outline-none appearance-none cursor-pointer"
+                    >
+                      <option disabled value="Select Category">Select Category</option>
+                      <option>Skilled Worker Visa</option>
+                      <option>Health and Care Worker Visa</option>
+                      <option>Sponsor License Applications</option>
+                      <option>Spouse / Partner Visa</option>
+                      <option>Fiancé / Proposed Civil Partner</option>
+                      <option>Family Reunion</option>
+                      <option>Indefinite Leave to Remain (ILR)</option>
+                      <option>British Citizenship (Naturalisation)</option>
+                      <option>Global Talent Visa</option>
+                      <option>High Potential Individual (HPI)</option>
+                      <option>Graduate Visa</option>
+                      <option>Student Visa</option>
+                      <option>Standard Visitor Visa</option>
+                    </select>
+                  </div>
+
+                  <div className="space-y-2">
+                    <label className="text-[10px] font-bold uppercase tracking-widest text-primary">Can you pay for professional legal advice?</label>
+                    <select
+                      name="canPay"
+                      value={formData.canPay}
+                      onChange={handleChange}
+                      className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-6 py-4 text-slate-900 focus:border-primary focus:outline-none appearance-none cursor-pointer"
+                    >
+                      <option disabled value="Please Select">Please Select</option>
+                      <option>Yes - I can pay for legal advice</option>
+                    </select>
+                  </div>
+
+                  <div className="space-y-2">
+                    <label className="text-[10px] font-bold uppercase tracking-widest text-primary">Additional Details</label>
+                    <textarea
+                      name="message"
+                      value={formData.message}
+                      onChange={handleChange}
+                      placeholder="Tell us more about your case..."
+                      className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-6 py-4 text-slate-900 placeholder:text-slate-400 focus:border-primary focus:outline-none min-h-[100px] resize-none"
+                    />
+                  </div>
+
+
+                  <button
+                    disabled={isLoading}
+                    className="w-full bg-primary text-white py-5 rounded-2xl font-bold uppercase tracking-[0.2em] text-[11px] hover:bg-slate-900 shadow-2xl shadow-primary/20 mt-4 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+                  >
+                    {isLoading ? 'Sending Inquiry...' : 'Request Assessment Now'}
+                  </button>
+                </form>
+              ) : (
+                <div
+                  className="text-center py-10"
+                >
+                  <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-8">
+                    <Scale className="text-primary w-10 h-10" />
+                  </div>
+                  <h3 className="text-2xl font-syne font-bold text-slate-900 mb-4 uppercase tracking-tight">Expert Counsel Awaits</h3>
+                  <p className="text-slate-500 leading-relaxed text-lg mb-10">
+                    Thank you. Expect to hear from a legal professional within <span className="text-slate-900 font-bold">24hrs</span>.
+                  </p>
+                  <button
+                    onClick={onClose}
+                    className="px-10 py-4 rounded-xl border border-slate-200 text-slate-600 font-bold uppercase tracking-widest text-[10px] hover:bg-slate-900 hover:text-white"
+                  >
+                    Close Window
+                  </button>
+                </div>
+              )}
             </div>
           </div>
         </div>

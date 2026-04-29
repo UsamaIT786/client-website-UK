@@ -112,6 +112,6 @@ export const blogPosts: BlogPost[] = [
       </ol>
       <p><strong>Crucial Rule:</strong> Must not spend more than 180 days outside the UK in any 12-month period.</p>
     `,
-    image: "https://pix4free.org/assets/library/2021-01-21/originals/immigration_law.jpg"
+    image: "/Image/Image.png"
   }
 ];

@@ -95,7 +95,7 @@ const Blog: React.FC = () => {
                 >
                   <Link to={`/blog/${post.slug}`} className="block aspect-[16/10] overflow-hidden">
                     <img 
-                      src={post.image || "https://pix4free.org/assets/library/2021-01-21/originals/immigration_law.jpg"} 
+                      src={post.image || "/Image/Image.png"} 
                       alt={post.title}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />

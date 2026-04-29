@@ -113,5 +113,80 @@ export const blogPosts: BlogPost[] = [
       <p><strong>Crucial Rule:</strong> Must not spend more than 180 days outside the UK in any 12-month period.</p>
     `,
     image: "/Image/Image.png"
+  },
+  {
+    id: "2",
+    slug: "uk-visa-fees-increase-2026",
+    title: "UK Visa Fees Increased (April 2026): What You Need to Know",
+    category: "Legal Updates",
+    date: "April 8, 2026",
+    excerpt: "The Home Office has announced a significant increase in visa application fees across most categories. Learn how these changes affect your upcoming application.",
+    content: `
+      <p>Effective from April 8, 2026, the UK Home Office has implemented a revised fee structure for immigration and nationality applications. This increase aims to fund the UK's border and migration system while ensuring that those who benefit from the system contribute to its upkeep.</p>
+
+      <h2>Key Fee Changes for 2026</h2>
+      <p>Most visa categories have seen an increase of approximately 5-10%. Below is a summary of the most common visa types and their new application fees:</p>
+      
+      <table class="blog-table">
+        <thead>
+          <tr>
+            <th>Visa Category</th>
+            <th>Old Fee (2025)</th>
+            <th>New Fee (2026)</th>
+            <th>Increase</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Skilled Worker Visa</td>
+            <td>£827</td>
+            <td>£915</td>
+            <td>+10%</td>
+          </tr>
+          <tr>
+            <td>Spouse/Partner Visa (Outside UK)</td>
+            <td>£1,846</td>
+            <td>£2,064</td>
+            <td>+11.8%</td>
+          </tr>
+          <tr>
+            <td>Student Visa (Outside UK)</td>
+            <td>£490</td>
+            <td>£540</td>
+            <td>+10.2%</td>
+          </tr>
+          <tr>
+            <td>Standard Visitor Visa (6 Months)</td>
+            <td>£115</td>
+            <td>£125</td>
+            <td>+8.7%</td>
+          </tr>
+          <tr>
+            <td>Indefinite Leave to Remain (ILR)</td>
+            <td>£2,885</td>
+            <td>£3,150</td>
+            <td>+9.2%</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="warning-box">
+        <strong>Important:</strong> These fees do not include the Immigration Health Surcharge (IHS), which has also been adjusted for inflation in 2026.
+      </div>
+
+      <h2>Priority and Super Priority Services</h2>
+      <p>The cost for expedited processing has also been revised. The Priority Service (decision in 5 days) now costs £500, while the Super Priority Service (next-day decision) has increased to £1,000 in addition to the standard application fee.</p>
+
+      <h2>Strategic Planning for Applicants</h2>
+      <p>Given the rising costs, we recommend applicants to:</p>
+      <ul>
+        <li><strong>Apply Early:</strong> If you are eligible now, apply before any further mid-year adjustments.</li>
+        <li><strong>Double-Check Evidence:</strong> Refusals are now more expensive than ever. Ensuring your application is "right first time" is critical.</li>
+        <li><strong>Budget for IHS:</strong> Always calculate the total cost including the Health Surcharge to avoid surprises.</li>
+      </ul>
+
+      <p>At our firm, we provide fixed-fee legal representation to help you navigate these rising costs without additional hidden legal expenses. Contact our specialists today to discuss your case.</p>
+    `,
+    image: "/Image/hero.webp"
   }
 ];

@@ -9,6 +9,7 @@ import Updates from './pages/Updates';
 import About from './pages/About';
 import Blog from './pages/Blog';
 import BlogPost from './pages/BlogPost';
+import PrivacyPolicy from './pages/PrivacyPolicy';
 import Preloader from './components/Preloader';
 const AppContent: React.FC = () => {
   return (
@@ -23,6 +24,7 @@ const AppContent: React.FC = () => {
         <Route path="/about" element={<About />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/:slug" element={<BlogPost />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
       </Routes>
       
       {/* Global Footer */}
@@ -60,6 +62,7 @@ const AppContent: React.FC = () => {
                 <li><Link to="/processing-times" className="hover:text-primary transition-colors">Processing Time</Link></li>
                 <li><Link to="/update" className="hover:text-primary transition-colors">Update</Link></li>
                 <li><Link to="/about" className="hover:text-primary transition-colors">About</Link></li>
+                <li><Link to="/privacy-policy" className="hover:text-primary transition-colors">Privacy Policy</Link></li>
               </ul>
             </div>
             <div className="col-span-1">

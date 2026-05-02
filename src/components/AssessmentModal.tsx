@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Scale } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import PhoneInput from './PhoneInput';
 
 interface AssessmentModalProps {
@@ -197,6 +198,9 @@ const AssessmentModal: React.FC<AssessmentModalProps> = ({ isOpen, onClose }) =>
                   >
                     {isLoading ? 'Sending Inquiry...' : 'Request Assessment Now'}
                   </button>
+                  <p className="text-[10px] text-slate-400 text-center mt-6 uppercase tracking-wider">
+                    By submitting, you agree to our <Link to="/privacy-policy" onClick={onClose} className="text-primary hover:underline font-bold">Privacy Policy</Link>
+                  </p>
                 </form>
               ) : (
                 <div

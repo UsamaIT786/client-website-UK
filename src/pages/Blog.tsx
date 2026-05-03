@@ -3,10 +3,14 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { blogPosts, categories } from '../lib/blogData';
 import { Calendar, ArrowRight, Search } from 'lucide-react';
+import { useModal } from '../context/ModalContext';
+
 
 const Blog: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
+  const { openModal } = useModal();
+
 
   const filteredPosts = blogPosts.filter(post => {
     const matchesCategory = activeCategory === "All" || post.category === activeCategory;
@@ -140,7 +144,32 @@ const Blog: React.FC = () => {
           )}
         </div>
       </section>
+
+      {/* Global CTA */}
+      <section className="px-6 mt-24">
+        <div className="max-w-7xl mx-auto">
+          <div className="bg-slate-900 rounded-[40px] p-8 md:p-16 text-center relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 blur-[80px]" />
+            <div className="relative z-10">
+              <h2 className="text-3xl md:text-5xl font-syne font-bold text-white mb-6 uppercase tracking-tighter">
+                Need a Detailed <span className="text-primary">Legal Opinion?</span>
+              </h2>
+              <p className="text-slate-400 text-lg mb-10 max-w-2xl mx-auto">
+                Our senior immigration attorneys are ready to review your case and provide a comprehensive assessment.
+              </p>
+              <button 
+                onClick={openModal}
+                className="bg-primary text-white px-12 py-5 rounded-2xl uppercase tracking-widest text-[10px] font-bold hover:bg-white hover:text-slate-900 transition-all duration-300 shadow-2xl shadow-primary/20"
+              >
+                Request Free Assessment
+              </button>
+
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
+
   );
 };
 

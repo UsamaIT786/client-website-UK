@@ -182,3 +182,12 @@
 .blog-content strong {
   @apply text-slate-900 font-bold;
 }
+
+.blog-content .cta-box {
+  @apply p-8 bg-primary/5 border border-primary/10 rounded-[32px] text-center my-12;
+}
+
+.blog-content .cta-button {
+  @apply inline-block bg-primary text-white px-10 py-4 rounded-xl font-bold uppercase tracking-widest text-[10px] shadow-lg shadow-primary/20 hover:bg-slate-900 transition-all duration-300 no-underline mt-4;
+}
+

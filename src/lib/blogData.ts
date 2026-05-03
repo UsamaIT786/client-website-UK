@@ -34,8 +34,8 @@ export const blogPosts: BlogPost[] = [
         <li>Indefinite Leave to Remain (ILR) or Indefinite Leave to Enter.</li>
         <li>EU Settled Status (Note: Pre-settled status is insufficient).</li>
         <li>Refugee Status or Humanitarian Protection.</li>
+        <li>Both partners must be at least 18 years old at the time of application.</li>
       </ul>
-      <p>Both partners must be at least 18 years old at the time of application.</p>
 
       <h2>2. The 2026 Financial Requirement</h2>
       <p>The sponsor must demonstrate a minimum gross income of £29,000 per year. This ensures the couple can live in the UK without relying on public funds.</p>
@@ -114,4 +114,132 @@ export const blogPosts: BlogPost[] = [
     `,
     image: "/Image/Image.png"
   },
+  {
+    id: "2",
+    slug: "uk-immigration-bail-explained",
+    title: "UK Immigration Bail Explained: Eligibility, Conditions, and Guide",
+    category: "Legal Updates",
+    date: "May 03, 2026",
+    excerpt: "If you or someone you know is being held by the Home Office, immigration bail may be the fastest way to secure release while your case is still being dealt with.",
+    content: `
+      <p>If you or someone you know is being held by the Home Office in an immigration removal centre, a detention centre or a prison, immigration bail may be the fastest way to secure release while your case is still being dealt with. It is not a solution to your immigration situation, but it does allow you to live in the community, with conditions, rather than remaining in detention.</p>
+
+
+      <p>This guide explains what immigration bail is, who can apply, what conditions are typically imposed, and how to go through the application process step by step.</p>
+
+      <h2>Key Points</h2>
+
+      <ul>
+        <li><strong>Day 1:</strong> You can apply from the day you arrive in detention</li>
+        <li><strong>7 days:</strong> Minimum time detained before applying to the Tribunal</li>
+        <li><strong>28 days:</strong> Wait before reapplying after a refusal</li>
+        <li><strong>BAIL401:</strong> The form used to apply to the Home Office</li>
+      </ul>
+
+      <h2>1. What Immigration Bail Is and What It Is Not</h2>
+      <p>Immigration bail is a legal status that allows a person who is detained or could be detained by the Home Office to live in the community instead of being held in a detention centre. It is governed by Schedule 10 of the Immigration Act 2016.</p>
+      <p>Getting bail does not mean your immigration case has been resolved. It does not give you permission to stay in the UK permanently and it does not mean the Home Office has decided in your favour.</p>
+      <div class="warning-box">
+        <strong>Important:</strong> Immigration bail is not the same as leave to remain.
+      </div>
+
+      <h2>2. Who Can Apply for Immigration Bail</h2>
+      <p>Anyone who is being held by the Home Office on immigration grounds, or who could be held, is eligible.</p>
+      <h3>Includes:</h3>
+      <ul>
+        <li>People detained in an immigration removal centre</li>
+        <li>People in prison for immigration reasons</li>
+        <li>People liable to detention</li>
+        <li>Asylum seekers</li>
+        <li>People with ongoing appeals</li>
+        <li>People waiting for judicial review</li>
+        <li>People facing deportation</li>
+      </ul>
+
+      <h3>Strong application factors:</h3>
+      <ul>
+        <li>Confirmed address</li>
+        <li>Financial condition supporter</li>
+        <li>Strong UK ties</li>
+        <li>Good compliance history</li>
+        <li>Not a public risk</li>
+        <li>Active immigration case</li>
+      </ul>
+
+      <h2>3. The Two Ways to Apply</h2>
+      <table class="blog-table">
+        <thead>
+          <tr>
+            <th>Home Office Bail</th>
+            <th>First-tier Tribunal Bail</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Decision by caseworker</td>
+            <td>Decision by judge</td>
+          </tr>
+          <tr>
+            <td>Apply from day 1</td>
+            <td>Apply after 7 days</td>
+          </tr>
+          <tr>
+            <td>Use form BAIL401</td>
+            <td>Includes hearing</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>4. Step by Step Guide</h2>
+      <ol>
+        <li>Get form BAIL401</li>
+        <li>Confirm address</li>
+        <li>Find financial supporter</li>
+        <li>Submit form</li>
+        <li>Wait for decision</li>
+        <li>Apply to Tribunal if needed</li>
+        <li>Attend hearing</li>
+        <li>Receive decision</li>
+      </ol>
+
+      <h2>5. Conditions</h2>
+      <p>Common conditions imposed on bail include:</p>
+      <ul>
+        <li>Regular reporting</li>
+        <li>Residence requirement</li>
+        <li>Electronic tag</li>
+        <li>Work restrictions</li>
+        <li>Study restrictions</li>
+        <li>Financial condition</li>
+        <li>Curfew</li>
+      </ul>
+
+      <h2>6. Financial Condition Supporter</h2>
+      <p>A person who agrees to pay money if you break bail conditions.</p>
+      <h3>Requirements:</h3>
+      <ul>
+        <li>Understand responsibility</li>
+        <li>Financial capability</li>
+        <li>Relationship proof</li>
+        <li>Supporting evidence</li>
+      </ul>
+
+      <h2>7. Bail Hearing</h2>
+      <p>A short hearing where a judge reviews the case. Both sides present arguments, and the decision is based on risk and circumstances.</p>
+
+      <h2>8. If Bail is Refused</h2>
+      <p>If refused, you stay in detention. You must wait 28 days to reapply to the Tribunal, but you can reapply to the Home Office at any time.</p>
+
+      <h2>9. Breach of Conditions</h2>
+      <p>Breaching conditions (like missing reporting or illegal work) can lead to re-detention and harm your immigration case.</p>
+
+      <div class="warning-box">
+        <strong>Note:</strong> Time on immigration bail does NOT count towards long residence settlement.
+      </div>
+
+
+    `,
+    image: "/Image/Image (1).png"
+  },
+
 ];

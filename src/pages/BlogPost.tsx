@@ -3,11 +3,15 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { blogPosts } from '../lib/blogData';
 import { Calendar, ArrowLeft, Share2, ChevronRight } from 'lucide-react';
+import { useModal } from '../context/ModalContext';
+
 
 const BlogPost: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
   const post = blogPosts.find(p => p.slug === slug);
+
+  const { openModal } = useModal();
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -15,6 +19,19 @@ const BlogPost: React.FC = () => {
       navigate('/blog');
     }
   }, [post, navigate]);
+
+  useEffect(() => {
+    const handleCtaClick = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      if (target.classList.contains('cta-button') && target.getAttribute('href') === '/') {
+        e.preventDefault();
+        openModal();
+      }
+    };
+    document.addEventListener('click', handleCtaClick);
+    return () => document.removeEventListener('click', handleCtaClick);
+  }, [openModal]);
+
 
   if (!post) return null;
 
@@ -85,8 +102,25 @@ const BlogPost: React.FC = () => {
             className="blog-content prose prose-slate prose-lg max-w-none"
             dangerouslySetInnerHTML={{ __html: post.content }}
           />
+
+          {/* Assessment CTA */}
+          <div className="mt-16 bg-slate-50 rounded-[32px] p-8 md:p-12 text-center border border-slate-100">
+            <h3 className="text-2xl md:text-3xl font-syne font-bold text-slate-900 mb-4 uppercase tracking-tighter">
+              Get Your Professional <span className="text-primary">Immigration Assessment</span>
+            </h3>
+            <p className="text-slate-500 mb-10 max-w-xl mx-auto">
+              Take the first step towards your UK journey. Our experts provide detailed assessments of your eligibility and case strength.
+            </p>
+            <button 
+              onClick={openModal}
+              className="bg-primary text-white px-10 py-4 rounded-xl font-bold uppercase tracking-widest text-[10px] shadow-lg shadow-primary/20 hover:bg-slate-900 transition-all duration-300"
+            >
+              Start Free Assessment
+            </button>
+          </div>
           
           {/* Tags / Meta Footer */}
+
           <div className="mt-20 pt-10 border-t border-slate-100">
             <div className="flex flex-wrap gap-4 items-center">
               <span className="text-[10px] uppercase tracking-widest text-slate-400 font-bold">Related:</span>

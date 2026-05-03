@@ -103,21 +103,7 @@ const BlogPost: React.FC = () => {
             dangerouslySetInnerHTML={{ __html: post.content }}
           />
 
-          {/* Assessment CTA */}
-          <div className="mt-16 bg-slate-50 rounded-[32px] p-8 md:p-12 text-center border border-slate-100">
-            <h3 className="text-2xl md:text-3xl font-syne font-bold text-slate-900 mb-4 uppercase tracking-tighter">
-              Get Your Professional <span className="text-primary">Immigration Assessment</span>
-            </h3>
-            <p className="text-slate-500 mb-10 max-w-xl mx-auto">
-              Take the first step towards your UK journey. Our experts provide detailed assessments of your eligibility and case strength.
-            </p>
-            <button 
-              onClick={openModal}
-              className="bg-primary text-white px-10 py-4 rounded-xl font-bold uppercase tracking-widest text-[10px] shadow-lg shadow-primary/20 hover:bg-slate-900 transition-all duration-300"
-            >
-              Start Free Assessment
-            </button>
-          </div>
+
           
           {/* Tags / Meta Footer */}
 

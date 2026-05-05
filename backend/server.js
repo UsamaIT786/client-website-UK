@@ -78,15 +78,45 @@ app.post('/api/assessment', async (req, res) => {
     // USER CONFIRMATION EMAIL
     // -------------------------
     const userMail = {
-      from: `"Company Team" <${process.env.SMTP_USER}>`,
-      to: userEmail,
-      subject: "We received your inquiry",
-      html: `
-        <h2>Thank you ${fullName}</h2>
-        <p>We received your request for <b>${visaCategory}</b>.</p>
-        <p>Our team will contact you within 24 hours.</p>
-      `
-    };
+  from: `"Company Team" <${process.env.SMTP_USER}>`,
+  to: userEmail,
+  subject: "Inquiry Received",
+  html: `
+    <div style="font-family: Arial, sans-serif; color: #1a1a1a; max-width: 500px; margin: auto; border: 1px solid #eee;">
+
+      <!-- Top Header -->
+      <div style="background-color: #3663EB; padding: 20px; text-align: center; color: #ffffff;">
+        <h2 style="margin: 0; font-size: 20px;">Thank You, ${fullName}</h2>
+      </div>
+
+      <div style="padding: 20px; text-align: center;">
+
+        <!-- SVG Icon -->
+        <div style="margin-bottom: 15px;">
+          <svg width="45" height="45" viewBox="0 0 24 24" fill="none" stroke="#3663EB" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 3v18"></path>
+            <path d="M5 7h14"></path>
+            <path d="M5 17h14"></path>
+            <circle cx="12" cy="12" r="3"></circle>
+          </svg>
+        </div>
+
+        <p style="margin: 0 0 8px;">
+          Your inquiry for <strong>${visaCategory}</strong> has been received.
+        </p>
+
+        <p style="margin: 0 0 20px; color: #555;">
+          Our team will contact you within 24 hours.
+        </p>
+
+        <p style="font-size: 14px; color: #888; margin: 0;">
+          — Company Team
+        </p>
+
+      </div>
+    </div>
+  `
+};
 
     // SEND EMAILS
     const leadResult = await transporter.sendMail(leadMail);

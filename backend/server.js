@@ -78,7 +78,7 @@ app.post('/api/assessment', async (req, res) => {
     // USER CONFIRMATION EMAIL
     // -------------------------
     const userMail = {
-  from: `"Company Team" <${process.env.SMTP_USER}>`,
+  from: `"immigrationlaw.org.uk" <${process.env.SMTP_USER}>`,
   to: userEmail,
   subject: "Inquiry Received",
   html: `
@@ -110,7 +110,7 @@ app.post('/api/assessment', async (req, res) => {
         </p>
 
         <p style="font-size: 14px; color: #888; margin: 0;">
-          — Company Team
+          Best Regards<br>Immigrationlaw
         </p>
 
       </div>

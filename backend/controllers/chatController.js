@@ -12,14 +12,17 @@ let pdfTextCache = null;
 let lastModified = 0;
 
 const getPdfContent = async (pdfPath) => {
-    const stats = fs.statSync(pdfPath);
-    if (pdfTextCache && stats.mtimeMs === lastModified) {
-        return pdfTextCache;
-    }
+    console.log('Attempting to load PDF from:', pdfPath);
+    try {
+        const stats = fs.statSync(pdfPath);
+        if (pdfTextCache && stats.mtimeMs === lastModified) {
+            return pdfTextCache;
+        }
 
-    const dataBuffer = fs.readFileSync(pdfPath);
-    const parser = new PDFParse({ data: dataBuffer });
-    const data = await parser.getText();
+        const dataBuffer = fs.readFileSync(pdfPath);
+        const parser = new PDFParse({ data: dataBuffer });
+        const data = await parser.getText();
+        console.log('PDF loaded successfully, length:', data.text.length);
     
     // Clean the text:
     // 1. Replace multiple spaces with single space
@@ -35,11 +38,16 @@ const getPdfContent = async (pdfPath) => {
     pdfTextCache = cleanedText;
     lastModified = stats.mtimeMs;
     return cleanedText;
+    } catch (err) {
+        console.error('Error in getPdfContent:', err);
+        throw err;
+    }
 };
 
 export const handleChat = async (req, res) => {
     const { query } = req.body;
-    const pdfPath = path.join(__dirname, '../uploads/ilovepdf_merged.pdf');
+    // Use process.cwd() for better compatibility with Vercel/Production
+    const pdfPath = path.join(process.cwd(), 'uploads', 'ilovepdf_merged.pdf');
 
     if (!query) {
         return res.status(400).json({ error: 'Query is required' });

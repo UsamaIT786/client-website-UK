@@ -58,7 +58,7 @@ const ChatWidget: React.FC = () => {
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-[10000] font-sans selection:bg-blue-500/30">
+    <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-[10000] font-sans selection:bg-blue-500/30">
       <AnimatePresence>
         {isOpen && !isMinimized && (
           <motion.div
@@ -66,10 +66,10 @@ const ChatWidget: React.FC = () => {
             animate={{ opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' }}
             exit={{ opacity: 0, y: 50, scale: 0.9, filter: 'blur(10px)' }}
             transition={{ type: 'spring', damping: 20, stiffness: 200 }}
-            className="mb-4 w-[380px] sm:w-[420px] h-[600px] flex flex-col rounded-[2.5rem] overflow-hidden border border-white/10 shadow-[0_32px_64px_-16px_rgba(0,0,0,0.6)] bg-[#0B1120]/90 backdrop-blur-2xl"
+            className="mb-4 w-[calc(100vw-2rem)] sm:w-[420px] h-[calc(100vh-120px)] sm:h-[600px] max-h-[700px] flex flex-col rounded-[2rem] sm:rounded-[2.5rem] overflow-hidden border border-white/10 shadow-[0_32px_64px_-16px_rgba(0,0,0,0.6)] bg-[#0B1120]/90 backdrop-blur-2xl"
           >
             {/* Premium Header */}
-            <div className="relative p-6 bg-gradient-to-b from-white/5 to-transparent border-b border-white/5">
+            <div className="relative p-4 sm:p-6 bg-gradient-to-b from-white/5 to-transparent border-b border-white/5">
               <div className="flex justify-between items-center">
                 <div className="flex items-center gap-4">
                   <div className="relative">
@@ -110,7 +110,7 @@ const ChatWidget: React.FC = () => {
             </div>
 
             {/* Chat Messages */}
-            <div className="flex-1 overflow-y-auto p-6 space-y-6 custom-scrollbar scroll-smooth">
+            <div className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-4 sm:space-y-6 custom-scrollbar scroll-smooth">
               {messages.map((msg, i) => (
                 <motion.div 
                   initial={{ opacity: 0, y: 10, x: msg.role === 'user' ? 10 : -10 }}
@@ -154,7 +154,7 @@ const ChatWidget: React.FC = () => {
             </div>
 
             {/* Input Area */}
-            <div className="p-6 bg-gradient-to-t from-white/5 to-transparent border-t border-white/5">
+            <div className="p-4 sm:p-6 bg-gradient-to-t from-white/5 to-transparent border-t border-white/5">
               <form onSubmit={handleSubmit} className="relative group">
                 <input
                   type="text"
@@ -192,7 +192,7 @@ const ChatWidget: React.FC = () => {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 onClick={() => setIsMinimized(false)}
-                className="bg-[#0B1120]/90 backdrop-blur-xl border border-white/10 px-6 py-3 rounded-2xl text-white text-sm font-medium flex items-center gap-3 shadow-2xl hover:bg-blue-600 transition-all group"
+                className="bg-[#0B1120]/90 backdrop-blur-xl border border-white/10 px-4 py-2.5 sm:px-6 sm:py-3 rounded-xl sm:rounded-2xl text-xs sm:text-sm font-medium flex items-center gap-2 sm:gap-3 shadow-2xl hover:bg-blue-600 transition-all group"
               >
                 <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
                 Return to Conversation
@@ -210,7 +210,7 @@ const ChatWidget: React.FC = () => {
                   setIsOpen(!isOpen);
                 }
               }}
-              className={`w-16 h-16 rounded-[1.8rem] flex items-center justify-center text-white transition-all shadow-[0_20px_40px_-10px_rgba(37,99,235,0.4)] relative border border-white/10 ${
+              className={`w-14 h-14 sm:w-16 sm:h-16 rounded-[1.4rem] sm:rounded-[1.8rem] flex items-center justify-center text-white transition-all shadow-[0_20px_40px_-10px_rgba(37,99,235,0.4)] relative border border-white/10 ${
                 isOpen && !isMinimized ? 'bg-rose-500 shadow-rose-500/20' : 'bg-blue-600'
               }`}
             >

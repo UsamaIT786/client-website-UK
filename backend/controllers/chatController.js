@@ -11,26 +11,41 @@ const __dirname = path.dirname(__filename);
 // Cache for the document content
 let documentTextCache = null;
 
-const getDocumentContent = async (pdfPath) => {
+const getDocumentContent = async () => {
     if (documentTextCache) return documentTextCache;
 
-    // 1. Check for a .txt version first (Fastest & most stable for production)
-    const txtPath = pdfPath.replace('.pdf', '.txt');
-    if (fs.existsSync(txtPath)) {
-        console.log('Using optimized .txt source');
-        documentTextCache = fs.readFileSync(txtPath, 'utf8');
+    // Check multiple potential locations for the files (Standard vs Monorepo root)
+    const possiblePaths = [
+        path.join(process.cwd(), 'backend', 'uploads', 'ilovepdf_merged.txt'),
+        path.join(process.cwd(), 'uploads', 'ilovepdf_merged.txt'),
+        path.join(process.cwd(), 'backend', 'uploads', 'ilovepdf_merged.pdf'),
+        path.join(process.cwd(), 'uploads', 'ilovepdf_merged.pdf')
+    ];
+
+    let foundPath = null;
+    for (const p of possiblePaths) {
+        if (fs.existsSync(p)) {
+            foundPath = p;
+            break;
+        }
+    }
+
+    if (!foundPath) {
+        console.error('SEARCHED PATHS:', possiblePaths);
+        throw new Error('Legal document source file not found in uploads folder.');
+    }
+
+    console.log('Using document source:', foundPath);
+
+    if (foundPath.endsWith('.txt')) {
+        documentTextCache = fs.readFileSync(foundPath, 'utf8');
         return documentTextCache;
     }
 
-    // 2. Fallback to PDF Parsing
-    if (!fs.existsSync(pdfPath)) {
-        throw new Error(`Document not found at ${pdfPath}`);
-    }
-
-    console.log('Parsing PDF (this may be slow for large files)...');
+    // Fallback to PDF Parsing
     try {
         const pdf = require('pdf-parse');
-        const dataBuffer = fs.readFileSync(pdfPath);
+        const dataBuffer = fs.readFileSync(foundPath);
         const data = await pdf(dataBuffer);
         
         let cleanedText = data.text
@@ -44,21 +59,19 @@ const getDocumentContent = async (pdfPath) => {
         return cleanedText;
     } catch (err) {
         console.error('PDF Parsing failed:', err);
-        throw new Error(`Failed to parse PDF: ${err.message}. Tip: Upload a .txt version for better performance.`);
+        throw new Error(`Failed to parse PDF: ${err.message}`);
     }
 };
 
 export const handleChat = async (req, res) => {
     const { query } = req.body;
-    // Standardize path for Vercel
-    const pdfPath = path.join(process.cwd(), 'uploads', 'ilovepdf_merged.pdf');
 
     if (!query) {
         return res.status(400).json({ error: 'Query is required' });
     }
 
     try {
-        const fullText = await getDocumentContent(pdfPath);
+        const fullText = await getDocumentContent();
         
         const windowSize = 1000;
         const overlap = 200;
@@ -88,7 +101,7 @@ export const handleChat = async (req, res) => {
         scores.sort((a, b) => b.score - a.score);
         const bestMatch = scores[0];
 
-        if (bestMatch.score < 0.35) {
+        if (bestMatch.score < 0.3) {
             return res.json({ 
                 answer: "I apologize, but I can only provide information based on the official legal documents provided. This specific detail is not available." 
             });
@@ -98,11 +111,9 @@ export const handleChat = async (req, res) => {
 
     } catch (error) {
         console.error('CRITICAL CHAT ERROR:', error);
-        // On production, return the error message so we can see it in the console/network tab
         res.status(500).json({ 
             error: 'Document Assistant Error', 
-            details: error.message,
-            tip: "If this is a timeout or memory error, please upload a .txt version of your PDF to the uploads folder."
+            details: error.message
         });
     }
 };

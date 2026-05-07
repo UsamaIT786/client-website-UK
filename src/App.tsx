@@ -11,6 +11,7 @@ import Blog from './pages/Blog';
 import BlogPost from './pages/BlogPost';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import Preloader from './components/Preloader';
+import ChatWidget from './components/ChatWidget';
 const AppContent: React.FC = () => {
   return (
     <div className="relative min-h-screen overflow-x-hidden">
@@ -76,6 +77,7 @@ const AppContent: React.FC = () => {
             <p>© 2026 Immigrationlaw.org.uk. All Rights Reserved.</p>
           </div>
         </footer>
+        <ChatWidget />
     </div>
   );
 };

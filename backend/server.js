@@ -3,6 +3,7 @@ import nodemailer from 'nodemailer';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import helmet from 'helmet';
+import chatRoutes from './routes/chatRoutes.js';
 
 dotenv.config();
 
@@ -17,6 +18,7 @@ app.use(cors({
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
 app.use(express.json());
+app.use('/api', chatRoutes);
 
 // SMTP Transport
 const transporter = nodemailer.createTransport({

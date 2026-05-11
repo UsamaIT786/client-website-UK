@@ -4,7 +4,7 @@ export async function POST(request: Request) {
   try {
     const body = await request.json();
     // Use environment variable if available, fallback to localhost:5000
-    const backendUrl = process.env.BACKEND_URL || 'http://localhost:5000';
+    const backendUrl = process.env.BACKEND_URL || 'https://client-backend-alpha.vercel.app/';
     
     const response = await fetch(`${backendUrl}/api/assessment`, {
       method: 'POST',

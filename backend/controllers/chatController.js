@@ -73,14 +73,24 @@ export const handleChat = async (req, res) => {
     try {
         const fullText = await getDocumentContent();
         
-        const windowSize = 1000;
-        const overlap = 200;
+        // Split text into sentences to avoid breaking words and ensure proper structure
+        const sentences = fullText.match(/[^.!?]+[.!?]+(?:\s|$)/g) || [fullText];
         const chunks = [];
+        let currentChunk = "";
         
-        for (let i = 0; i < fullText.length; i += (windowSize - overlap)) {
-            chunks.push(fullText.substring(i, i + windowSize));
-            if (i + windowSize >= fullText.length) break;
+        // Create chunks of ~500-700 characters based on sentence boundaries
+        for (const sentence of sentences) {
+            const cleanSentence = sentence.trim();
+            if (!cleanSentence) continue;
+            
+            if ((currentChunk + " " + cleanSentence).length < 700) {
+                currentChunk += (currentChunk ? " " : "") + cleanSentence;
+            } else {
+                if (currentChunk) chunks.push(currentChunk);
+                currentChunk = cleanSentence;
+            }
         }
+        if (currentChunk) chunks.push(currentChunk);
 
         const matches = stringSimilarity.findBestMatch(query.toLowerCase(), chunks.map(c => c.toLowerCase()));
         
@@ -101,13 +111,29 @@ export const handleChat = async (req, res) => {
         scores.sort((a, b) => b.score - a.score);
         const bestMatch = scores[0];
 
-        if (bestMatch.score < 0.3) {
+        if (bestMatch.score < 0.25) {
             return res.json({ 
-                answer: "I apologize, but I can only provide information based on the official legal documents provided. This specific detail is not available." 
+                answer: "I apologize, but I can only provide information based on our official legal documentation. For specific advice tailored to your case, please use our assessment form." 
             });
         }
 
-        res.json({ answer: chunks[bestMatch.index].trim() });
+        let answer = chunks[bestMatch.index];
+        
+        // Refine answer to be 2-3 sentences only for clarity and brevity
+        const resultSentences = answer.match(/[^.!?]+[.!?]+(?:\s|$)/g) || [answer];
+        answer = resultSentences.slice(0, 3).join(" ").trim();
+
+        // Professional tone and formatting cleanup
+        answer = answer.charAt(0).toUpperCase() + answer.slice(1);
+
+        // Guide to assessment form for detailed or multiple questions
+        const isDetailedQuery = query.length > 70 || queryWords.length > 8 || query.includes("?") && query.indexOf("?") !== query.lastIndexOf("?");
+        
+        if (isDetailedQuery) {
+            answer += "\n\nFor a comprehensive evaluation of your situation, I recommend completing our professional assessment form for an expert review.";
+        }
+
+        res.json({ answer });
 
     } catch (error) {
         console.error('CRITICAL CHAT ERROR:', error);

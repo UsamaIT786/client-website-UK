@@ -271,6 +271,6 @@ export const blogPosts: BlogPost[] = [
         <a href="/" class="cta-button">Book Free Consultation</a>
       </div>
     `,
-    image: "/genuine-visitor.png"
+    image: "/Image/image3.png"
   }
 ];

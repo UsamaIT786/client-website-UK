@@ -122,7 +122,7 @@ const ChatWidget: React.FC = () => {
                   className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
                 >
                   <div className={`group relative max-w-[85%] ${msg.role === 'user' ? 'items-end' : 'items-start'} flex flex-col gap-1`}>
-                    <div className={`p-4 rounded-[1.5rem] text-[13px] leading-relaxed shadow-lg ${
+                    <div className={`p-4 rounded-[1.5rem] text-[13px] leading-relaxed shadow-lg whitespace-pre-wrap ${
                       msg.role === 'user' 
                         ? 'bg-gradient-to-br from-blue-600 to-blue-700 text-white rounded-tr-none border border-blue-400/20' 
                         : 'bg-white/5 text-white/90 border border-white/10 rounded-tl-none backdrop-blur-md'

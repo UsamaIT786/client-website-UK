@@ -8,59 +8,35 @@ const require = createRequire(import.meta.url);
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Cache for the document content
-let documentTextCache = null;
+// Cache for document chunks and text
+let cachedChunks = null;
 
-const getDocumentContent = async () => {
-    if (documentTextCache) return documentTextCache;
+const getDocumentChunks = async () => {
+    if (cachedChunks) return cachedChunks;
 
-    // Check multiple potential locations for the files (Standard vs Monorepo root)
-    const possiblePaths = [
-        path.join(process.cwd(), 'backend', 'uploads', 'ilovepdf_merged.txt'),
-        path.join(process.cwd(), 'uploads', 'ilovepdf_merged.txt'),
-        path.join(process.cwd(), 'backend', 'uploads', 'ilovepdf_merged.pdf'),
-        path.join(process.cwd(), 'uploads', 'ilovepdf_merged.pdf')
-    ];
-
-    let foundPath = null;
-    for (const p of possiblePaths) {
-        if (fs.existsSync(p)) {
-            foundPath = p;
-            break;
+    const fullText = await getDocumentContent();
+    
+    // Split text into sentences to avoid breaking words and ensure proper structure
+    const sentences = fullText.match(/[^.!?]+[.!?]+(?:\s|$)/g) || [fullText];
+    const chunks = [];
+    let currentChunk = "";
+    
+    // Create chunks of ~600 characters based on sentence boundaries
+    for (const sentence of sentences) {
+        const cleanSentence = sentence.trim();
+        if (!cleanSentence) continue;
+        
+        if ((currentChunk + " " + cleanSentence).length < 700) {
+            currentChunk += (currentChunk ? " " : "") + cleanSentence;
+        } else {
+            if (currentChunk) chunks.push(currentChunk);
+            currentChunk = cleanSentence;
         }
     }
-
-    if (!foundPath) {
-        console.error('SEARCHED PATHS:', possiblePaths);
-        throw new Error('Legal document source file not found in uploads folder.');
-    }
-
-    console.log('Using document source:', foundPath);
-
-    if (foundPath.endsWith('.txt')) {
-        documentTextCache = fs.readFileSync(foundPath, 'utf8');
-        return documentTextCache;
-    }
-
-    // Fallback to PDF Parsing
-    try {
-        const pdf = require('pdf-parse');
-        const dataBuffer = fs.readFileSync(foundPath);
-        const data = await pdf(dataBuffer);
-        
-        let cleanedText = data.text
-            .replace(/[ \t]+/g, ' ')
-            .split('\n')
-            .map(line => line.trim())
-            .join(' ')
-            .replace(/\s+/g, ' ');
-
-        documentTextCache = cleanedText;
-        return cleanedText;
-    } catch (err) {
-        console.error('PDF Parsing failed:', err);
-        throw new Error(`Failed to parse PDF: ${err.message}`);
-    }
+    if (currentChunk) chunks.push(currentChunk);
+    
+    cachedChunks = chunks;
+    return chunks;
 };
 
 export const handleChat = async (req, res) => {
@@ -71,39 +47,32 @@ export const handleChat = async (req, res) => {
     }
 
     try {
-        const fullText = await getDocumentContent();
-        
-        // Split text into sentences to avoid breaking words and ensure proper structure
-        const sentences = fullText.match(/[^.!?]+[.!?]+(?:\s|$)/g) || [fullText];
-        const chunks = [];
-        let currentChunk = "";
-        
-        // Create chunks of ~500-700 characters based on sentence boundaries
-        for (const sentence of sentences) {
-            const cleanSentence = sentence.trim();
-            if (!cleanSentence) continue;
-            
-            if ((currentChunk + " " + cleanSentence).length < 700) {
-                currentChunk += (currentChunk ? " " : "") + cleanSentence;
-            } else {
-                if (currentChunk) chunks.push(currentChunk);
-                currentChunk = cleanSentence;
-            }
-        }
-        if (currentChunk) chunks.push(currentChunk);
+        const chunks = await getDocumentChunks();
+        const queryLower = query.toLowerCase();
+        const queryWords = queryLower.split(/\W+/).filter(w => w.length > 3);
 
-        const matches = stringSimilarity.findBestMatch(query.toLowerCase(), chunks.map(c => c.toLowerCase()));
+        // Pre-filter chunks to speed up similarity matching
+        // Only compare chunks that share at least one keyword if possible
+        let candidateChunks = chunks;
+        if (queryWords.length > 0) {
+            const filtered = chunks.filter(chunk => {
+                const chunkLower = chunk.toLowerCase();
+                return queryWords.some(word => chunkLower.includes(word));
+            });
+            if (filtered.length > 0) candidateChunks = filtered;
+        }
+
+        const matches = stringSimilarity.findBestMatch(queryLower, candidateChunks.map(c => c.toLowerCase()));
         
-        const queryWords = query.toLowerCase().split(/\W+/).filter(w => w.length > 3);
         const scores = matches.ratings.map((rating, index) => {
             let score = rating.rating;
-            const chunk = chunks[index].toLowerCase();
+            const chunk = candidateChunks[index].toLowerCase();
             let keywordMatches = 0;
             queryWords.forEach(word => {
                 if (chunk.includes(word)) keywordMatches++;
             });
             if (queryWords.length > 0) {
-                score += (keywordMatches / queryWords.length) * 0.4;
+                score += (keywordMatches / queryWords.length) * 0.5;
             }
             return { index, score };
         });
@@ -117,19 +86,17 @@ export const handleChat = async (req, res) => {
             });
         }
 
-        let answer = chunks[bestMatch.index];
+        let answer = candidateChunks[bestMatch.index];
         
-        // Refine answer to be 2-3 sentences only for clarity and brevity
+        // Refine answer to be 2-3 sentences only
         const resultSentences = answer.match(/[^.!?]+[.!?]+(?:\s|$)/g) || [answer];
         answer = resultSentences.slice(0, 3).join(" ").trim();
 
-        // Professional tone and formatting cleanup
+        // Formatting cleanup
         answer = answer.charAt(0).toUpperCase() + answer.slice(1);
 
-        // Guide to assessment form for detailed or multiple questions
-        const isDetailedQuery = query.length > 70 || queryWords.length > 8 || query.includes("?") && query.indexOf("?") !== query.lastIndexOf("?");
-        
-        if (isDetailedQuery) {
+        // Guide to assessment form for complex queries
+        if (query.length > 70 || queryWords.length > 8 || (query.includes("?") && query.indexOf("?") !== query.lastIndexOf("?"))) {
             answer += "\n\nFor a comprehensive evaluation of your situation, I recommend completing our professional assessment form for an expert review.";
         }
 
@@ -137,9 +104,6 @@ export const handleChat = async (req, res) => {
 
     } catch (error) {
         console.error('CRITICAL CHAT ERROR:', error);
-        res.status(500).json({ 
-            error: 'Document Assistant Error', 
-            details: error.message
-        });
+        res.status(500).json({ error: 'Document Assistant Error' });
     }
 };

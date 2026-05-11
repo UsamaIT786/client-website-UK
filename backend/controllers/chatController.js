@@ -10,6 +10,45 @@ const __dirname = path.dirname(__filename);
 
 // Cache for document chunks and text
 let cachedChunks = null;
+let documentTextCache = null;
+
+const getDocumentContent = async () => {
+    if (documentTextCache) return documentTextCache;
+
+    const possiblePaths = [
+        path.join(process.cwd(), 'backend', 'uploads', 'ilovepdf_merged.txt'),
+        path.join(process.cwd(), 'uploads', 'ilovepdf_merged.txt'),
+        path.join(process.cwd(), 'backend', 'uploads', 'ilovepdf_merged.pdf'),
+        path.join(process.cwd(), 'uploads', 'ilovepdf_merged.pdf')
+    ];
+
+    let foundPath = null;
+    for (const p of possiblePaths) {
+        if (fs.existsSync(p)) {
+            foundPath = p;
+            break;
+        }
+    }
+
+    if (!foundPath) {
+        throw new Error('Legal document source file not found.');
+    }
+
+    if (foundPath.endsWith('.txt')) {
+        documentTextCache = fs.readFileSync(foundPath, 'utf8');
+        return documentTextCache;
+    }
+
+    try {
+        const pdf = require('pdf-parse');
+        const dataBuffer = fs.readFileSync(foundPath);
+        const data = await pdf(dataBuffer);
+        documentTextCache = data.text.replace(/\s+/g, ' ').trim();
+        return documentTextCache;
+    } catch (err) {
+        throw new Error(`Failed to parse PDF: ${err.message}`);
+    }
+};
 
 const getDocumentChunks = async () => {
     if (cachedChunks) return cachedChunks;

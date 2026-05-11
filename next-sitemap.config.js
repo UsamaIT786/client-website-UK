@@ -16,5 +16,6 @@ module.exports = {
     await config.transform(config, '/update'),
     await config.transform(config, '/blog'),
     await config.transform(config, '/privacy-policy'),
+    await config.transform(config, '/genuine-visitor-rule'),
   ],
 }

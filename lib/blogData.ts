@@ -241,5 +241,36 @@ export const blogPosts: BlogPost[] = [
     `,
     image: "/Image/Image (1).png"
   },
+  {
+    id: "3",
+    slug: "uk-genuine-visitor-rule-explained",
+    title: "How to Qualify: Demystifying the UK’s Genuine Visitor Rule",
+    category: "Visa Guides",
+    date: "May 11, 2026",
+    excerpt: "Navigating the Home Office's subjective assessment of your intentions is the most critical hurdle for any UK Standard Visitor Visa application.",
+    content: `
+      <p>Navigating the Home Office's subjective assessment of your intentions is the most critical hurdle for any UK Standard Visitor Visa application. Understanding the "Genuine Visitor" requirement is the difference between an approval and a refusal.</p>
 
+      <h2>The 5 Pillars of a Genuine Visitor</h2>
+      <ul>
+        <li><strong>1. Intention to Leave:</strong> You must satisfy the Home Office that you will leave the UK at the end of your visit and do not intend to make the UK your main home.</li>
+        <li><strong>2. Frequency of Visits:</strong> You must not be living in the UK through frequent or successive visits, or making the UK your de facto residence.</li>
+        <li><strong>3. Permitted Purpose:</strong> Your visit must be for a permitted activity such as tourism, visiting family/friends, or specific business activities.</li>
+        <li><strong>4. Non-Prohibited Activities:</strong> You must not intend to undertake prohibited activities, such as paid work, unpermitted study, or claiming public funds.</li>
+        <li><strong>5. Financial Sufficiency:</strong> You must have sufficient funds to cover all reasonable costs of your visit without working or accessing public funds.</li>
+      </ul>
+
+      <h2>Expert Tips for Success</h2>
+      <p><strong>Proving Strong Ties:</strong> Evidence of employment, property ownership, or family commitments in your home country are essential. The Home Office looks for reasons why you *must* return.</p>
+      <p><strong>Origin of Funds:</strong> Bank statements must clearly show where your money came from. Large, unexplained deposits often lead to immediate visa refusals under the "genuine" rule.</p>
+      <p><strong>Budget Realism:</strong> Your proposed spending must be proportional to your income. If your trip cost represents 80% of your annual savings, the Home Office will question the logic of your visit.</p>
+
+      <div class="cta-box">
+        <h3>Secure Your UK Visit</h3>
+        <p>Don't leave your application to chance. Speak with an expert UK immigration lawyer today to ensure your application meets the Genuine Visitor requirements.</p>
+        <a href="/" class="cta-button">Book Free Consultation</a>
+      </div>
+    `,
+    image: "/genuine-visitor.png"
+  }
 ];

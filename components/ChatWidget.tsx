@@ -43,20 +43,23 @@ const ChatWidget: React.FC = () => {
     setMessages(prev => [...prev, { role: 'user', content: userMessage, timestamp: new Date() }]);
     setIsLoading(true);
 
-    try {
-      const response = await fetch('/api/chat', {
+    // Minimum display time so loader doesn't flash on very fast responses
+    const [data] = await Promise.all([
+      fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ query: userMessage }),
-      });
+      })
+        .then((r) => r.json())
+        .catch(() => ({ answer: 'Unable to reach the assistant. Please check your connection and try again.' })),
+      new Promise((r) => setTimeout(r, 150)),
+    ]);
 
-      const data = await response.json();
-      setMessages(prev => [...prev, { role: 'bot', content: data.answer || 'System encounterd an error.', timestamp: new Date() }]);
-    } catch (error) {
-      setMessages(prev => [...prev, { role: 'bot', content: 'Connectivity issue detected. Please ensure the secure backend is operational.', timestamp: new Date() }]);
-    } finally {
-      setIsLoading(false);
-    }
+    const botReply =
+      (data as { answer?: string }).answer ||
+      'I was unable to find relevant information. Please try rephrasing your question or use our assessment form for personalised advice.';
+    setMessages(prev => [...prev, { role: 'bot', content: botReply, timestamp: new Date() }]);
+    setIsLoading(false);
   };
 
   return (
@@ -82,7 +85,7 @@ const ChatWidget: React.FC = () => {
                   </div>
                   <div>
                     <h3 className="text-white font-bold text-lg tracking-tight flex items-center gap-2">
-                      Legal AI
+                      Immigrationlaw Assistant
                       <ShieldCheck size={14} className="text-emerald-400" />
                     </h3>
                     <div className="flex items-center gap-2">
@@ -90,7 +93,7 @@ const ChatWidget: React.FC = () => {
                         <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                         <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
                       </span>
-                      <span className="text-[10px] text-emerald-400 uppercase tracking-[0.2em] font-bold">Verified Intelligence</span>
+                      <span className="text-[10px] text-emerald-400 uppercase tracking-[0.2em] font-bold"> Document Assistant</span>
                     </div>
                   </div>
                 </div>
@@ -142,13 +145,10 @@ const ChatWidget: React.FC = () => {
                   animate={{ opacity: 1 }}
                   className="flex justify-start"
                 >
-                  <div className="bg-white/5 p-4 rounded-2xl rounded-tl-none border border-white/5 flex items-center gap-3">
-                    <div className="flex gap-1.5">
-                      <motion.span animate={{ scale: [1, 1.2, 1] }} transition={{ repeat: Infinity, duration: 1 }} className="w-1.5 h-1.5 bg-blue-400 rounded-full" />
-                      <motion.span animate={{ scale: [1, 1.2, 1] }} transition={{ repeat: Infinity, duration: 1, delay: 0.2 }} className="w-1.5 h-1.5 bg-blue-400 rounded-full" />
-                      <motion.span animate={{ scale: [1, 1.2, 1] }} transition={{ repeat: Infinity, duration: 1, delay: 0.4 }} className="w-1.5 h-1.5 bg-blue-400 rounded-full" />
-                    </div>
-                    <span className="text-[11px] font-medium text-white/50 tracking-wide uppercase">Analyzing Documents</span>
+                  <div className="bg-white/5 px-5 py-4 rounded-2xl rounded-tl-none border border-white/5 flex items-center gap-1.5">
+                    <motion.span animate={{ opacity: [0.3, 1, 0.3] }} transition={{ repeat: Infinity, duration: 1, delay: 0 }}    className="w-2 h-2 bg-blue-400 rounded-full" />
+                    <motion.span animate={{ opacity: [0.3, 1, 0.3] }} transition={{ repeat: Infinity, duration: 1, delay: 0.2 }} className="w-2 h-2 bg-blue-400 rounded-full" />
+                    <motion.span animate={{ opacity: [0.3, 1, 0.3] }} transition={{ repeat: Infinity, duration: 1, delay: 0.4 }} className="w-2 h-2 bg-blue-400 rounded-full" />
                   </div>
                 </motion.div>
               )}

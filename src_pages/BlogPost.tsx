@@ -113,7 +113,7 @@ const BlogPost: React.FC = () => {
           <div className="mt-20 pt-10 border-t border-slate-100">
             <div className="flex flex-wrap gap-4 items-center">
               <span className="text-[10px] uppercase tracking-widest text-slate-400 font-bold">Related:</span>
-              {["Immigration", "Visa Guide", post.category].map(tag => (
+              {(post.tags || ["Immigration", "Visa Guide", post.category]).map(tag => (
                 <span key={tag} className="px-4 py-2 bg-slate-50 rounded-xl text-[10px] uppercase tracking-widest font-bold text-slate-600 border border-slate-100">
                   #{tag.replace(/\s+/g, '')}
                 </span>

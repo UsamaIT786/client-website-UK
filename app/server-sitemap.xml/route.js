@@ -7,6 +7,7 @@ export async function GET(request) {
     'uk-immigration-bail-explained',
     'uk-visa-fees-increase-2026',
     'uk-genuine-visitor-rule-explained',
+    'continuous-residence-absences-uk-settlement',
   ]
 
   const fields = posts.map((slug) => ({

@@ -7,13 +7,15 @@ export interface BlogPost {
   date: string;
   content: string;
   image?: string;
+  tags?: string[];
 }
 
 export const categories = [
   "Visa Guides",
   "Legal Updates",
   "Citizenship",
-  "Case Studies"
+  "Case Studies",
+  "Settlement"
 ];
 
 export const blogPosts: BlogPost[] = [
@@ -272,5 +274,77 @@ export const blogPosts: BlogPost[] = [
       </div>
     `,
     image: "/Image/image3.png"
+  },
+  {
+    id: "4",
+    slug: "continuous-residence-absences-uk-settlement",
+    title: "Mastering UK Residency: How Continuous Residence and Absences Are Calculated for Settlement",
+    category: "Settlement",
+    date: "May 14, 2026",
+    excerpt: "Reaching Settlement (ILR) is a major milestone. This guide explains how Continuous Residence is calculated, the 180-day rule, and what counts as an absence.",
+    content: `
+      <p>If you are working towards making the UK your permanent home, reaching Settlement, also known as Indefinite Leave to Remain (ILR), is your most important milestone before you can apply for British Naturalisation. Your entire journey depends on successfully proving what the Home Office calls Continuous Residence. This guide explains exactly how that is calculated, what counts as an absence, and what can reset your qualifying period from scratch.</p>
+
+      <h2>The 180 Day Rule</h2>
+      <p>For most major immigration routes including the Skilled Worker, Global Talent, Innovator Founder, UK Ancestry, and Scale-up routes, there is one central rule you must follow throughout your time in the UK.</p>
+      <div class="info-box">
+        <p>You must not spend more than <strong>180 days</strong> outside the UK in any 12 month period. If you exceed this without a valid exception, your continuous residence is treated as broken and your qualifying clock restarts from zero.</p>
+      </div>
+      <p>Keeping a careful record of every trip you take is one of the most important habits you can build as a visa holder.</p>
+
+      <h2>Special Rules for the 10 Year Long Residence Route</h2>
+      <p>If you are applying for settlement on the basis of 10 years of long residence, slightly different absence rules apply to travel that took place before recent regulatory changes.</p>
+      <p>For absences that began before 11 April 2024, you must not have spent more than 548 days outside the UK across your entire qualifying period, and no single trip could have been longer than 184 days.</p>
+
+      <h2>How the Home Office Calculates Your Qualifying Period</h2>
+      <p>When assessing whether you have met the required years of continuous residence, the Home Office counts backwards from a reference date. They will use whichever of the following dates works most favourably in your case:</p>
+      <ul>
+        <li>The date you submitted your application.</li>
+        <li>Any date up to 28 days after your application date.</li>
+        <li>The date a decision is made on your application.</li>
+        <li>For those on the UK Ancestry route, the date their most recent permission expired, provided their last grant was not on the UK Ancestry route.</li>
+      </ul>
+      <p>It is also worth knowing that time spent lawfully in the Channel Islands or the Isle of Man on an equivalent route counts as time spent in the UK for these calculations.</p>
+
+      <h2>When Absences Are Forgiven</h2>
+      <p>The Home Office recognises that some time spent outside the UK is beyond your control. Certain absences are disregarded entirely and will not count towards your 180 day limit. These include time away due to:</p>
+      <ul>
+        <li><strong>Compelling and compassionate personal circumstances</strong>, such as a life threatening illness affecting you or the death of a close family member.</li>
+        <li><strong>Travel disruption</strong> caused by a natural disaster, military conflict, or a pandemic.</li>
+        <li><strong>Humanitarian efforts overseas</strong>, such as helping with an environmental or humanitarian crisis, provided your sponsor agreed to the absence.</li>
+        <li><strong>Approved research activities</strong> for those on the Global Talent route via prestigious prizes, or Skilled Workers in specific SOC 2020 occupation codes such as scientists or higher education teaching professionals.</li>
+        <li><strong>Crown service</strong>, where you are accompanying a partner posted overseas as a member of HM Armed Forces, a UK government employee, or the British Council.</li>
+      </ul>
+      <p>If you are a dependent partner or child accompanying the main applicant during one of these exempt absences, your time away will also be disregarded when calculating your own 180 day limit.</p>
+
+      <h2>What Completely Breaks Your Continuous Residence</h2>
+      <p>Beyond exceeding the absence limit, certain events will wipe out your continuous residence entirely, meaning any time you previously spent in the UK will no longer count towards your settlement application. Your continuous residence is broken if:</p>
+      <ul>
+        <li>You are convicted of an offence and given a custodial sentence.</li>
+        <li>You become subject to a deportation order, exclusion order, or removal directions.</li>
+        <li>You leave the UK voluntarily after being refused permission to enter or stay, and your previous permission has already expired.</li>
+        <li>You do not hold valid permission to be in the UK.</li>
+      </ul>
+
+      <div class="warning-box">
+        <strong>Important Note:</strong> Very limited exceptions exist for periods without valid permission. These include the specific August 2020 COVID-19 grace period, during which individuals were treated as lawfully present, and cases where a new application was successfully submitted within 14 days of a previous visa expiring under the Exceptions for Overstayers rules.
+      </div>
+
+      <h2>Final Thoughts</h2>
+      <p>Tracking your travel is arguably the most important piece of administrative housekeeping you can do as a visa holder. Always keep detailed records of your flights, boarding passes, and passport stamps. A simple spreadsheet logging every departure and return date will give you a clear picture of where you stand against the 180 day limit at any point in your qualifying period.</p>
+      <p>If you have any doubts about your travel history or qualifying period, do not wait until you are ready to apply. <a href="https://www.immigrationlaw.org.uk" target="_blank" rel="noopener noreferrer">Speak to one of our immigration experts today for a free initial assessment.</a></p>
+
+      <div class="cta-box">
+        <h3>Expert Guidance for Your ILR Application</h3>
+        <p>Our regulated immigration experts can review your travel history and advise you before you submit your ILR application. A small check now can save you years of waiting later.</p>
+        <a href="/" class="cta-button">Book a Free Consultation</a>
+      </div>
+
+      <div class="disclaimer-box">
+        <p><strong>Disclaimer:</strong> The information in this post is based on the UK Immigration Rules for Settlement (Indefinite Leave to Remain). Subsequent applications for Naturalisation as a British Citizen fall under the British Nationality Act, which carries its own distinct residential requirements that you should independently verify before applying.</p>
+      </div>
+    `,
+    image: "/Image/Blog 04.png",
+    tags: ["Immigration", "Citizenship", "ILR", "Settlement", "Continuous Residence"]
   }
 ];

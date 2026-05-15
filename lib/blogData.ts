@@ -334,15 +334,6 @@ export const blogPosts: BlogPost[] = [
       <p>Tracking your travel is arguably the most important piece of administrative housekeeping you can do as a visa holder. Always keep detailed records of your flights, boarding passes, and passport stamps. A simple spreadsheet logging every departure and return date will give you a clear picture of where you stand against the 180 day limit at any point in your qualifying period.</p>
       <p>If you have any doubts about your travel history or qualifying period, do not wait until you are ready to apply. <a href="https://www.immigrationlaw.org.uk" target="_blank" rel="noopener noreferrer">Speak to one of our immigration experts today for a free initial assessment.</a></p>
 
-      <div class="cta-box">
-        <h3>Expert Guidance for Your ILR Application</h3>
-        <p>Our regulated immigration experts can review your travel history and advise you before you submit your ILR application. A small check now can save you years of waiting later.</p>
-        <a href="/" class="cta-button">Book a Free Consultation</a>
-      </div>
-
-      <div class="disclaimer-box">
-        <p><strong>Disclaimer:</strong> The information in this post is based on the UK Immigration Rules for Settlement (Indefinite Leave to Remain). Subsequent applications for Naturalisation as a British Citizen fall under the British Nationality Act, which carries its own distinct residential requirements that you should independently verify before applying.</p>
-      </div>
     `,
     image: "/Image/Blog 04.png",
     tags: ["Immigration", "Citizenship", "ILR", "Settlement", "Continuous Residence"]

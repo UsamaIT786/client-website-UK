@@ -5,7 +5,6 @@ export async function GET(request) {
   const posts = [
     'uk-spouse-visa-requirements-2026',
     'uk-immigration-bail-explained',
-    'uk-visa-fees-increase-2026',
     'uk-genuine-visitor-rule-explained',
     'continuous-residence-absences-uk-settlement',
   ]

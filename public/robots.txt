@@ -1,5 +1,10 @@
+# *
 User-agent: *
 Allow: /
 
+# Host
+Host: https://www.immigrationlaw.org.uk
+
+# Sitemaps
 Sitemap: https://www.immigrationlaw.org.uk/sitemap.xml
-LLMS: https://www.immigrationlaw.org.uk/llms.txt
+Sitemap: https://www.immigrationlaw.org.uk/server-sitemap.xml

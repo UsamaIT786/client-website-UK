@@ -4,6 +4,15 @@ const nextConfig = {
   // All /api/* routes are now handled by native Next.js API routes in app/api/.
   // The chat logic is self-contained in app/api/chat/route.ts and reads
   // the legal document from the /data directory at build/runtime.
+  async redirects() {
+    return [
+      {
+        source: '/old-broken-page-url',
+        destination: '/',
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

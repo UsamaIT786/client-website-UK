@@ -11,8 +11,12 @@ import ChatWidget from '../components/ChatWidget';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://www.immigrationlaw.org.uk'),
   title: 'Immigration Law | UK Immigration Solutions',
   description: 'Setting the global standard for UK Immigration Solutions. We combine old legal tradition with modern efficient solutions.',
+  alternates: {
+    canonical: './',
+  },
 };
 
 export default function RootLayout({

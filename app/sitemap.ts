@@ -73,6 +73,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date('2026-05-14'),
       changeFrequency: 'weekly' as const,
       priority: 0.7
+    },
+    {
+      url: `${baseUrl}/blog/uk-immigration-visa-routes-guide`,
+      lastModified: new Date('2026-05-21'),
+      changeFrequency: 'monthly' as const,
+      priority: 0.7
     }
   ];
 }

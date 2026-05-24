@@ -2,7 +2,7 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MessageSquare, X, Send, Bot, Loader2, Minus, Maximize2, ShieldCheck } from 'lucide-react';
+import { MessageSquare, X, Send, Bot, Minus, Maximize2, ShieldCheck } from 'lucide-react';
 
 interface Message {
   role: 'user' | 'bot';
@@ -10,18 +10,24 @@ interface Message {
   timestamp: Date;
 }
 
+const ASSESSMENT_REDIRECT =
+  'Thank you for your question. For personalised advice tailored to your specific circumstances, please complete our free assessment form — our regulated immigration specialists will review your case and get back to you promptly.\n\nYou can find the assessment form at the top of every page under "Book Free Assessment".';
+
 const ChatWidget: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isMinimized, setIsMinimized] = useState(false);
   const [input, setInput] = useState('');
   const [messages, setMessages] = useState<Message[]>([
-    { 
-      role: 'bot', 
-      content: 'Welcome to the Legal Document Assistant. I am here to provide instant answers based strictly on our official legal repository. How can I assist you today?',
-      timestamp: new Date()
-    }
+    {
+      role: 'bot',
+      content:
+        'Hello! I am Alladin, your UK Immigration Assistant. I can answer your immigration questions clearly and concisely. How can I help you today?',
+      timestamp: new Date(),
+    },
   ]);
   const [isLoading, setIsLoading] = useState(false);
+  // Track how many questions the user has asked in this session
+  const [questionCount, setQuestionCount] = useState(0);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
@@ -40,24 +46,41 @@ const ChatWidget: React.FC = () => {
 
     const userMessage = input.trim();
     setInput('');
+    const newCount = questionCount + 1;
+    setQuestionCount(newCount);
+
     setMessages(prev => [...prev, { role: 'user', content: userMessage, timestamp: new Date() }]);
+
+    // ── Second or subsequent question → redirect to assessment form ────────────
+    if (newCount >= 2) {
+      setMessages(prev => [
+        ...prev,
+        { role: 'bot', content: ASSESSMENT_REDIRECT, timestamp: new Date() },
+      ]);
+      return;
+    }
+
+    // ── First question → fetch from API ───────────────────────────────────────
     setIsLoading(true);
 
-    // Minimum display time so loader doesn't flash on very fast responses
     const [data] = await Promise.all([
       fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ query: userMessage }),
       })
-        .then((r) => r.json())
-        .catch(() => ({ answer: 'Unable to reach the assistant. Please check your connection and try again.' })),
-      new Promise((r) => setTimeout(r, 150)),
+        .then(r => r.json())
+        .catch(() => ({
+          answer:
+            'I am unable to reach the assistant at this moment. Please check your connection and try again, or use our assessment form for personalised advice.',
+        })),
+      new Promise(r => setTimeout(r, 150)),
     ]);
 
     const botReply =
       (data as { answer?: string }).answer ||
-      'I was unable to find relevant information. Please try rephrasing your question or use our assessment form for personalised advice.';
+      'I was unable to find relevant information for your query. Please use our assessment form for personalised advice tailored to your situation.';
+
     setMessages(prev => [...prev, { role: 'bot', content: botReply, timestamp: new Date() }]);
     setIsLoading(false);
   };
@@ -73,7 +96,7 @@ const ChatWidget: React.FC = () => {
             transition={{ type: 'spring', damping: 20, stiffness: 200 }}
             className="mb-4 w-[calc(100vw-2rem)] sm:w-[420px] h-[calc(100vh-120px)] sm:h-[600px] max-h-[700px] flex flex-col rounded-[2rem] sm:rounded-[2.5rem] overflow-hidden border border-white/10 shadow-[0_32px_64px_-16px_rgba(0,0,0,0.6)] bg-[#0B1120]/90 backdrop-blur-2xl"
           >
-            {/* Premium Header */}
+            {/* Header */}
             <div className="relative p-4 sm:p-6 bg-gradient-to-b from-white/5 to-transparent border-b border-white/5">
               <div className="flex justify-between items-center">
                 <div className="flex items-center gap-4">
@@ -85,7 +108,7 @@ const ChatWidget: React.FC = () => {
                   </div>
                   <div>
                     <h3 className="text-white font-bold text-lg tracking-tight flex items-center gap-2">
-                      Immigrationlaw Assistant
+                      Alladin
                       <ShieldCheck size={14} className="text-emerald-400" />
                     </h3>
                     <div className="flex items-center gap-2">
@@ -93,18 +116,18 @@ const ChatWidget: React.FC = () => {
                         <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                         <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
                       </span>
-                      <span className="text-[10px] text-emerald-400 uppercase tracking-[0.2em] font-bold"> Document Assistant</span>
+                      <span className="text-[10px] text-emerald-400 uppercase tracking-[0.2em] font-bold">Immigration Assistant</span>
                     </div>
                   </div>
                 </div>
                 <div className="flex items-center gap-1">
-                  <button 
+                  <button
                     onClick={() => setIsMinimized(true)}
                     className="p-2 text-white/30 hover:text-white hover:bg-white/5 rounded-xl transition-all"
                   >
                     <Minus size={18} />
                   </button>
-                  <button 
+                  <button
                     onClick={() => setIsOpen(false)}
                     className="p-2 text-white/30 hover:text-rose-400 hover:bg-rose-500/10 rounded-xl transition-all"
                   >
@@ -117,17 +140,17 @@ const ChatWidget: React.FC = () => {
             {/* Chat Messages */}
             <div className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-4 sm:space-y-6 custom-scrollbar scroll-smooth">
               {messages.map((msg, i) => (
-                <motion.div 
+                <motion.div
                   initial={{ opacity: 0, y: 10, x: msg.role === 'user' ? 10 : -10 }}
                   animate={{ opacity: 1, y: 0, x: 0 }}
                   transition={{ delay: 0.1 }}
-                  key={i} 
+                  key={i}
                   className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
                 >
                   <div className={`group relative max-w-[85%] ${msg.role === 'user' ? 'items-end' : 'items-start'} flex flex-col gap-1`}>
                     <div className={`p-4 rounded-[1.5rem] text-[13px] leading-relaxed shadow-lg whitespace-pre-wrap ${
-                      msg.role === 'user' 
-                        ? 'bg-gradient-to-br from-blue-600 to-blue-700 text-white rounded-tr-none border border-blue-400/20' 
+                      msg.role === 'user'
+                        ? 'bg-gradient-to-br from-blue-600 to-blue-700 text-white rounded-tr-none border border-blue-400/20'
                         : 'bg-white/5 text-white/90 border border-white/10 rounded-tl-none backdrop-blur-md'
                     }`}>
                       {msg.content}
@@ -138,9 +161,9 @@ const ChatWidget: React.FC = () => {
                   </div>
                 </motion.div>
               ))}
-              
+
               {isLoading && (
-                <motion.div 
+                <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   className="flex justify-start"
@@ -161,8 +184,8 @@ const ChatWidget: React.FC = () => {
                 <input
                   type="text"
                   value={input}
-                  onChange={(e) => setInput(e.target.value)}
-                  placeholder="Ask about legal documents..."
+                  onChange={e => setInput(e.target.value)}
+                  placeholder="Ask Alladin a question..."
                   className="w-full bg-white/5 border border-white/10 rounded-2xl py-4 pl-5 pr-14 text-[13px] text-white placeholder:text-white/20 focus:outline-none focus:ring-2 focus:ring-blue-500/40 focus:border-blue-500/40 transition-all shadow-inner group-hover:border-white/20"
                 />
                 <button
@@ -174,8 +197,8 @@ const ChatWidget: React.FC = () => {
                 </button>
               </form>
               <div className="mt-4 flex justify-between items-center px-1">
-                <span className="text-[9px] text-white/20 uppercase tracking-[0.2em] font-bold">Secure Processing</span>
-                <span className="text-[9px] text-white/20 uppercase tracking-[0.2em] font-bold">v2.4.0</span>
+                <span className="text-[9px] text-white/20 uppercase tracking-[0.2em] font-bold">Alladin · Secure Processing</span>
+                <span className="text-[9px] text-white/20 uppercase tracking-[0.2em] font-bold">v3.0.0</span>
               </div>
             </div>
           </motion.div>
@@ -201,7 +224,7 @@ const ChatWidget: React.FC = () => {
                 <Maximize2 size={16} className="text-white/50 group-hover:text-white" />
               </motion.button>
             )}
-            
+
             <motion.button
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}

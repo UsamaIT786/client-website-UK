@@ -21,7 +21,7 @@ const ChatWidget: React.FC = () => {
     {
       role: 'bot',
       content:
-        'Hello! I am Alladin, your UK Immigration Assistant. I can answer your immigration questions clearly and concisely. How can I help you today?',
+        'Hello! I am Alladin, your UK Immigration Assistant.',
       timestamp: new Date(),
     },
   ]);

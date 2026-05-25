@@ -21,7 +21,7 @@ const ChatWidget: React.FC = () => {
     {
       role: 'bot',
       content:
-        'Hello! I am Alladin, your UK Immigration Assistant.',
+        'Hello! I am Aladin, your UK Immigration Assistant.',
       timestamp: new Date(),
     },
   ]);
@@ -108,7 +108,7 @@ const ChatWidget: React.FC = () => {
                   </div>
                   <div>
                     <h3 className="text-white font-bold text-lg tracking-tight flex items-center gap-2">
-                      Alladin
+                      Aladin
                       <ShieldCheck size={14} className="text-emerald-400" />
                     </h3>
                     <div className="flex items-center gap-2">
@@ -185,7 +185,7 @@ const ChatWidget: React.FC = () => {
                   type="text"
                   value={input}
                   onChange={e => setInput(e.target.value)}
-                  placeholder="Ask Alladin a question..."
+                  placeholder="Ask Aladin a question..."
                   className="w-full bg-white/5 border border-white/10 rounded-2xl py-4 pl-5 pr-14 text-[13px] text-white placeholder:text-white/20 focus:outline-none focus:ring-2 focus:ring-blue-500/40 focus:border-blue-500/40 transition-all shadow-inner group-hover:border-white/20"
                 />
                 <button
@@ -197,7 +197,7 @@ const ChatWidget: React.FC = () => {
                 </button>
               </form>
               <div className="mt-4 flex justify-between items-center px-1">
-                <span className="text-[9px] text-white/20 uppercase tracking-[0.2em] font-bold">Alladin · Secure Processing</span>
+                <span className="text-[9px] text-white/20 uppercase tracking-[0.2em] font-bold">Aladin · Secure Processing</span>
                 <span className="text-[9px] text-white/20 uppercase tracking-[0.2em] font-bold">v3.0.0</span>
               </div>
             </div>

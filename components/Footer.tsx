@@ -19,14 +19,14 @@ const Footer: React.FC = () => {
           </p>
           <div className="flex gap-4">
             {[
-              { icon: Facebook, href: '#' },
-              { icon: Twitter, href: '#' },
-              { icon: Instagram, href: '#' },
-              { icon: Linkedin, href: '#' }
+              { icon: Facebook, href: 'https://www.facebook.com/share/1CwN4FSCXe/?mibextid=wwXIfr' },
+              { icon: Instagram, href: 'https://www.instagram.com/immigrationlaw.org.uk?igsh=MXI4dWdscW5sdHpoZg%3D%3D&utm_source=q' }
             ].map((social, i) => (
               <a
                 key={i}
                 href={social.href}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-10 h-10 rounded-full border border-slate-200 flex items-center justify-center hover:bg-primary hover:border-primary transition-all duration-300 group"
               >
                 <social.icon size={18} className="text-slate-600 group-hover:text-white group-hover:scale-110 transition-all" />
@@ -51,8 +51,17 @@ const Footer: React.FC = () => {
           </ul>
         </div>
       </div>
-      <div className="max-w-7xl mx-auto px-6 mt-24 pt-10 border-t border-slate-200 text-slate-400 text-[12px] uppercase tracking-[0.2em] flex flex-col md:flex-row justify-between items-center gap-6">
-        <p>© 2026 Immigrationlaw.org.uk. All Rights Reserved.</p>
+      <div className="max-w-7xl mx-auto px-6 mt-24 pt-10 border-t border-slate-200 flex flex-col md:flex-row justify-between items-end gap-6 text-slate-500">
+        <div className="flex flex-col gap-4 text-xs leading-relaxed max-w-3xl">
+          <p className="text-[10px] md:text-xs text-slate-400">
+            © 2026 Scosh Limited. Trading as ImmigrationLaw.org.uk. All rights reserved.<br/>
+            Scosh Limited is registered in England and Wales. Company No. 15141679.<br/>
+            ImmigrationLaw.org.uk is an intermediary service. We are not a law firm. We connect clients with SRA-regulated immigration solicitors.
+          </p>
+        </div>
+        <div className="shrink-0 flex gap-4">
+          <button onClick={() => { if (typeof window !== 'undefined') (window as any).Cookiebot?.show() }} className="text-xs text-gray-400 hover:underline">Cookie Settings</button>
+        </div>
       </div>
     </footer>
   );

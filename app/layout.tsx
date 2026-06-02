@@ -1,6 +1,7 @@
 import React from 'react';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
+import Script from 'next/script';
 import './globals.css';
 import { ModalProvider } from '../context/ModalContext';
 import Navbar from '../components/Navbar';
@@ -27,6 +28,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className} suppressHydrationWarning>
+        <Script
+          id="Cookiebot"
+          src="https://consent.cookiebot.com/uc.js"
+          data-cbid="YOUR-COOKIEBOT-ID-HERE"
+          data-blockingmode="auto"
+          strategy="beforeInteractive"
+          suppressHydrationWarning
+        />
         <ModalProvider>
           <div className="relative min-h-screen overflow-x-hidden">
             <Preloader />

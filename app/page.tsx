@@ -1,4 +1,10 @@
+import type { Metadata } from 'next';
 import Home from '../src_pages/Home';
+
+export const metadata: Metadata = {
+  title: 'UK Immigration Legal Support | ImmigrationLaw.org.uk',
+  description: 'Expert UK immigration guidance. We match you with SRA-regulated solicitors for visas, ILR, appeals and citizenship. Book a free confidential assessment today.',
+};
 
 export default function Page() {
   const legalServiceSchema = {

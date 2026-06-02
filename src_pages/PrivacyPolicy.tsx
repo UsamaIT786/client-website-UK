@@ -19,7 +19,7 @@ const PrivacyPolicy: React.FC = () => {
       title: "2. Important Information and Who We Are",
       content: (
         <div className="space-y-4">
-          <p>ImmigrationLaw.org.uk is the data controller responsible for your personal data.</p>
+          <p>Scosh Limited (trading as ImmigrationLaw.org.uk) is the data controller responsible for your personal data. Company No. 15141679, registered in England and Wales.</p>
           <div className="p-4 bg-primary/5 border-l-4 border-primary rounded-r-xl">
             <p className="font-bold text-slate-900 mb-2">Intermediary Disclosure:</p>
             <p>We are not a law firm. We are an intermediary service that connects individuals with SRA-regulated solicitors and legal experts. By using our service, you acknowledge that your data will be passed to third-party legal professionals to assist with your inquiry.</p>
@@ -29,7 +29,7 @@ const PrivacyPolicy: React.FC = () => {
               <UserCheck className="text-primary shrink-0" size={20} />
               <div>
                 <p className="font-bold text-slate-900 text-sm uppercase tracking-wider">Entity Name</p>
-                <p className="text-slate-600">ImmigrationLaw.org.uk</p>
+                <p className="text-slate-600">Scosh Limited</p>
               </div>
             </div>
             <div className="flex items-start gap-3">

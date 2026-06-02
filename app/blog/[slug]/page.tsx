@@ -15,15 +15,17 @@ export async function generateMetadata({ params }: Props) {
     };
   }
 
+  const description = post.excerpt || (post.content ? post.content.slice(0, 155) : '');
+
   return {
     title: `${post.title} | Immigration Law Experts`,
-    description: post.excerpt,
+    description: description,
     alternates: {
       canonical: `/blog/${slug}`,
     },
     openGraph: {
       title: post.title,
-      description: post.excerpt,
+      description: description,
       images: [post.image || ''],
     },
   };

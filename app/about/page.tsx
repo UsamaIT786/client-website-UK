@@ -2,8 +2,8 @@ import type { Metadata } from 'next';
 import About from '../../src_pages/About';
 
 export const metadata: Metadata = {
-  title: 'About Us | Regulated UK Immigration Solicitors',
-  description: 'Meet our expert team of regulated UK immigration solicitors. Learn about our legal expertise, values, and dedication to your settlement success.',
+  title: 'About Us | ImmigrationLaw.org.uk',
+  description: 'ImmigrationLaw.org.uk is a UK immigration intermediary, connecting clients with vetted, SRA-regulated solicitors. Operated by Scosh Limited (15141679).',
 };
 
 export default function Page() {

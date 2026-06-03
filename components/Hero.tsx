@@ -46,24 +46,7 @@ const Hero: React.FC = () => {
             </button>
           </div>
 
-          <div className="flex items-center gap-8 border-t border-slate-100 pt-10">
-            <div className="flex -space-x-3">
-              {[1, 2, 3, 4].map(i => (
-                <div key={i} className="w-10 h-10 rounded-full border-2 border-white bg-slate-50 overflow-hidden">
-                  <img src={`https://i.pravatar.cc/150?u=${i + 10}`} alt="client" className="w-full h-full object-cover" />
-                </div>
-              ))}
-            </div>
-            <div>
-              <div className="flex items-center gap-1 mb-1">
-                <span className="text-sm text-slate-900 tracking-tighter">4.8</span>
-                <div className="flex gap-0.5">
-                  {[1, 2, 3, 4, 5].map(i => <div key={i} className="w-2.5 h-2.5 bg-yellow-400 rounded-full" />)}
-                </div>
-              </div>
-              <p className="text-[10px] uppercase text-textMuted tracking-widest">Trusted by Clients</p>
-            </div>
-          </div>
+
         </motion.div>
 
         {/* Right Content - Hero Image */}

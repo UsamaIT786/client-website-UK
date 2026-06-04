@@ -26,8 +26,8 @@ const Hero: React.FC = () => {
             Uk <span className="text-primary">Immigration</span> <br />
             Legal <span className="text-primary">Support</span>
           </h1>
-          <p className="text-textMuted text-base md:text-lg max-w-md mb-10 md:mb-12 leading-relaxed">
-            Providing guidance and connecting you with the UK's most trusted legal professional. Secure your future with confidence.
+          <p className="text-textMuted text-base md:text-lg max-w-2xl mb-10 md:mb-12 leading-relaxed">
+            Navigating UK immigration rules for families, professionals, and businesses in 2026. Secure guidance with vetted, SRA-regulated legal experts.
           </p>
 
           <div className="flex flex-wrap gap-6 mb-12">
@@ -44,6 +44,13 @@ const Hero: React.FC = () => {
             >
               About Us
             </button>
+          </div>
+
+          {/* New Trustpilot Horizontal Trust Strip Frame Embedded */}
+          <div className="flex items-center mt-6 min-h-[30px]">
+            <div className="trustpilot-widget" data-locale="en-GB" data-template-id="5419b6a8b200d00d06902606" data-businessunit-id="YOUR-TRUSTPILOT-ID" data-style-height="28px" data-style-width="100%" data-theme="dark">
+              <a href="https://uk.trustpilot.com/review/immigrationlaw.org.uk" target="_blank" rel="noopener noreferrer" className="text-[10px] text-slate-400 hover:underline">See our verified reviews on Trustpilot</a>
+            </div>
           </div>
 
 

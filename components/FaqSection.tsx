@@ -15,11 +15,11 @@ const faqs = [
   },
   {
     question: "Are the legal professionals regulated?",
-    answer: "Yes, absolutely. We partner with legal professionals and firms that are fully regulated by the Solicitors Regulation Authority (SRA) or the Office of the Immigration Services Commissioner (IAA))"
+    answer: "Yes, we strictly partner with vetted, independent, SRA-regulated immigration solicitors across the United Kingdom to manage visa cases."
   },
   {
     question: "How quickly will I receive a response?",
-    answer: "Our system prioritizes every request. Typically, you will receive a response or a call from a legal expert within 24 hours of your initial inquiry."
+    answer: "All initial client profile assessments are evaluated and responded to within a guaranteed 24-48 business hour window by our partnering team panels."
   },
   {
     question: "Is my personal information secure?",

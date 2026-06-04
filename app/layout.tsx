@@ -13,8 +13,8 @@ const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.immigrationlaw.org.uk'),
-  title: 'Immigration Law | UK Immigration Solutions',
-  description: 'Setting the global standard for UK Immigration Solutions. We combine old legal tradition with modern efficient solutions.',
+  title: 'UK Immigration Legal Support | ImmigrationLaw.org.uk',
+  description: 'Expert UK immigration guidance. We match you with SRA-regulated solicitors for visas, ILR, appeals and citizenship. Book a free confidential assessment today.',
   alternates: {
     canonical: './',
   },
@@ -27,6 +27,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <Script
+          id="trustpilot"
+          src="https://widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js"
+          strategy="lazyOnload"
+        />
+      </head>
       <body className={inter.className} suppressHydrationWarning>
         <Script
           id="Cookiebot"

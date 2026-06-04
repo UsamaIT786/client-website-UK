@@ -205,22 +205,11 @@ const AssessmentModal: React.FC<AssessmentModalProps> = ({ isOpen, onClose }) =>
                   </p>
                 </form>
               ) : (
-                <div
-                  className="text-center py-10"
-                >
-                  <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-8">
-                    <Scale className="text-primary w-10 h-10" />
-                  </div>
-                  <h3 className="text-2xl font-syne font-bold text-slate-900 mb-4 uppercase tracking-tight">Expert Counsel Awaits</h3>
-                  <p className="text-slate-500 leading-relaxed text-lg mb-10">
-                    Thank you. Expect to hear from a legal professional within <span className="text-slate-900 font-bold">24hrs</span>.
-                  </p>
-                  <button
-                    onClick={onClose}
-                    className="px-10 py-4 rounded-xl border border-slate-200 text-slate-600 font-bold uppercase tracking-widest text-[10px] hover:bg-slate-900 hover:text-white"
-                  >
-                    Close Window
-                  </button>
+                <div className="text-center py-6">
+                  <div className="w-12 h-12 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-4">✓</div>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-2">Request Successful</h3>
+                  <p className="text-gray-600 text-sm">Thank you for submitting your assessment request. Our specialized support coordinator will evaluate your criteria and connect you with an authorized legal representative shortly.</p>
+                  <button onClick={onClose} className="mt-6 bg-gray-900 text-white px-6 py-2 rounded-lg font-medium hover:bg-gray-800 transition-colors">Close Windows</button>
                 </div>
               )}
             </div>

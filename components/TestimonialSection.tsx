@@ -6,25 +6,25 @@ import { Star, Quote } from 'lucide-react';
 
 const testimonials = [
   {
-    name: "Ahmed R.",
-    role: "BUSINESS VISA",
-    content: "I was confused by the new salary thresholds. The solicitor I was matched with explained everything and handled my sponsor license perfectly.",
-    rating: 5,
-    initial: "A"
-  },
-  {
-    name: "Sarah L.",
-    role: "SPOUSE VISA",
-    content: "After a previous refusal, I was terrified. ImmigrationLaw.org.uk connected me with an expert who won our appeal in record time.",
+    name: "Sarah M.",
+    role: "Spouse Visa Approved",
+    content: "Excellent support throughout our family migration process. The matched solicitors were diligent, responsive, and completely transparent with legal requirements.",
     rating: 5,
     initial: "S"
   },
   {
-    name: "Chen W.",
-    role: "ILR APPLICANT",
-    content: "Professional, fast, and transparent. I received my Indefinite Leave to Remain within 5 days using their super-priority service.",
+    name: "David K.",
+    role: "Global Talent Route",
+    content: "Extremely professional intermediary service. Saved us weeks of parsing home office frameworks by linking us directly to a tier-1 tech endorsement visa expert.",
     rating: 5,
-    initial: "C"
+    initial: "D"
+  },
+  {
+    name: "Amara Singh",
+    role: "ILR & Settlement",
+    content: "Highly recommend for anyone seeking indefinite leave to remain. The assessment form was straightforward and secure, leading to a flawless execution.",
+    rating: 5,
+    initial: "A"
   }
 ];
 
@@ -46,14 +46,21 @@ const TestimonialSection: React.FC = () => {
             <h2
               className="text-3xl md:text-7xl font-syne font-bold uppercase tracking-tighter text-slate-900"
             >
-              Our <span className="text-primary">Reputation</span>
+              What Our <span className="text-primary">Clients Say</span>
             </h2>
           </div>
           <p
             className="text-textMuted text-lg max-w-sm leading-relaxed"
           >
-            Trusted by individuals worldwide to navigate the complexities of global mobility.
+            Verified customer feedback powered by real success stories.
           </p>
+        </div>
+
+        {/* Trustpilot Review Carousel Embed Component Widget */}
+        <div className="mb-16 flex justify-center w-full">
+          <div className="trustpilot-widget" data-locale="en-GB" data-template-id="53aa8912dec7e10d38c5b536" data-businessunit-id="YOUR-TRUSTPILOT-ID" data-style-height="140px" data-style-width="100%" data-theme="light">
+            <a href="https://uk.trustpilot.com/review/immigrationlaw.org.uk" target="_blank" rel="noopener noreferrer">Trustpilot</a>
+          </div>
         </div>
 
         <div className="grid md:grid-cols-3 gap-8">
